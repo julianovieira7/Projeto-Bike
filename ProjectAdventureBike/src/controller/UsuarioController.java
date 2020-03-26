@@ -8,9 +8,11 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import application.RepositoryException;
 import application.Util;
 import factory.JPAFactory;
 import model.Usuario;
+import repository.Repository;
 
 @Named
 @ViewScoped
@@ -27,16 +29,23 @@ public class UsuarioController extends Controller<Usuario> {
 		listaUsuario = query.getResultList();
 	}
 
-	public void incluir() {
+	
+	@Override
+	public void salvar() {
 		if (validarDados()) {
-			EntityManager em = JPAFactory.getEntityManager();
-			em.getTransaction().begin();
-			getEntity().setSenha(Util.hashSHA256(getEntity().getSenha()));
-			
-			setEntity(em.merge(getEntity()));
-			em.remove(getEntity());
-
-			em.getTransaction().commit();
+			Repository<Usuario> r = new Repository<Usuario>();
+			try {
+				r.beginTransaction();
+				getEntity().setSenha(Util.hashSHA256(getEntity().getSenha()));
+				
+				r.salvar(getEntity());
+				r.commitTransaction();	
+			} catch (RepositoryException e) {
+				e.printStackTrace();
+				r.rollbackTransaction();
+				Util.addMessageError("Problema ao salvar.");
+				return;
+			}
 			
 			Util.addMessageInfo("Inclusao realizada com sucesso.");
 			limpar();

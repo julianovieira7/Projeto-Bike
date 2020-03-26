@@ -16,7 +16,7 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@Column(length = 100, nullable = false)
 	private String nome;
 
-	@Column(length = 100)
+	@Column(length = 100,nullable = false)
 	private String email;
 
 	@Column(length = 70, nullable = false)
