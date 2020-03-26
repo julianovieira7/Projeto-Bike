@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastro de Usuario</title>
+</h:head>
+<h:body>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage name="/images/loading.gif" />
+	</p:dialog>
+
+	<h:form>
+		<p:panel id="panel" header="Cadastro de Usuario">
+
+			<p:growl id="growl" />
+
+			<h:panelGrid columns="2" cellpadding="5">
+			
+				<p:commandLink value="Nome:" onclick="PF('listagem').show();" />
+				<p:inputText value="#{usuarioController.entity.nome}" />
+				
+				<p:outputLabel value="Senha:" />
+				<p:password id="feedback" value="#{usuarioController.entity.senha}"
+					feedback="true" />
+					
+				<p:outputLabel value="Email:" />
+				<p:inputText value="#{usuarioController.entity.email}" />
+
+				<p:outputLabel value="Data de Aniversário:" />
+				<p:calendar value="#{usuarioController.entity.dataAniversario}"
+					pattern="dd/MM/yyyy" />
+
+			</h:panelGrid>
+			<p:spacer height="10" />
+
+			<p:separator />
+
+			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+			<p:commandButton value="Salvar" process="@form" update="panel"
+				action="#{usuarioController.incluir}" />
+
+			<p:commandButton value="Excluir" process="@form" update="panel"
+				action="#{usuarioController.excluir}">
+
+				<p:confirm header="Confirmação" message="Confirma a exclusão?" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" />
+			</p:confirmDialog>
+
+			<p:commandButton value="Limpar" process="@form" update="panel"
+				action="#{usuarioController.limpar}" />
+		</p:panel>
+
+		<p:dialog header="Listagem de Usuarios" widgetVar="listagem"
+			modal="true" height="300" width="90%" resizable="false">
+			<p:outputLabel value="Nome: " />
+			<p:inputText id="itFiltro" value="#{usuarioController.filtro}" />
+			<p:commandButton value="Pesquisar"
+				actionListener="#{usuarioController.pesquisar}"
+				process="@this itFiltro" update="dtListagem" />
+			<br />
+			<p:dataTable id="dtListagem" var="entity"
+				value="#{usuarioController.listaUsuario}">
+				<p:column headerText="Id">
+					<h:outputText value="#{entity.id}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:commandLink value="#{entity.nome}"
+						actionListener="#{usuarioController.editar(entity.id)}" />
+				</p:column>
+
+				<p:column headerText="Senha">
+					<h:outputText value="#{entity.senha}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{entity.email}" />
+				</p:column>
+
+				<p:column headerText="Data Aniversário">
+					<h:outputText value="#{entity.dataAniversario}" />
+				</p:column>
+
+			</p:dataTable>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
