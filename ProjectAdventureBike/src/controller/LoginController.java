@@ -20,41 +20,28 @@ public class LoginController extends Controller<Usuario> {
 	public String logar() {
 
 		String hashSenha = Util.hashSHA256(getEntity().getSenha());
-		usuario = getUsuario(getEntity().getNome(), hashSenha);
-		if (usuario != null) {
-			Util.addMessageInfo("Login com sucesso.");
-			return "usuario.xhtml?faces-redirect=true";
+		usuario = login(getEntity().getEmail(), hashSenha);
+		if (usuario == null) {
+			Util.addMessageError("Usuario ou senha incorretos.");
+			return null;
+			
 		}
-		Util.addMessageError("Usuario ou senha incorretos.");
-		return null;
+		Util.addMessageInfo("Login com sucesso.");
+		return "usuario.xhtml?faces-redirect=true";
+	
 	}
-//	public String envia() {
-//        
-//	    usuario = usuarioDAO.getUsuario(usuario.getNomeUsuario(), usuario.getSenha());
-//	    if (usuario == null) {
-//	      usuario = new Usuario();
-//	      FacesContext.getCurrentInstance().addMessage(
-//	         null,
-//	         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!",
-//	           "Erro no Login!"));
-//	      return null;
-//	    } else {
-//	          return "/main";
-//	    }
-//	         
 
-//	  }
-
-	public Usuario getUsuario(String email, String senha) {
+	public Usuario login(String email, String senha) {
 
 		try {
 			EntityManager em = JPAFactory.getEntityManager();
 			Query query = em.createQuery("SELECT a " + "From Usuario a " + "where a.email = :email and a.senha = :senha");
 			query.setParameter("email", email);
 			query.setParameter("senha", senha);
-
-			return entity;
+			usuario = (Usuario) query.getSingleResult();
+			return usuario;
 		} catch (NoResultException e) {
+			Util.addMessageError("nao foi possivel buscar no banco de dados");
 			return null;
 		}
 	}
