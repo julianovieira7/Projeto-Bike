@@ -6,15 +6,16 @@
 	<persistence-unit name="ProjectAdventureBike">
 		<class>model.Usuario</class>
 		<class>model.DefaultEntity</class>
+		<class>model.Endereco</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://localhost:5432/projectbike?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8" />
+				value="jdbc:postgresql://localhost:5432/bikeproject?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8" />
 
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" />
 
 			<property name="javax.persistence.jdbc.user"
-				value="topicos2" />
+				value="bikeuser" />
 
 			<property name="javax.persistence.jdbc.password"
 				value="123456" />

@@ -1,0 +1,139 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="head">
+		<style type="text/css">
+			.ui-panelgrid.form-elements .ui-grc-2 {
+				padding-left: 60px;
+			}
+			
+			@media ( max-width :1024px) {
+				.ui-panelgrid.form-elements .ui-grc-2 {
+					padding-left: 20px;
+				}
+			}
+			
+			@media ( max-width :640px) {
+				.ui-panelgrid.form-elements .ui-grc-2 {
+					padding-left: 6px;
+				}
+			}
+			
+			.dialogDemo label {
+				line-height: 2.1em;
+			}
+			</style>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage name="/images/loading.gif" />
+		</p:dialog>
+
+		<h:form>
+			<p:growl id="growl" globalOnly="false" />
+			<p:panel id="panel">
+				<f:facet name="header">
+					<div align="center">
+						<h1>Cadastro de Endereco</h1>
+					</div>
+				</f:facet>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12">
+						<div class="card card-w-title">
+							<p:panelGrid columns="1"
+								styleClass="form-group ui-panelgrid-blank" layout="grid">
+								
+								<p:commandLink value="Endereco: " 
+									actionListener="#{enderecoController.abrirEnderecoListing}" 
+									process="@this" update="@none">
+									
+									<p:ajax event="dialogReturn" 
+										listener="#{enderecoController.obterEnderecoListing}" 
+										update="@form" />
+									
+									<p:message for="itEndereco" escape="false" />
+								</p:commandLink>						
+								<p:inputText id="itEndereco" value="#{enderecoController.entity.rua}"
+									required="true" requiredMessage="Informe o endereco." />
+
+								
+									
+								
+								<p:outputLabel value="Numero: ">
+									<p:message for="itNumero" escape="false" />
+								</p:outputLabel>
+								
+								<p:inputText id="itNumero"
+									value="#{enderecoController.entity.numero}" 
+									required="true" requiredMessage="Informe o numero."/>
+									
+									<p:outputLabel value="Cep: ">
+									<p:message for="itCep" escape="false" />
+								</p:outputLabel>
+								
+								<p:inputText id="itCep"
+									value="#{enderecoController.entity.cep}" 
+									required="true" requiredMessage="Informe o CEP."/>
+									
+								<p:outputLabel value="Complemento: ">
+									<p:message for="itComplemento" escape="false" />
+								</p:outputLabel>
+								
+								<p:inputText id="itComplemento"
+									value="#{enderecoController.entity.complemento}" />
+									
+									<p:outputLabel value="Ponto de Referencia: ">
+									<p:message for="itPontoReferencia" escape="false" />
+								</p:outputLabel>
+								
+								<p:inputText id="itPontoReferencia"
+									value="#{enderecoController.entity.pontoReferencia}" />		
+							</p:panelGrid>
+						</div>
+					</div>
+				</div>
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
+							update="@form" action="#{enderecoController.salvar}" />
+
+						<p:commandButton value="Limpar" 
+							process="@this" update="panel"
+							action="#{enderecoController.limpar}">
+							<p:ajax update="@form" resetValues="true" />
+						</p:commandButton>
+
+					</f:facet>
+
+					<f:facet name="right">
+						<p:commandButton value="Excluir" icon="pi pi-trash"
+							process="@form" update="panel"
+							action="#{enderecoController.excluir}">
+							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
+						</p:commandButton>
+					</f:facet>
+				</p:toolbar>
+			</p:panel>
+
+			<p:confirmDialog global="true" 
+				showEffect="fade" 
+				hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+		

@@ -5,14 +5,12 @@ import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import application.RepositoryException;
 import application.Util;
-import factory.JPAFactory;
 import model.Usuario;
 import repository.Repository;
+import repository.UsuarioRepository;
 
 @Named
 @ViewScoped
@@ -23,10 +21,15 @@ public class UsuarioController extends Controller<Usuario> {
 	private List<Usuario> listaUsuario;
 
 	public void pesquisar() {
-		EntityManager em = JPAFactory.getEntityManager();
-		Query query = em.createQuery("Select a " + "From Usuario a " + "Where upper(a.nome) like upper(:filtro)");
-		query.setParameter("filtro", "%" + getFiltro() + "%");
-		listaUsuario = query.getResultList();
+//		EntityManager em = JPAFactory.getEntityManager();
+//		Query query = em.createQuery("Select a " + "From Usuario a " + "Where upper(a.nome) like upper(:filtro)");
+//		query.setParameter("filtro", "%" + getFiltro() + "%");
+//		listaUsuario = query.getResultList();
+		
+		UsuarioRepository repo = new UsuarioRepository();
+	//	metodo(string pesquisa)
+		//if(get == 
+		listaUsuario = repo.findByNome(getFiltro());
 	}
 
 	

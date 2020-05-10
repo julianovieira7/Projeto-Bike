@@ -1,20 +1,24 @@
 package model;
 
-public class Endereco {
-	private Integer id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class Endereco extends DefaultEntity<Endereco> {
+
+	private static final long serialVersionUID = -5694392091322912401L;
+
+	@Column(nullable = false)
 	private String cep;
+
+	@Column(nullable = false)
 	private String numero;
+
+	@Column(nullable = false)
 	private String rua;
+
 	private String complemento;
 	private String pontoReferencia;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getCep() {
 		return cep;

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,6 +27,18 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dataAniversario;
+
+	@ManyToOne
+	@JoinColumn(name = "idendereco")
+	private Endereco endereco;
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public String getNome() {
 		return nome;
