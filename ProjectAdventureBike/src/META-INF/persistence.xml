@@ -7,6 +7,7 @@
 		<class>model.Usuario</class>
 		<class>model.DefaultEntity</class>
 		<class>model.Endereco</class>
+		<class>model.Telefone</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:postgresql://localhost:5432/bikeproject?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8" />

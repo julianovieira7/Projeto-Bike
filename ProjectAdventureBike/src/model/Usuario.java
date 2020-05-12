@@ -12,13 +12,12 @@ import javax.persistence.TemporalType;
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
 
-
 	private static final long serialVersionUID = 7142524988499261148L;
 
 	@Column(length = 100, nullable = false)
 	private String nome;
 
-	@Column(length = 100,nullable = false)
+	@Column(length = 100, nullable = false)
 	private String email;
 
 	@Column(length = 70, nullable = false)
@@ -31,7 +30,19 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@ManyToOne
 	@JoinColumn(name = "idendereco")
 	private Endereco endereco;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "idtelefone")
+	private Telefone telefone;
+
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -71,5 +82,5 @@ public class Usuario extends DefaultEntity<Usuario> {
 	public void setDataAniversario(Date dataAniversario) {
 		this.dataAniversario = dataAniversario;
 	}
-	
+
 }

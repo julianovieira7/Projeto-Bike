@@ -1,17 +1,16 @@
 package model;
 
-public class Telefone {
-	private Integer id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class Telefone extends DefaultEntity<Telefone> {
+
+	private static final long serialVersionUID = 6651617821652381339L;
+	@Column(nullable = false)
 	private Integer codigoArea;
+	@Column(nullable = false)
 	private String numero;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Integer getCodigoArea() {
 		return codigoArea;

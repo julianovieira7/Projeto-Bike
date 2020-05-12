@@ -1,14 +1,12 @@
 package controller;
 
 import javax.faces.view.ViewScoped;
-
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
 import controller.listing.EnderecoListing;
 import model.Endereco;
-
 
 @Named
 @ViewScoped
