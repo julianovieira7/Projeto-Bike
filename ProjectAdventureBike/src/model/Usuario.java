@@ -8,6 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Validation;
+
+import model.validation.UsuarioValidation;
+
 
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
@@ -83,4 +87,8 @@ public class Usuario extends DefaultEntity<Usuario> {
 		this.dataAniversario = dataAniversario;
 	}
 
+	@Override
+	public Validation <Usuario> getValidation() {
+		return new UsuarioValidation();
+	}
 }

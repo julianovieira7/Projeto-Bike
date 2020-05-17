@@ -46,7 +46,7 @@ public class EnderecoListing extends Listing<Endereco> {
 
 	public void pesquisar() {
 		EnderecoRepository repo = new EnderecoRepository();
-		setList(repo.findByNome(getFiltro()));
+		setList(repo.findByRua(getFiltro()));
 	}
 
 	public void select(int id) {

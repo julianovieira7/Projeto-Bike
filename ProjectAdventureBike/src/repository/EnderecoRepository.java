@@ -7,19 +7,19 @@ import javax.persistence.Query;
 import model.Endereco;
 
 public class EnderecoRepository extends Repository<Endereco>{
-	public List<Endereco> findByNome(String nome) {
+	public List<Endereco> findByRua(String rua) {
 
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
-		jpql.append("  e ");
+		jpql.append("  a ");
 		jpql.append("FROM ");
-		jpql.append("  Endereco e ");
+		jpql.append("  Endereco a ");
 		jpql.append("WHERE ");
-		jpql.append("  upper(e.nome) like upper(:nome) ");
+		jpql.append("  upper(a.rua) like upper(:rua) ");
 
 		Query query = getEntityManager().createQuery(jpql.toString());
 
-		query.setParameter("nome", "%" + nome + "%");
+		query.setParameter("rua", "%" + rua + "%");
 
 		return query.getResultList();
 	}

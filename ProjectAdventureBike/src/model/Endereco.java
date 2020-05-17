@@ -3,6 +3,7 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+
 @Entity
 public class Endereco extends DefaultEntity<Endereco> {
 
@@ -59,4 +60,6 @@ public class Endereco extends DefaultEntity<Endereco> {
 	public void setPontoReferencia(String pontoReferencia) {
 		this.pontoReferencia = pontoReferencia;
 	}
+
+	
 }
