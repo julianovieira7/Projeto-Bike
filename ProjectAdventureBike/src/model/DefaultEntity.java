@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import model.validation.Validation;
 
 @MappedSuperclass
-public class DefaultEntity<T> implements Serializable {
+public abstract class DefaultEntity<T> implements Serializable {
 
 	private static final long serialVersionUID = 8082466373201351021L;
 	@Id

@@ -60,25 +60,24 @@ public class UsuarioController extends Controller<Usuario> {
 
 	@Override
 	public void salvar() {
-		if (validarDados()) {
-			Repository<Usuario> r = new Repository<Usuario>();
-			try {
-				r.beginTransaction();
-				getEntity().setSenha(Util.hashSHA256(getEntity().getSenha()));
 
-				r.salvar(getEntity());
-				r.commitTransaction();
-			} catch (RepositoryException e) {
-				e.printStackTrace();
-				r.rollbackTransaction();
-				Util.addMessageError("Problema ao salvar.");
-				return;
-			}
+		Repository<Usuario> r = new Repository<Usuario>();
+		try {
+			r.beginTransaction();
+			getEntity().setSenha(Util.hashSHA256(getEntity().getSenha()));
 
-			Util.addMessageInfo("Inclusao realizada com sucesso.");
-			limpar();
-
+			r.salvar(getEntity());
+			r.commitTransaction();
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+			r.rollbackTransaction();
+			Util.addMessageError("Problema ao salvar.");
+			return;
 		}
+
+		Util.addMessageInfo("Inclusao realizada com sucesso.");
+		limpar();
+
 	}
 
 	@Override
@@ -104,14 +103,6 @@ public class UsuarioController extends Controller<Usuario> {
 			listaUsuario = new ArrayList<Usuario>();
 
 		return listaUsuario;
-	}
-
-	private boolean validarDados() {
-		if (getEntity().getSenha().isBlank()) {
-			Util.addMessageWarn("O campo senha deve ser informado.");
-			return false;
-		}
-		return true;
 	}
 
 }

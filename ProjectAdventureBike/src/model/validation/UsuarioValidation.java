@@ -19,7 +19,7 @@ public class UsuarioValidation implements Validation<Usuario>{
 	private void validaEmail(Usuario entity) throws ValidationException {
 		UsuarioRepository repo = new UsuarioRepository();
 		if (repo.contains(entity.getId(), entity.getEmail())) {
-			throw new ValidationException("Email Inválido. Este e-mail já¡ está¡ sendo utilizado por outro aluno.");
+			throw new ValidationException("Email Invalido. Este e-mail ja esta sendo utilizado por outro aluno.");
 		}
 	
 	}
@@ -30,7 +30,7 @@ public class UsuarioValidation implements Validation<Usuario>{
 		//data        = 12/05/2020
 		//datalimite  = 12/05/2002
 		if (data.isAfter(dataLimite)) {
-			throw new ValidationException("Data Inválida. O aluno não pode ser menor de idade.");
+			throw new ValidationException("Data Invalida. O aluno nao pode ser menor de idade.");
 		}
 	}
 

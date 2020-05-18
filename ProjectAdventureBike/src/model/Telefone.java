@@ -1,15 +1,16 @@
 package model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import model.validation.Validation;
 
 @Entity
 public class Telefone extends DefaultEntity<Telefone> {
 
 	private static final long serialVersionUID = 6651617821652381339L;
-	@Column(nullable = false)
+
 	private Integer codigoArea;
-	@Column(nullable = false)
+
 	private String numero;
 
 	public Integer getCodigoArea() {
@@ -26,5 +27,11 @@ public class Telefone extends DefaultEntity<Telefone> {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	@Override
+	public Validation<Telefone> getValidation() {
+
+		return null;
 	}
 }

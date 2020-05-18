@@ -3,6 +3,8 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import model.validation.Validation;
+
 
 @Entity
 public class Endereco extends DefaultEntity<Endereco> {
@@ -59,6 +61,12 @@ public class Endereco extends DefaultEntity<Endereco> {
 
 	public void setPontoReferencia(String pontoReferencia) {
 		this.pontoReferencia = pontoReferencia;
+	}
+
+	@Override
+	public Validation<Endereco> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
