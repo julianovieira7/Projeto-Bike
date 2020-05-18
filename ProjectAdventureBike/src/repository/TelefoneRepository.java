@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import model.Telefone;
 
 public class TelefoneRepository extends Repository<Telefone> {
-	public List<Telefone> findByCodigoArea(String codigoArea) {
+	public List<Telefone> findByCodigoArea(Integer codigoArea) {
 
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
@@ -15,7 +15,7 @@ public class TelefoneRepository extends Repository<Telefone> {
 		jpql.append("FROM ");
 		jpql.append("  Telefone e ");
 		jpql.append("WHERE ");
-		jpql.append("  upper(e.codigoArea) like upper(:codigoArea) ");
+		jpql.append("  (e.codigoArea) like (:codigoArea) ");
 
 		Query query = getEntityManager().createQuery(jpql.toString());
 

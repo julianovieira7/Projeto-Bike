@@ -21,7 +21,7 @@ public class TelefoneListing extends Listing<Telefone> {
 
 	private static final long serialVersionUID = -7887976623545341109L;
 	private List<Telefone> list;
-	private String filtro;
+	private Integer filtro;
 
 	@Override
 	public Telefone getEntity() {
@@ -66,11 +66,11 @@ public class TelefoneListing extends Listing<Telefone> {
 		this.list = list;
 	}
 
-	public String getFiltro() {
+	public Integer getFiltro() {
 		return filtro;
 	}
 
-	public void setFiltro(String filtro) {
+	public void setFiltro(Integer filtro) {
 		this.filtro = filtro;
 	}
 

@@ -12,7 +12,6 @@ import javax.validation.Validation;
 
 import model.validation.UsuarioValidation;
 
-
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
 
@@ -35,8 +34,8 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@JoinColumn(name = "idendereco")
 	private Endereco endereco;
 
-	@ManyToOne
-	@JoinColumn(name = "idtelefone")
+	@ManyToOne()
+	@JoinColumn(name = "idtelefone", nullable = true)
 	private Telefone telefone;
 
 	public Telefone getTelefone() {
@@ -86,9 +85,8 @@ public class Usuario extends DefaultEntity<Usuario> {
 	public void setDataAniversario(Date dataAniversario) {
 		this.dataAniversario = dataAniversario;
 	}
-
-	@Override
-	public Validation <Usuario> getValidation() {
+@Override
+	public Validation<Usuario> getValidation() {
 		return new UsuarioValidation();
 	}
 }
