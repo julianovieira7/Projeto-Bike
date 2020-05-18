@@ -33,7 +33,7 @@ public class UsuarioRepository extends Repository<Usuario> {
 		jpql.append("WHERE ");
 		jpql.append("  upper(a.email) = upper(?) ");
 		jpql.append("  AND a.id <> ? ");
-		
+		//adicionando aqui um comentario so pra upar
 		Query query = getEntityManager().createNativeQuery(jpql.toString());
 
 		query.setParameter(1, email);
