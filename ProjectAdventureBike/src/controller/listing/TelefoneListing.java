@@ -7,11 +7,9 @@ import java.util.Map;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 
 import org.primefaces.PrimeFaces;
 
-import factory.JPAFactory;
 import model.Telefone;
 import repository.TelefoneRepository;
 
@@ -23,11 +21,8 @@ public class TelefoneListing extends Listing<Telefone> {
 	private List<Telefone> list;
 	private Integer filtro;
 
-	@Override
-	public Telefone getEntity() {
-		if (entity == null)
-			entity = new Telefone();
-		return entity;
+	public TelefoneListing(){
+		super(Telefone.class);
 	}
 
 	public void open() {
@@ -46,14 +41,6 @@ public class TelefoneListing extends Listing<Telefone> {
 	public void pesquisar() {
 		TelefoneRepository repo = new TelefoneRepository();
 		setList(repo.findByCodigoArea(getFiltro()));
-	}
-
-	public void select(int id) {
-		EntityManager em = JPAFactory.getEntityManager();
-		setEntity((Telefone) em.find(Telefone.class, id));
-
-		// retorna o objeto via dialogreturn e finaliza o dialog
-		PrimeFaces.current().dialog().closeDynamic(getEntity());
 	}
 
 	public List<Telefone> getList() {

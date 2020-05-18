@@ -24,11 +24,8 @@ public class EnderecoListing extends Listing<Endereco> {
 	private List<Endereco> list;
 	private String filtro;
 
-	@Override
-	public Endereco getEntity() {
-		if (entity == null)
-			entity = new Endereco();
-		return entity;
+	public EnderecoListing() {
+		super(Endereco.class);
 	}
 
 	public void open() {
@@ -47,14 +44,6 @@ public class EnderecoListing extends Listing<Endereco> {
 	public void pesquisar() {
 		EnderecoRepository repo = new EnderecoRepository();
 		setList(repo.findByRua(getFiltro()));
-	}
-
-	public void select(int id) {
-		EntityManager em = JPAFactory.getEntityManager();
-		setEntity((Endereco) em.find(Endereco.class, id));
-
-		// retorna o objeto via dialogreturn e finaliza o dialog
-		PrimeFaces.current().dialog().closeDynamic(getEntity());
 	}
 
 	public List<Endereco> getList() {

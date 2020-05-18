@@ -12,6 +12,7 @@ import application.RepositoryException;
 import application.Util;
 import controller.listing.EnderecoListing;
 import controller.listing.TelefoneListing;
+import controller.listing.UsuarioListing;
 import model.Endereco;
 import model.Telefone;
 import model.Usuario;
@@ -37,13 +38,23 @@ public class UsuarioController extends Controller<Usuario> {
 		// if(get ==
 		listaUsuario = repo.findByNome(getFiltro());
 	}
-
+	public void abrirUsuarioListing() {
+		UsuarioListing listing = new UsuarioListing();
+		listing.open();
+	}
+	
+	public void obterUsuarioListing(SelectEvent event) {
+        Usuario entity = (Usuario) event.getObject();
+        setEntity(entity);
+    	if (getEntity().getEndereco() == null)
+			getEntity().setEndereco(new Endereco());
+    }
 	public void abrirEnderecoListing() {
 		EnderecoListing listing = new EnderecoListing();
 		listing.open();
 	}
 
-	public void obterEstadoListing(SelectEvent event) {
+	public void obterEnderecoListing(SelectEvent event) {
 		Endereco entity = (Endereco) event.getObject();
 		getEntity().setEndereco(entity);
 	}

@@ -7,9 +7,6 @@ public class RepositoryException extends Exception{
 
 	public RepositoryException(String message) {
 		super(message);
-		if(true) {
-			
-		}
 		
 	}
 }
