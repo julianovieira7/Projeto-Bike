@@ -29,7 +29,9 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dataAniversario;
+	private String cpf;
 
+	
 	@ManyToOne
 	@JoinColumn(name = "idendereco")
 	private Endereco endereco;
@@ -86,8 +88,17 @@ public class Usuario extends DefaultEntity<Usuario> {
 		this.dataAniversario = dataAniversario;
 	}
 
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 	@Override
 	public Validation<Usuario> getValidation() {
 		return new UsuarioValidation();
 	}
+
 }

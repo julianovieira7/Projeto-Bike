@@ -48,6 +48,9 @@ public class UsuarioController extends Controller<Usuario> {
         setEntity(entity);
     	if (getEntity().getEndereco() == null)
 			getEntity().setEndereco(new Endereco());
+    	
+    	if(getEntity().getTelefone()== null)
+    		getEntity().setTelefone(new Telefone());
     }
 	public void abrirEnderecoListing() {
 		EnderecoListing listing = new EnderecoListing();

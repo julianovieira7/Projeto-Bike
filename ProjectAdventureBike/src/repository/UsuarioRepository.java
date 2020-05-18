@@ -24,7 +24,7 @@ public class UsuarioRepository extends Repository<Usuario> {
 
 		return query.getResultList();
 	}
-	public boolean contains(Integer id, String email) {
+	public boolean containsEmail(Integer id, String email) {
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append("  count(*) ");
@@ -37,6 +37,25 @@ public class UsuarioRepository extends Repository<Usuario> {
 		Query query = getEntityManager().createNativeQuery(jpql.toString());
 
 		query.setParameter(1, email);
+		query.setParameter(2, id == null ? -1 : id);
+		
+		long resultado = (long) query.getSingleResult();
+		
+		return resultado == 0 ? false : true;
+	}
+	public boolean containsCpf(Integer id, String cpf) {
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append("  count(*) ");
+		jpql.append("FROM ");
+		jpql.append("  Aluno a ");
+		jpql.append("WHERE ");
+		jpql.append("  upper(a.cpf) = upper(?) ");
+		jpql.append("  AND a.id <> ? ");
+		
+		Query query = getEntityManager().createNativeQuery(jpql.toString());
+
+		query.setParameter(1, cpf);
 		query.setParameter(2, id == null ? -1 : id);
 		
 		long resultado = (long) query.getSingleResult();

@@ -72,29 +72,8 @@
 								<p:calendar value="#{usuarioController.entity.dataAniversario}"
 									pattern="dd/MM/yyyy" />
 
-								<p:commandLink value="Endereço: "
-									actionListener="#{usuarioController.abrirEnderecoListing}"
-									process="@this" update="@none">
 
-									<p:ajax event="dialogReturn"
-										listener="#{usuarioController.obterEnderecoListing}"
-										update="itNomeEndereco" />
 
-								</p:commandLink>
-								<p:inputText id="itNomeEndereco"
-									value="#{usuarioController.entity.endereco.rua}" />
-
-								<p:commandLink value="Telefone: "
-									actionListener="#{usuarioController.abrirTelefoneListing}"
-									process="@this" update="@none">
-
-									<p:ajax event="dialogReturn"
-										listener="#{usuarioController.obterTelefoneListing}"
-										update="itTelefone" />
-
-								</p:commandLink>
-								<p:inputText id="itTelefone"
-									value="#{usuarioController.entity.telefone.codigoArea}" />
 
 							</p:panelGrid>
 
