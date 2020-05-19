@@ -51,8 +51,14 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:commandLink value="Nome: " onclick="PF('listagem').show();">
-									<p:message for="itNome" escape="false" />
+								<p:commandLink value="Nome: " 
+									actionListener="#{usuarioController.abrirUsuarioListing}" 
+									process="@this" update="@none">
+
+									<p:ajax event="dialogReturn" 
+										listener="#{usuarioController.obterUsuarioListing}" 
+										update="@form" />
+								
 								</p:commandLink>
 								<p:inputText id="itNome"
 									value="#{usuarioController.entity.nome}" required="true"

@@ -37,7 +37,7 @@ public class UsuarioListing extends Listing<Usuario> {
         options.put("contentWidth", "100%");
         options.put("contentHeight", "100%");  
         // ligacao com a pagina xhtml
-        PrimeFaces.current().dialog().openDynamic("alunolisting", options, null);
+        PrimeFaces.current().dialog().openDynamic("usuariolisting", options, null);
 	}
 
 	public void pesquisar() {

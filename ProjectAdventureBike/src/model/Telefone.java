@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.Entity;
 
+import model.validation.TelefoneValidation;
 import model.validation.Validation;
 
 @Entity
@@ -32,6 +33,7 @@ public class Telefone extends DefaultEntity<Telefone> {
 	@Override
 	public Validation<Telefone> getValidation() {
 
-		return null;
+		return new TelefoneValidation();
 	}
+
 }

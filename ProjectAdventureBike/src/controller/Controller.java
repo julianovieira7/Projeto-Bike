@@ -62,7 +62,7 @@ protected T entity;
 		EntityManager em = JPAFactory.getEntityManager();
 		setEntity((T) em.find(getEntity().getClass(), id));
 	}
-	
+
 	public void limpar() {
 		entity = null;
 	}
