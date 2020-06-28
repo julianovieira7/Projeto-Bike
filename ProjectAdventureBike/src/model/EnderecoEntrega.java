@@ -19,6 +19,8 @@ public class EnderecoEntrega extends DefaultEntity<Endereco> {
 
 	private String complemento;
 	private String pontoReferencia;
+	private Cidade cidade;
+	private Estado estado;
 
 	public String getCep() {
 		return cep;
@@ -60,10 +62,25 @@ public class EnderecoEntrega extends DefaultEntity<Endereco> {
 		this.pontoReferencia = pontoReferencia;
 	}
 
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
 	@Override
 	public Validation<Endereco> getValidation() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

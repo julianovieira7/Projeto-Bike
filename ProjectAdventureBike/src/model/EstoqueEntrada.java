@@ -1,9 +1,20 @@
 package model;
 
-public class Estoque {
+public class EstoqueEntrada {
 	private int entrada;
 	private Fornecedor fornecedor;
 	private int saida;
+	private Produto produto;
+	private NotaFiscal notaFiscal;
+
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 
 	public int getEntrada() {
 		return entrada;
@@ -27,5 +38,13 @@ public class Estoque {
 
 	public void setSaida(int saida) {
 		this.saida = saida;
+	}
+	
+	public NotaFiscal getNotaFiscal() {
+		return notaFiscal;
+	}
+
+	public void setNotaFiscal(NotaFiscal notaFiscal) {
+		this.notaFiscal = notaFiscal;
 	}
 }

@@ -30,7 +30,6 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@Temporal(TemporalType.DATE)
 	private Date dataAniversario;
 	private String cpf;
-
 	
 	@ManyToOne
 	@JoinColumn(name = "idendereco")

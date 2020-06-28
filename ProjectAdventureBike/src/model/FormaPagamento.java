@@ -6,7 +6,8 @@ public class FormaPagamento {
 	private Date dataVencimento;
 	private String nome;
 	private Boleto boleto;
-
+	private CartaoCredito cartaoCredito;
+	
 	public Date getDataVencimento() {
 		return dataVencimento;
 	}
@@ -39,5 +40,4 @@ public class FormaPagamento {
 		this.cartaoCredito = cartaoCredito;
 	}
 
-	private CartaoCredito cartaoCredito;
 }

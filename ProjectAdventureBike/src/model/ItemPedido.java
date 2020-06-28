@@ -3,6 +3,11 @@ package model;
 public class ItemPedido {
 	private int quantidade;
 	private Double valorTotal;
+	private Produto produto;
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 
 	public int getQuantidade() {
 		return quantidade;
@@ -18,6 +23,10 @@ public class ItemPedido {
 
 	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+
+	public Produto getProduto() {
+		return produto;
 	}
 
 }

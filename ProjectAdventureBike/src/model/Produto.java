@@ -6,6 +6,16 @@ public class Produto {
 	private String descricao;
 	private String nome;
 	private String modelo;
+	private TipoProduto tipoProduto;
+	private Integer quantidade;
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public void setTipoProduto(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
+	}
 
 	public String getMaterial() {
 		return material;
@@ -45,6 +55,14 @@ public class Produto {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public TipoProduto getTipoProduto() {
+		return tipoProduto;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
 }

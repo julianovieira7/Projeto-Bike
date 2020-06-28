@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 
 import model.validation.Validation;
 
-
 @Entity
 public class Endereco extends DefaultEntity<Endereco> {
 
@@ -22,6 +21,8 @@ public class Endereco extends DefaultEntity<Endereco> {
 
 	private String complemento;
 	private String pontoReferencia;
+	private Estado estado;
+	private Cidade cidade;
 
 	public String getCep() {
 		return cep;
@@ -63,11 +64,25 @@ public class Endereco extends DefaultEntity<Endereco> {
 		this.pontoReferencia = pontoReferencia;
 	}
 
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
 	@Override
 	public Validation<Endereco> getValidation() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 }
