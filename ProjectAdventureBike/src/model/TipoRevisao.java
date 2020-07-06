@@ -1,6 +1,8 @@
 package model;
 
-public class ItemRevisao extends BikeRevisao{
+import model.validation.Validation;
+
+public class TipoRevisao extends DefaultEntity<TipoRevisao> {
 
 	private static final long serialVersionUID = 8702882077561727083L;
 	private String itemRevisao;
@@ -20,6 +22,12 @@ public class ItemRevisao extends BikeRevisao{
 
 	public void setBikeRevisao(BikeRevisao bikeRevisao) {
 		this.bikeRevisao = bikeRevisao;
+	}
+
+	@Override
+	public Validation<TipoRevisao> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

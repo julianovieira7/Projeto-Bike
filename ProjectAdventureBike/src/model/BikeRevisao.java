@@ -5,9 +5,7 @@ import java.util.Date;
 import model.validation.Validation;
 
 public class BikeRevisao extends DefaultEntity<BikeRevisao>{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7820583492942093026L;
 	private Integer numeroSerie;
 	private String modelo;

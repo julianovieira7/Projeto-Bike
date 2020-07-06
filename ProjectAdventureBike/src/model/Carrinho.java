@@ -2,7 +2,11 @@ package model;
 
 import java.util.Date;
 
-public class Carrinho {
+import model.validation.Validation;
+
+public class Carrinho extends DefaultEntity<Carrinho>{
+
+	private static final long serialVersionUID = 6019061330890073471L;
 	private Date data;
 	private Double valorCarrinho;
 	private Usuario usuario;
@@ -47,5 +51,11 @@ public class Carrinho {
 
 	public void setValorCarrinho(Double valorCarrinho) {
 		this.valorCarrinho = valorCarrinho;
+	}
+
+	@Override
+	public Validation<Carrinho> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

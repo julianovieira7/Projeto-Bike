@@ -1,6 +1,8 @@
 package model;
 
-public class CartaoCredito extends FormaPagamento {
+import model.validation.Validation;
+
+public class CartaoCredito extends DefaultEntity<CartaoCredito> {
 
 	private static final long serialVersionUID = 1476836220541665515L;
 	private Integer numeroCartao;
@@ -29,5 +31,11 @@ public class CartaoCredito extends FormaPagamento {
 
 	public void setTipoCartao(TipoCartao tipoCartao) {
 		this.tipoCartao = tipoCartao;
+	}
+
+	@Override
+	public Validation<CartaoCredito> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
