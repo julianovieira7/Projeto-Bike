@@ -1,6 +1,10 @@
 package model;
 
-public class ItemPedido {
+import model.validation.Validation;
+
+public class ItemPedido extends DefaultEntity<ItemPedido>{
+
+	private static final long serialVersionUID = 9197057785061628327L;
 	private int quantidade;
 	private Double valorTotal;
 	private Produto produto;
@@ -27,6 +31,12 @@ public class ItemPedido {
 
 	public Produto getProduto() {
 		return produto;
+	}
+
+	@Override
+	public Validation<ItemPedido> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

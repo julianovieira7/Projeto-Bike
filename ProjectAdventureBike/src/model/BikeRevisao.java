@@ -2,7 +2,13 @@ package model;
 
 import java.util.Date;
 
-public class BikeRevisao {
+import model.validation.Validation;
+
+public class BikeRevisao extends DefaultEntity<BikeRevisao>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7820583492942093026L;
 	private Integer numeroSerie;
 	private String modelo;
 	private String marca;
@@ -65,6 +71,12 @@ public class BikeRevisao {
 
 	public void setValorRevisao(Double valorRevisao) {
 		this.valorRevisao = valorRevisao;
+	}
+
+	@Override
+	public Validation<BikeRevisao> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

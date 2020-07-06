@@ -2,8 +2,14 @@ package model;
 
 import java.util.Date;
 
-public class NotaFiscal {
+import model.validation.Validation;
 
+public class NotaFiscal extends DefaultEntity<NotaFiscal>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1898183264842098482L;
 	private EstoqueEntrada produto;
 	private String nomeEmpresa;
 	private String endereco;
@@ -60,4 +66,11 @@ public class NotaFiscal {
 	}
 
 	private Double valorTotal;
+
+
+	@Override
+	public Validation<NotaFiscal> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

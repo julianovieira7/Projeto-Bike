@@ -1,7 +1,11 @@
 package model;
 
-public class Cidade {
+import model.validation.Validation;
+
+public class Cidade extends DefaultEntity<Cidade>{
 	
+	
+	private static final long serialVersionUID = 8967240851927495370L;
 	private String nome;
 	private String sigla;
 	
@@ -29,6 +33,12 @@ public class Cidade {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	@Override
+	public Validation<Cidade> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

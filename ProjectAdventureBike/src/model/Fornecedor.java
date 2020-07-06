@@ -1,6 +1,10 @@
 package model;
 
-public class Fornecedor {
+import model.validation.Validation;
+
+public class Fornecedor extends DefaultEntity<Fornecedor>{
+
+	private static final long serialVersionUID = -3722588257509847716L;
 	private String cnpj;
 	private String razaoSocial;
 	private String nome;
@@ -35,5 +39,11 @@ public class Fornecedor {
 
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
+	}
+
+	@Override
+	public Validation<Fornecedor> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

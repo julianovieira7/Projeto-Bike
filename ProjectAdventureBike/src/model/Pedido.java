@@ -1,6 +1,12 @@
 package model;
 
-public class Pedido {
+import model.validation.Validation;
+
+public class Pedido extends DefaultEntity<Pedido> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3152982914801710554L;
 	private String numerpPedido;
 	private Double valorToral;
 
@@ -18,6 +24,12 @@ public class Pedido {
 
 	public void setValorToral(Double valorToral) {
 		this.valorToral = valorToral;
+	}
+
+	@Override
+	public Validation<Pedido> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

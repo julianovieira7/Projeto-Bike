@@ -1,6 +1,10 @@
 package model;
 
-public class Pagamento {
+import model.validation.Validation;
+
+public class Pagamento extends DefaultEntity<Pagamento>{
+
+	private static final long serialVersionUID = 780279237308232494L;
 	private Pedido pedido;
 	private BikeRevisao bikeRevisao;
 
@@ -18,5 +22,11 @@ public class Pagamento {
 
 	public void setBikeRevisao(BikeRevisao bikeRevisao) {
 		this.bikeRevisao = bikeRevisao;
+	}
+
+	@Override
+	public Validation<Pagamento> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

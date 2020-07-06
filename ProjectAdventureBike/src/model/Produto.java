@@ -1,6 +1,10 @@
 package model;
 
-public class Produto {
+import model.validation.Validation;
+
+public class Produto extends DefaultEntity<Produto> {
+
+	private static final long serialVersionUID = -7900308230508083613L;
 	private String material;
 	private Marca marca;
 	private String descricao;
@@ -63,6 +67,12 @@ public class Produto {
 
 	public Integer getQuantidade() {
 		return quantidade;
+	}
+
+	@Override
+	public Validation<Produto> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,6 +1,8 @@
 package model;
 
 public class CartaoCredito extends FormaPagamento {
+
+	private static final long serialVersionUID = 1476836220541665515L;
 	private Integer numeroCartao;
 	private Integer codigoSeguranca;
 	private TipoCartao tipoCartao;

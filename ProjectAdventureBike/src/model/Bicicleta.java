@@ -1,6 +1,12 @@
 package model;
 
-public class Bicicleta extends Produto {
+import model.validation.Validation;
+
+public class Bicicleta extends DefaultEntity<Produto> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5478233461294270452L;
 	private Modalidade modalidade;
 	private QuantMarchas quantMarchas;
 
@@ -18,6 +24,12 @@ public class Bicicleta extends Produto {
 
 	public void setQuantMarchas(QuantMarchas quantMarchas) {
 		this.quantMarchas = quantMarchas;
+	}
+
+	@Override
+	public Validation<Produto> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

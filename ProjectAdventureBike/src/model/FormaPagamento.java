@@ -2,7 +2,11 @@ package model;
 
 import java.util.Date;
 
-public class FormaPagamento {
+import model.validation.Validation;
+
+public class FormaPagamento extends DefaultEntity<FormaPagamento>{
+
+	private static final long serialVersionUID = 7095644545810509642L;
 	private Date dataVencimento;
 	private String nome;
 	private Boleto boleto;
@@ -38,6 +42,12 @@ public class FormaPagamento {
 
 	public void setCartaoCredito(CartaoCredito cartaoCredito) {
 		this.cartaoCredito = cartaoCredito;
+	}
+
+	@Override
+	public Validation<FormaPagamento> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

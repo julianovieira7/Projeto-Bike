@@ -1,6 +1,8 @@
 package model;
 
-public class ItemRevisao {
+public class ItemRevisao extends BikeRevisao{
+
+	private static final long serialVersionUID = 8702882077561727083L;
 	private String itemRevisao;
 	private BikeRevisao bikeRevisao;
 

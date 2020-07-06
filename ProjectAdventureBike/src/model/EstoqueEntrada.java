@@ -1,6 +1,10 @@
 package model;
 
-public class EstoqueEntrada {
+import model.validation.Validation;
+
+public class EstoqueEntrada extends DefaultEntity<EstoqueEntrada>{
+
+	private static final long serialVersionUID = -1436525943395272215L;
 	private int entrada;
 	private Fornecedor fornecedor;
 	private int saida;
@@ -46,5 +50,11 @@ public class EstoqueEntrada {
 
 	public void setNotaFiscal(NotaFiscal notaFiscal) {
 		this.notaFiscal = notaFiscal;
+	}
+
+	@Override
+	public Validation<EstoqueEntrada> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

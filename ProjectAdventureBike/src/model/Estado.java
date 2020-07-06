@@ -1,7 +1,10 @@
 package model;
 
-public class Estado {
+import model.validation.Validation;
 
+public class Estado extends DefaultEntity<Estado>{
+
+	private static final long serialVersionUID = -7221869022537424068L;
 	private String nome;
 	private String sigla;
 
@@ -19,6 +22,12 @@ public class Estado {
 
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
+	}
+
+	@Override
+	public Validation<Estado> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
