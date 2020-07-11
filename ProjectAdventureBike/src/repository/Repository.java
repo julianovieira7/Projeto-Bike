@@ -1,5 +1,7 @@
 package repository;
 
+import java.lang.reflect.ParameterizedType;
+
 import javax.persistence.EntityManager;
 
 import application.RepositoryException;
@@ -24,7 +26,7 @@ public class Repository<T extends DefaultEntity<T>> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RepositoryException("Problema ao "
-					+ "iniciar uma transação");
+					+ "iniciar uma transacao");
 		}
 	}
 	
@@ -34,7 +36,7 @@ public class Repository<T extends DefaultEntity<T>> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RepositoryException("Problema ao "
-					+ "comitar uma transação");
+					+ "comitar uma transacao");
 		}
 	}
 	
@@ -51,7 +53,7 @@ public class Repository<T extends DefaultEntity<T>> {
 			getEntityManager().merge(entity);
 		} catch (Exception e) {
 			System.out.println("Erro no repositorio "
-					+ "ao executar o método merge.");
+					+ "ao executar o metodo merge.");
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao salvar.");
 		}
@@ -63,7 +65,7 @@ public class Repository<T extends DefaultEntity<T>> {
 			getEntityManager().remove(obj);
 		} catch (Exception e) {
 			System.out.println("Erro no repositorio "
-					+ "ao executar o método merge.");
+					+ "ao executar o metodo merge.");
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao salvar.");
 		}
@@ -75,6 +77,16 @@ public class Repository<T extends DefaultEntity<T>> {
 
 	private void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+	public T findById(Integer id) {
+		// obtendo o tipo da classe de forma generica (a classe deve ser publica)
+		final ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass(); 
+		Class<T> theType = (Class<T>) (type).getActualTypeArguments()[0];
+		
+		// pesquisando pelo id no banco
+		T t = (T) getEntityManager().find(theType, id);
+		
+		return t;
 	}
 
 }

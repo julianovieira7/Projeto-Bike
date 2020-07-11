@@ -65,3 +65,4 @@ public abstract class DefaultEntity<T> implements Serializable {
 		this.dataAlteracao = dataAlteracao;
 	}
 }
+
