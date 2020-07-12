@@ -1,15 +1,30 @@
 package model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 import model.validation.Validation;
 
-public class Fornecedor extends DefaultEntity<Fornecedor>{
+@Entity
+public class Fornecedor extends DefaultEntity<Fornecedor> {
 
 	private static final long serialVersionUID = -3722588257509847716L;
+	@Column(nullable = false)
 	private String cnpj;
+
+	@Column(nullable = false)
 	private String razaoSocial;
+
+	@Column(nullable = false)
 	private String nome;
+
+	@OneToOne()
+	@JoinColumn(name = "idtelefone", unique = true)
 	private Telefone telefone;
-	
+
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -33,6 +48,7 @@ public class Fornecedor extends DefaultEntity<Fornecedor>{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public Telefone getTelefone() {
 		return telefone;
 	}

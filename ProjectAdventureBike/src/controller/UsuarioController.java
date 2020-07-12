@@ -38,20 +38,22 @@ public class UsuarioController extends Controller<Usuario> {
 		// if(get ==
 		listaUsuario = repo.findByNome(getFiltro());
 	}
+
 	public void abrirUsuarioListing() {
 		UsuarioListing listing = new UsuarioListing();
 		listing.open();
 	}
-	
+
 	public void obterUsuarioListing(SelectEvent event) {
-        Usuario entity = (Usuario) event.getObject();
-        setEntity(entity);
-    	if (getEntity().getEndereco() == null)
+		Usuario entity = (Usuario) event.getObject();
+		setEntity(entity);
+		if (getEntity().getEndereco() == null)
 			getEntity().setEndereco(new Endereco());
-    	
-    	if(getEntity().getTelefone()== null)
-    		getEntity().setTelefone(new Telefone());
-    }
+
+		if (getEntity().getTelefone() == null)
+			getEntity().setTelefone(new Telefone());
+	}
+
 	public void abrirEnderecoListing() {
 		EnderecoListing listing = new EnderecoListing();
 		listing.open();
@@ -70,28 +72,6 @@ public class UsuarioController extends Controller<Usuario> {
 	public void obterTelefoneListing(SelectEvent event) {
 		Telefone entity = (Telefone) event.getObject();
 		getEntity().setTelefone(entity);
-	}
-
-	@Override
-	public void salvar() {
-
-		Repository<Usuario> r = new Repository<Usuario>();
-		try {
-			r.beginTransaction();
-			getEntity().setSenha(Util.hashSHA256(getEntity().getSenha()));
-
-			r.salvar(getEntity());
-			r.commitTransaction();
-		} catch (RepositoryException e) {
-			e.printStackTrace();
-			r.rollbackTransaction();
-			Util.addMessageError("Problema ao salvar.");
-			return;
-		}
-
-		Util.addMessageInfo("Inclusao realizada com sucesso.");
-		limpar();
-
 	}
 
 	@Override

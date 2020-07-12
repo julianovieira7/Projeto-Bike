@@ -28,26 +28,6 @@ public class MarcaController extends Controller<Marca> {
 	}
 
 	@Override
-	public void salvar() {
-
-		Repository<Marca> r = new Repository<Marca>();
-		try {
-			r.beginTransaction();
-			r.salvar(getEntity());
-			r.commitTransaction();
-		} catch (RepositoryException e) {
-			e.printStackTrace();
-			r.rollbackTransaction();
-			Util.addMessageError("Problema ao salvar.");
-			return;
-		}
-
-		Util.addMessageInfo("Inclusao realizada com sucesso.");
-		limpar();
-
-	}
-
-	@Override
 	public Marca getEntity() {
 		if (entity == null)
 			entity = new Marca();
