@@ -18,6 +18,9 @@ import repository.UsuarioRepository;
 
 public class UsuarioListing extends Listing<Usuario> {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 426891623888182882L;
 	private List<Usuario> list;
 	private String filtro;

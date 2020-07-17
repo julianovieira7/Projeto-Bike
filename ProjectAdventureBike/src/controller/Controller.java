@@ -14,9 +14,12 @@ import repository.Repository;
 
 public abstract class Controller<T extends DefaultEntity<T>> implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 5864180948764640904L;
 	protected T entity;
-
+	
 	public abstract T getEntity();
 
 	public void setEntity(T entity) {
@@ -32,7 +35,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 		try {
 			r.beginTransaction();
 			r.salvar(getEntity());
-			r.commitTransaction();
+			r.commitTransaction();	
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			r.rollbackTransaction();
@@ -58,7 +61,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 		try {
 			r.beginTransaction();
 			r.excluir(getEntity());
-			r.commitTransaction();
+			r.commitTransaction();	
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			r.rollbackTransaction();
@@ -66,15 +69,16 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 			return;
 		}
 		limpar();
-		Util.addMessageInfo("Exclusão realizada com sucesso.");
+		Util.addMessageInfo("Exclusão realizada com sucesso.");	
 	}
-
+	
 	public void editar(int id) {
 		EntityManager em = JPAFactory.getEntityManager();
 		setEntity((T) em.find(getEntity().getClass(), id));
 	}
-
+	
 	public void limpar() {
 		entity = null;
 	}
+
 }

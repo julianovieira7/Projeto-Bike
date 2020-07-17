@@ -18,33 +18,38 @@ import model.validation.Validation;
 @MappedSuperclass
 public abstract class DefaultEntity<T> implements Serializable {
 
-	private static final long serialVersionUID = 8082466373201351021L;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4023133195634789886L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	@Version
 	private Integer version;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAlteracao;
-
+	
 	public abstract Validation<T> getValidation();
-
+	
 	@PrePersist
 	private void atualizarDadosAntesInsert() {
 		this.dataCadastro = new Date();
 		this.dataAlteracao = this.dataCadastro;
 	}
-
+		
 	@PreUpdate
 	private void atualizarDadosAntesUpdate() {
 		this.dataAlteracao = new Date();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -99,4 +104,5 @@ public abstract class DefaultEntity<T> implements Serializable {
 			return false;
 		return true;
 	}
+
 }

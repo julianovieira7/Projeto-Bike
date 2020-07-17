@@ -52,63 +52,30 @@
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
 								<p:commandLink value="Nome: " 
-									actionListener="#{alunoController.abrirAlunoListing}" 
+									actionListener="#{usuarioController.abrirUsuarioListing}" 
 									process="@this" update="@none">
 									
 									<p:ajax event="dialogReturn" 
-										listener="#{alunoController.obterAlunoListing}" 
+										listener="#{usuarioController.obterUsuarioListing}" 
 										update="@form" />
 									
 								</p:commandLink>
-								<p:inputText id="itNome" value="#{alunoController.entity.nome}"
+								<p:inputText id="itNome" value="#{usuarioController.entity.nome}"
 									required="true" requiredMessage="Informe o nome." />
 
-								<p:outputLabel value="Matricula: ">
-									<p:message for="itMatricula" escape="false" />
+								<p:outputLabel value="Senha: ">
+									<p:message for="itSenha" escape="false" />
 								</p:outputLabel>
-								<p:inputText id="itMatricula"
-									value="#{alunoController.entity.matricula}" />
+								<p:inputText id="itSenha"
+									value="#{usuarioController.entity.senha}" />
 
 								<p:outputLabel value="Data de Aniversário:" />
-								<p:calendar value="#{alunoController.entity.dataAniversario}"
+								<p:calendar value="#{usuarioController.entity.dataAniversario}"
 									pattern="dd/MM/yyyy" />
 
 								<p:outputLabel value="E-mail:" />
-								<p:inputText value="#{alunoController.entity.email}" />
-								
-								<p:outputLabel value="Estado:" />
-								<p:selectOneMenu 
-									value="#{alunoController.entity.cidade.estado}" 
-									>
-									<f:selectItem itemLabel="Selecione um Estado ..." itemValue="null" />
-									<f:selectItems value="#{alunoController.listaEstado}"
-												var="estado"
-												itemLabel="#{estado.nome}"
-												itemValue="#{estado}" />	
-									<p:ajax 
-										event="change" 
-										listener="#{alunoController.atualizarCidades}"
-										update="labelCidade selectCidade"/>
-								</p:selectOneMenu>	
-								
-								<p:outputLabel id="labelCidade" value="Cidade:" />
-								<p:selectOneMenu id="selectCidade" value="#{alunoController.entity.cidade}" >
-									<f:selectItem itemLabel="Selecione uma Cidade ..." itemValue="null" />
-									<f:selectItems value="#{alunoController.listaCidade}"
-												var="cidade"
-												itemLabel="#{cidade.nome}"
-												itemValue="#{cidade}"/>	
-								</p:selectOneMenu>						
-								
-								<p:outputLabel value="Telefone (DDD):" />
-								<p:inputText value="#{alunoController.entity.telefone.codigoArea}" />
-
-
-								<p:outputLabel value="Telefone (Número):" />
-								<p:inputText value="#{alunoController.entity.telefone.numero}" />
-								
-								
-							</p:panelGrid>
+								<p:inputText value="#{usuarioController.entity.email}" />
+									</p:panelGrid>
 
 							
 						</div>
@@ -117,11 +84,11 @@
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
-							update="@form" action="#{alunoController.salvar}" />
+							update="@form" action="#{usuarioController.salvar}" />
 
 						<p:commandButton value="Limpar" 
 							process="@this" update="panel"
-							action="#{alunoController.limpar}">
+							action="#{usuarioController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
 
@@ -130,7 +97,7 @@
 					<f:facet name="right">
 						<p:commandButton value="Excluir" icon="pi pi-trash"
 							process="@form" update="panel"
-							action="#{alunoController.excluir}">
+							action="#{usuarioController.excluir}">
 							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
 						</p:commandButton>
 					</f:facet>

@@ -5,13 +5,10 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="ProjectAdventureBike"
 		transaction-type="RESOURCE_LOCAL">
-		<class>model.DefaultEntity</class>
-		<class>model.Endereco</class>
-		<class>model.Fornecedor</class>
-		<class>model.Marca</class>
-		<class>model.Telefone</class>
-		<class>model.Usuario</class>
-
+	
+	<class>model.Usuario</class>
+	<class>model.DefaultEntity</class>
+	
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:postgresql://localhost:5432/bikeproject" /> <!-- BD Mane -->

@@ -9,13 +9,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import model.validation.UsuarioValidation;
+//import model.validation.UsuarioValidation;
 import model.validation.Validation;
 
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
 
-	private static final long serialVersionUID = 7142524988499261148L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3976906777918886470L;
 
 	@Column(length = 100, nullable = false)
 	private String nome;
@@ -31,29 +35,29 @@ public class Usuario extends DefaultEntity<Usuario> {
 	private Date dataAniversario;
 	private String cpf;
 	
-	@ManyToOne
-	@JoinColumn(name = "idendereco")
-	private Endereco endereco;
-
-	@ManyToOne()
-	@JoinColumn(name = "idtelefone", nullable = true)
-	private Telefone telefone;
-
-	public Telefone getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(Telefone telefone) {
-		this.telefone = telefone;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//	@ManyToOne
+//	@JoinColumn(name = "idendereco")
+//	private Endereco endereco;
+//
+//	@ManyToOne()
+//	@JoinColumn(name = "idtelefone", nullable = true)
+//	private Telefone telefone;
+//
+//	public Telefone getTelefone() {
+//		return telefone;
+//	}
+//
+//	public void setTelefone(Telefone telefone) {
+//		this.telefone = telefone;
+//	}
+//
+//	public Endereco getEndereco() {
+//		return endereco;
+//	}
+//
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 
 	public String getNome() {
 		return nome;
@@ -97,7 +101,7 @@ public class Usuario extends DefaultEntity<Usuario> {
 	}
 	@Override
 	public Validation<Usuario> getValidation() {
-		return new UsuarioValidation();
+		return null;
 	}
 
 }
