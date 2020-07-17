@@ -6,19 +6,15 @@ import javax.persistence.EntityManager;
 
 import application.RepositoryException;
 import application.Util;
-import application.ValidationException;
-import application.VersionException;
 import factory.JPAFactory;
 import model.DefaultEntity;
 import repository.Repository;
 
 public abstract class Controller<T extends DefaultEntity<T>> implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 5864180948764640904L;
-	protected T entity;
+protected T entity;
 	
 	public abstract T getEntity();
 
@@ -41,16 +37,6 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 			r.rollbackTransaction();
 			Util.addMessageError("Problema ao salvar.");
 			return;
-		} catch (VersionException e) {
-			e.printStackTrace();
-			r.rollbackTransaction();
-			Util.addMessageError("Problema ao salvar. Por favor, atualize a página e faça o cadastro novamente.");
-			return;
-		} catch (ValidationException e) {
-			System.out.println(e.getMessage());
-			r.rollbackTransaction();
-			Util.addMessageError(e.getMessage());
-			return;
 		}
 		limpar();
 		Util.addMessageInfo("Cadastro realizado com sucesso.");
@@ -69,7 +55,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 			return;
 		}
 		limpar();
-		Util.addMessageInfo("Exclusão realizada com sucesso.");	
+		Util.addMessageInfo("Exclus�o realizada com sucesso.");	
 	}
 	
 	public void editar(int id) {

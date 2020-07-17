@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Cadastro de Usuario</title>
+</h:head>
+<h:body>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage name="/images/loading.gif" />
+	</p:dialog>
+
+	<h:form>
+		<div>
+			<div>
+				<h:outputLabel value="Usuário:" />
+				<h:inputText value="#{loginController.entity.email}" />
+			</div>
+			<div>
+				<h:outputLabel value="Senha:" />
+				<h:inputSecret value="#{loginController.entity.senha}" />
+			</div>
+			<h:commandButton value="Logar" action="#{loginController.logar()}" />
+		</div>
+	</h:form>
+</h:body>
+</html>

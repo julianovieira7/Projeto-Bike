@@ -10,15 +10,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 //import model.validation.UsuarioValidation;
-import model.validation.Validation;
+//import model.validation.Validation;
 
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3976906777918886470L;
 
 	@Column(length = 100, nullable = false)
@@ -98,10 +94,6 @@ public class Usuario extends DefaultEntity<Usuario> {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-	@Override
-	public Validation<Usuario> getValidation() {
-		return null;
 	}
 
 }
