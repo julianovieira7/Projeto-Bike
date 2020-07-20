@@ -43,7 +43,7 @@
 			<p:panel id="panel">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Cadastro de Usuario</h1>
+						<h1>Cadastro de Produto</h1>
 					</div>
 				</f:facet>
 				<div class="ui-g ui-fluid">
@@ -52,29 +52,29 @@
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
 								<p:commandLink value="Nome: " 
-									actionListener="#{usuarioController.abrirUsuarioListing}" 
+									actionListener="#{produtoController.abrirProdutoListing}" 
 									process="@this" update="@none">
 									
 									<p:ajax event="dialogReturn" 
-										listener="#{usuarioController.obterUsuarioListing}" 
+										listener="#{produtoController.obterProdutoListing}" 
 										update="@form" />
 									
 								</p:commandLink>
-								<p:inputText id="itNome" value="#{usuarioController.entity.nome}"
+								<p:inputText id="itNome" value="#{produtoController.entity.nome}"
 									required="true" requiredMessage="Informe o nome." />
 
 								<p:outputLabel value="Senha: ">
 									<p:message for="itSenha" escape="false" />
 								</p:outputLabel>
 								<p:inputText id="itSenha"
-									value="#{usuarioController.entity.senha}" />
+									value="#{produtoController.entity.senha}" />
 
 								<p:outputLabel value="Data de Aniversário:" />
-								<p:calendar value="#{usuarioController.entity.dataAniversario}"
+								<p:calendar value="#{produtoController.entity.dataAniversario}"
 									pattern="dd/MM/yyyy" />
 
 								<p:outputLabel value="E-mail:" />
-								<p:inputText value="#{usuarioController.entity.email}" />
+								<p:inputText value="#{produtoController.entity.email}" />
 									</p:panelGrid>
 
 							
@@ -84,11 +84,11 @@
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
-							update="@form" action="#{usuarioController.salvar}" />
+							update="@form" action="#{produtoController.salvar}" />
 
 						<p:commandButton value="Limpar" 
 							process="@this" update="panel"
-							action="#{usuarioController.limpar}">
+							action="#{produtoController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
 
@@ -97,7 +97,7 @@
 					<f:facet name="right">
 						<p:commandButton value="Excluir" icon="pi pi-trash"
 							process="@form" update="panel"
-							action="#{usuarioController.excluir}">
+							action="#{produtoController.excluir}">
 							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
 						</p:commandButton>
 					</f:facet>
