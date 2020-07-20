@@ -63,19 +63,17 @@
 								<p:inputText id="itNome" value="#{produtoController.entity.nome}"
 									required="true" requiredMessage="Informe o nome." />
 
-								<p:outputLabel value="Senha: ">
-									<p:message for="itSenha" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itSenha"
-									value="#{produtoController.entity.senha}" />
+								<p:outputLabel value="Modelo:" />
+								<p:calendar value="#{produtoController.entity.modelo}"/>
 
-								<p:outputLabel value="Data de Aniversário:" />
-								<p:calendar value="#{produtoController.entity.dataAniversario}"
-									pattern="dd/MM/yyyy" />
-
-								<p:outputLabel value="E-mail:" />
-								<p:inputText value="#{produtoController.entity.email}" />
+								<p:outputLabel value="Marca:" />
+								<p:inputText value="#{produtoController.entity.marca}" />
 									</p:panelGrid>
+									tipoProduto
+									quantidade
+									descricao
+									material
+									
 
 							
 						</div>
