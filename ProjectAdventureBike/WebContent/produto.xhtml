@@ -6,26 +6,26 @@
 
 	<ui:define name="head">
 		<style type="text/css">
-			.ui-panelgrid.form-elements .ui-grc-2 {
-				padding-left: 60px;
-			}
-			
-			@media ( max-width :1024px) {
-				.ui-panelgrid.form-elements .ui-grc-2 {
-					padding-left: 20px;
-				}
-			}
-			
-			@media ( max-width :640px) {
-				.ui-panelgrid.form-elements .ui-grc-2 {
-					padding-left: 6px;
-				}
-			}
-			
-			.dialogDemo label {
-				line-height: 2.1em;
-			}
-			</style>
+.ui-panelgrid.form-elements .ui-grc-2 {
+	padding-left: 60px;
+}
+
+@media ( max-width :1024px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 20px;
+	}
+}
+
+@media ( max-width :640px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 6px;
+	}
+}
+
+.dialogDemo label {
+	line-height: 2.1em;
+}
+</style>
 	</ui:define>
 
 	<ui:define name="content">
@@ -37,6 +37,11 @@
 			closable="false" resizable="false" showHeader="false">
 			<p:graphicImage name="/images/loading.gif" />
 		</p:dialog>
+
+		<p:growl id="growl" showSummary="true" showDetail="true"
+			keepAlive="true" life="3000">
+			<p:autoUpdate />
+		</p:growl>
 
 		<h:form>
 			<p:growl id="growl" globalOnly="false" />
@@ -51,31 +56,66 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:commandLink value="Nome: " 
-									actionListener="#{produtoController.abrirProdutoListing}" 
+								<p:commandLink value="Nome: "
+									actionListener="#{produtoController.abrirProdutoListing}"
 									process="@this" update="@none">
-									
-									<p:ajax event="dialogReturn" 
-										listener="#{produtoController.obterProdutoListing}" 
+
+									<p:ajax event="dialogReturn"
+										listener="#{produtoController.obterProdutoListing}"
 										update="@form" />
-									
+
 								</p:commandLink>
-								<p:inputText id="itNome" value="#{produtoController.entity.nome}"
-									required="true" requiredMessage="Informe o nome." />
+								<p:inputText id="itNome"
+									value="#{produtoController.entity.nome}" required="true"
+									requiredMessage="Informe o nome." />
 
-								<p:outputLabel value="Modelo:" />
-								<p:calendar value="#{produtoController.entity.modelo}"/>
+								<p:outputLabel value="Quantidade: ">
+									<p:message for="itQuantidade" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itQuantidade"
+									value="#{produtoController.entity.quantidade}" />
 
-								<p:outputLabel value="Marca:" />
-								<p:inputText value="#{produtoController.entity.marca}" />
-									</p:panelGrid>
-									tipoProduto
-									quantidade
-									descricao
-									material
-									
+								<p:outputLabel value="Material: ">
+									<p:message for="itMaterial" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itMaterial"
+									value="#{produtoController.entity.material}" />
 
-							
+								<p:outputLabel value="Modelo: ">
+									<p:message for="itModelo" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itModelo"
+									value="#{produtoController.entity.modelo}" />
+
+								<p:outputLabel id="labelMarca" value="Marca:" />
+								<p:selectOneMenu id="selectMarca"
+									value="#{produtoController.entity.marca}">
+									<f:selectItem itemLabel="Selecione uma Marca ..."
+										itemValue="null" />
+									<f:selectItems value="#{produtoController.listaMarca}"
+										var="marca" itemLabel="#{marca.marca}" itemValue="#{marca}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel id="labelTipoProduto" value="TipoProduto:" />
+								<p:selectOneMenu id="selectTipoProduto"
+									value="#{produtoController.entity.tipoProduto}">
+									<f:selectItem itemLabel="Selecione uma TipoProduto ..."
+										itemValue="null" />
+									<f:selectItems value="#{produtoController.listaTipoProduto}"
+										var="tipoProduto" itemLabel="#{tipoProduto.tipoProduto}"
+										itemValue="#{tipoProduto}" />
+								</p:selectOneMenu>
+
+								<h3>Remaining Chars</h3>
+								<p:inputTextarea rows="5" cols="30" counter="descricao"
+									maxlength="10" counterTemplate="{0} characters remaining."
+									autoResize="false" />
+								<br />
+								<h:outputText id="descricao" />
+
+
+							</p:panelGrid>
+
 						</div>
 					</div>
 				</div>
@@ -84,8 +124,7 @@
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
 							update="@form" action="#{produtoController.salvar}" />
 
-						<p:commandButton value="Limpar" 
-							process="@this" update="panel"
+						<p:commandButton value="Limpar" process="@this" update="panel"
 							action="#{produtoController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
@@ -102,9 +141,7 @@
 				</p:toolbar>
 			</p:panel>
 
-			<p:confirmDialog global="true" 
-				showEffect="fade" 
-				hideEffect="fade">
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" />
 				<p:commandButton value="Não" type="button"
@@ -114,4 +151,3 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
-		

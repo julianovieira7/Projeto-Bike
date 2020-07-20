@@ -16,11 +16,11 @@ public class MarcaRepository extends Repository<Marca> {
 		jpql.append("FROM ");
 		jpql.append("  Marca a ");
 		jpql.append("WHERE ");
-		jpql.append("  upper(a.nome) like upper(:nome) ");
+		jpql.append("  upper(a.marca) like upper(:marca) ");
 
 		Query query = getEntityManager().createQuery(jpql.toString());
 
-		query.setParameter("nome", "%" + nome + "%");
+		query.setParameter("marca", "%" + nome + "%");
 
 		return query.getResultList();
 	}

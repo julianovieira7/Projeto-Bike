@@ -17,11 +17,11 @@ public class TipoProdutoRepository extends Repository<TipoProduto>{
 		jpql.append("FROM ");
 		jpql.append("  TipoProduto a ");
 		jpql.append("WHERE ");
-		jpql.append("  upper(a.nome) like upper(:nome) ");
+		jpql.append("  upper(a.tipoProduto) like upper(:tipoProduto) ");
 
 		Query query = getEntityManager().createQuery(jpql.toString());
 
-		query.setParameter("nome", "%" + nome + "%");
+		query.setParameter("tipoProduto", "%" + nome + "%");
 
 		return query.getResultList();
 	}
