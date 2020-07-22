@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.Entity;
 
+import model.validation.Validation;
+
 //import model.validation.Validation;
 @Entity
 public class Produto extends DefaultEntity<Produto> {
@@ -69,6 +71,12 @@ public class Produto extends DefaultEntity<Produto> {
 
 	public Integer getQuantidade() {
 		return quantidade;
+	}
+
+	@Override
+	public Validation<Produto> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 //	@Override

@@ -9,6 +9,8 @@
 		<class>model.TipoProduto</class>
 		<class>model.Produto</class>
 		<class>model.DefaultEntity</class>
+		<class>model.Fornecedor</class>
+		<class>model.Telefone</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" /> <!-- DB Driver -->

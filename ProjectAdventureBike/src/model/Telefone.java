@@ -1,6 +1,11 @@
 package model;
 
-public class Telefone {
+import javax.persistence.Entity;
+
+import model.validation.Validation;
+
+@Entity
+public class Telefone extends DefaultEntity<Telefone> {
 	private Integer id;
 	private Integer codigoArea;
 	private String numero;
@@ -28,4 +33,11 @@ public class Telefone {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
+	@Override
+	public Validation<Telefone> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

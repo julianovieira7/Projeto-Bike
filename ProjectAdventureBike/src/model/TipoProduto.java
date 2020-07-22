@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.Entity;
 
+import model.validation.Validation;
+
 @Entity
 public class TipoProduto extends DefaultEntity<TipoProduto> {
 	
@@ -14,6 +16,12 @@ public class TipoProduto extends DefaultEntity<TipoProduto> {
 
 	public void setTipoProduto(String tipoProduto) {
 		this.tipoProduto = tipoProduto;
+	}
+
+	@Override
+	public Validation<TipoProduto> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 //	@Override

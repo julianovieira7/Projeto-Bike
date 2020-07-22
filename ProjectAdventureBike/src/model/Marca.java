@@ -3,6 +3,8 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import model.validation.Validation;
+
 
 @Entity
 public class Marca extends DefaultEntity<Marca> {
@@ -18,6 +20,12 @@ public class Marca extends DefaultEntity<Marca> {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	@Override
+	public Validation<Marca> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

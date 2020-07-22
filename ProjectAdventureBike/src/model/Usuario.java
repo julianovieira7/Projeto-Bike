@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import model.validation.Validation;
+
 //import model.validation.UsuarioValidation;
 //import model.validation.Validation;
 
@@ -94,6 +96,12 @@ public class Usuario extends DefaultEntity<Usuario> {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	@Override
+	public Validation<Usuario> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
