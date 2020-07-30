@@ -56,6 +56,7 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
+								
 								<p:commandLink value="Nome: "
 									actionListener="#{produtoController.abrirProdutoListing}"
 									process="@this" update="@none">
@@ -63,17 +64,10 @@
 									<p:ajax event="dialogReturn"
 										listener="#{produtoController.obterProdutoListing}"
 										update="@form" />
-
 								</p:commandLink>
 								<p:inputText id="itNome"
 									value="#{produtoController.entity.nome}" required="true"
 									requiredMessage="Informe o nome." />
-
-								<p:outputLabel value="Quantidade: ">
-									<p:message for="itQuantidade" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itQuantidade"
-									value="#{produtoController.entity.quantidade}" />
 
 								<p:outputLabel value="Material: ">
 									<p:message for="itMaterial" escape="false" />
@@ -89,7 +83,7 @@
 
 								<p:outputLabel id="labelMarca" value="Marca:" />
 								<p:selectOneMenu id="selectMarca"
-									value="#{produtoController.entity.marca}">
+									value="#{produtoController.entity.marca.marca}">
 									<f:selectItem itemLabel="Selecione uma Marca ..."
 										itemValue="null" />
 									<f:selectItems value="#{produtoController.listaMarca}"
@@ -106,16 +100,20 @@
 										itemValue="#{tipoProduto}" />
 								</p:selectOneMenu>
 
-								<h3>Remaining Chars</h3>
+								<p:outputLabel value="Valor: ">
+									<p:message for="itValor" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itValor"
+									value="#{produtoController.entity.valor}" />
+
+
 								<p:inputTextarea rows="5" cols="30" counter="descricao"
 									maxlength="10" counterTemplate="{0} characters remaining."
 									autoResize="false" />
 								<br />
 								<h:outputText id="descricao" />
 
-
 							</p:panelGrid>
-
 						</div>
 					</div>
 				</div>

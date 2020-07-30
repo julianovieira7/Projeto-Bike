@@ -24,10 +24,4 @@ public class TipoProduto extends DefaultEntity<TipoProduto> {
 		return null;
 	}
 
-//	@Override
-//	public Validation<TipoProduto> getValidation() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 }

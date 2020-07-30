@@ -10,19 +10,19 @@ import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
-import model.Fornecedor;
-import repository.FornecedorRepository;
+import model.Produto;
+import repository.ProdutoRepository;
 @Named
 @ViewScoped
-public class FornecedorListing extends Listing<Fornecedor> {
+public class ProdutoListing extends Listing<Produto> {
 
 	private static final long serialVersionUID = -2853437258107472756L;
-	private List<Fornecedor> list;
+	private List<Produto> list;
 	private String filtro;
 	
 
-	public FornecedorListing() {
-		super(Fornecedor.class);
+	public ProdutoListing() {
+		super(Produto.class);
 	}
 	
 	public void open() {
@@ -35,22 +35,22 @@ public class FornecedorListing extends Listing<Fornecedor> {
         options.put("contentWidth", "100%");
         options.put("contentHeight", "100%");  
         // ligacao com a pagina xhtml
-        PrimeFaces.current().dialog().openDynamic("fornecedorlisting", options, null);
+        PrimeFaces.current().dialog().openDynamic("produtolisting", options, null);
 	}
 
 	public void pesquisar() {
-		FornecedorRepository repo = new FornecedorRepository();
+		ProdutoRepository repo = new ProdutoRepository();
 		setList(repo.findByNome(getFiltro()));
 	}
 	
 
-	public List<Fornecedor> getList() {
+	public List<Produto> getList() {
 		if (list == null)
-			list = new ArrayList<Fornecedor>();
+			list = new ArrayList<Produto>();
 		return list;
 	}
 
-	public void setList(List<Fornecedor> list) {
+	public void setList(List<Produto> list) {
 		this.list = list;
 	}
 

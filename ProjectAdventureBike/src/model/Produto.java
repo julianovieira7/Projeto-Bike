@@ -1,6 +1,10 @@
 package model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import model.validation.Validation;
 
@@ -9,20 +13,36 @@ import model.validation.Validation;
 public class Produto extends DefaultEntity<Produto> {
 
 	private static final long serialVersionUID = 2517369960396705568L;
-	private String material;
-	private Marca marca;
-	private String descricao;
-	private String nome;
-	private String modelo;
-	private TipoProduto tipoProduto;
-	private Integer quantidade;
 
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idtipoproduto", nullable = true)
+	private TipoProduto tipoProduto;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idmarca", nullable = true)
+	private Marca marca;
+	
+	@Column(length = 120, nullable = false)
+	private String material;
+	
+	@Column(length = 400)
+	private String descricao;
+	
+	@Column(length = 100, nullable = false)
+	private String nome;
+	
+	@Column(length = 100, nullable = false)
+	private String modelo;
+	
+	@Column(nullable = false)
+	private Double valor;
 
 	public void setTipoProduto(TipoProduto tipoProduto) {
 		this.tipoProduto = tipoProduto;
+	}
+
+	public TipoProduto getTipoProduto() {
+		return tipoProduto;
 	}
 
 	public String getMaterial() {
@@ -65,12 +85,12 @@ public class Produto extends DefaultEntity<Produto> {
 		this.modelo = modelo;
 	}
 
-	public TipoProduto getTipoProduto() {
-		return tipoProduto;
+	public Double getValor() {
+		return valor;
 	}
 
-	public Integer getQuantidade() {
-		return quantidade;
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
 	@Override
@@ -78,11 +98,5 @@ public class Produto extends DefaultEntity<Produto> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-//	@Override
-//	public Validation<Produto> getValidation() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

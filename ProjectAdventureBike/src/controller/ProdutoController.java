@@ -10,13 +10,14 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 import application.Util;
+import controller.listing.ProdutoListing;
 import model.TipoProduto;
 import model.Marca;
-//import controller.listing.EnderecoListing;
-//import controller.listing.TelefoneListing;
+//import controller.listing.MarcaListing;
+//import controller.listing.TipoProdutoListing;
 //import controller.listing.ProdutoListing;
-//import model.Endereco;
-//import model.Telefone;
+//import model.Marca;
+//import model.TipoProduto;
 import model.Produto;
 import repository.TipoProdutoRepository;
 import repository.MarcaRepository;
@@ -31,6 +32,18 @@ public class ProdutoController extends Controller<Produto> {
 	private List<Marca> listaMarca;
 	private List<Produto> listaProduto;
 	private List<TipoProduto> listaTipoProduto;
+
+	@Override
+	public void salvar() {
+
+//		if (getEntity().getMarca().getId() == null) {
+//			getEntity().setMarca(null);
+//		}
+//		if (getEntity().getTipoProduto().getId() == null) {
+//			getEntity().setTipoProduto(null);
+//		}
+		super.salvar();
+	}
 
 	public List<String> completeArea(String query) {
 		List<String> results = new ArrayList<String>();
@@ -50,19 +63,13 @@ public class ProdutoController extends Controller<Produto> {
 		return results;
 	}
 
-
-
 	public List<Produto> getListaProduto() {
 		return listaProduto;
 	}
 
-
-
 	public void setListaProduto(List<Produto> listaProduto) {
 		this.listaProduto = listaProduto;
 	}
-
-
 
 	public void onSelect(SelectEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -78,52 +85,30 @@ public class ProdutoController extends Controller<Produto> {
 //		listaProduto = query.getResultList();
 
 		ProdutoRepository repo = new ProdutoRepository();
-		// metodo(string pesquisa)
-		// if(get ==
 		listaProduto = repo.findByNome(getFiltro());
 	}
 
-//	public void abrirProdutoListing() {
-//		ProdutoListing listing = new ProdutoListing();
-//		listing.open();
-//	}
-//
-//	public void obterProdutoListing(SelectEvent event) {
-//		Produto entity = (Produto) event.getObject();
-//		setEntity(entity);
-//		if (getEntity().getEndereco() == null)
-//			getEntity().setEndereco(new Endereco());
-//
-//		if (getEntity().getTelefone() == null)
-//			getEntity().setTelefone(new Telefone());
-//	}
+	public void abrirProdutoListing() {
+		ProdutoListing listing = new ProdutoListing();
+		listing.open();
+	}
 
-//	public void abrirEnderecoListing() {
-////		EnderecoListing listing = new EnderecoListing();
-//		listing.open();
-//	}
+	public void obterProdutoListing(SelectEvent event) {
+		Produto entity = (Produto) event.getObject();
+		setEntity(entity);
+		if (getEntity().getMarca() == null)
+			getEntity().setMarca(new Marca());
 
-//	public void obterEnderecoListing(SelectEvent event) {
-//		Endereco entity = (Endereco) event.getObject();
-//		getEntity().setEndereco(entity);
-//	}
-
-//	public void abrirTelefoneListing() {
-//		TelefoneListing listing = new TelefoneListing();
-//		listing.open();
-//	}
-//
-//	public void obterTelefoneListing(SelectEvent event) {
-//		Telefone entity = (Telefone) event.getObject();
-//		getEntity().setTelefone(entity);
-//	}
+		if (getEntity().getTipoProduto() == null)
+			getEntity().setTipoProduto(new TipoProduto());
+	}
 
 	@Override
 	public Produto getEntity() {
 		if (entity == null)
 			entity = new Produto();
-//		entity.setEndereco(new Endereco());
-//		entity.setTelefone(new Telefone());
+		entity.setMarca(new Marca());
+		entity.setTipoProduto(new TipoProduto());
 
 		return entity;
 	}

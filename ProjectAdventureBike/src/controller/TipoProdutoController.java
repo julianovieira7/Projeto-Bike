@@ -12,6 +12,7 @@ import repository.TipoProdutoRepository;
 @Named
 @ViewScoped
 public class TipoProdutoController extends Controller<TipoProduto>{
+	private static final long serialVersionUID = 3203549533394358170L;
 	private String filtro;
 	private List<TipoProduto> listaTipoProduto;
 
@@ -24,7 +25,6 @@ public class TipoProdutoController extends Controller<TipoProduto>{
 		TipoProdutoRepository repo = new TipoProdutoRepository();
 		listaTipoProduto = repo.findByNome(getFiltro());
 	}
-
 
 	@Override
 	public TipoProduto getEntity() {

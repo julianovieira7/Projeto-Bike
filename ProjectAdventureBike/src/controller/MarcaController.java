@@ -12,11 +12,7 @@ import repository.MarcaRepository;
 @Named
 @ViewScoped
 public class MarcaController extends Controller<Marca> {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6037007969793097884L;
+	private static final long serialVersionUID = 3333036870565170151L;
 	private String filtro;
 	private List<Marca> listaMarca;
 
@@ -29,7 +25,6 @@ public class MarcaController extends Controller<Marca> {
 		MarcaRepository repo = new MarcaRepository();
 		listaMarca = repo.findByNome(getFiltro());
 	}
-
 
 	@Override
 	public Marca getEntity() {

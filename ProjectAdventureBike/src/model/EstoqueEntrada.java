@@ -15,11 +15,11 @@ public class EstoqueEntrada extends DefaultEntity<EstoqueEntrada> {
 	@Column(nullable = false)
 	private int entrada;
 	@Column(nullable = false)
-//	@OneToMany(mappedBy="fornecedor")
+	@OneToMany(mappedBy="estoqueEntrada")
 	private List<Fornecedor> listaFornecedor;
 	
 	private int saida;
-//	@OneToMany(mappedBy="produto")
+	@OneToMany(mappedBy="estoqueEntrada")
 	private List<Fornecedor> listaProduto;
 	private Produto produto;
 	private String notaFiscal;
