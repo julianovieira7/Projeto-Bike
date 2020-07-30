@@ -41,7 +41,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 		} catch (VersionException e) {
 			e.printStackTrace();
 			r.rollbackTransaction();
-			Util.addMessageError("Problema ao salvar. Por favor, atualize a p√°gina e fa√ßa o cadastro novamente.");
+			Util.addMessageError("Problema ao salvar. Por favor, atualize a p·gina e faÁa o cadastro novamente.");
 			return;
 		} catch (ValidationException e) {
 			System.out.println(e.getMessage());
@@ -50,7 +50,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 			return;
 		}
 		limpar();
-		Util.addMessageInfo("Cadastro realizado com sucesso.");
+		Util.addMessageInfo("Salvo  com sucesso.");
 	}
 
 	public void excluir() {
@@ -66,7 +66,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 			return;
 		}
 		limpar();
-		Util.addMessageInfo("Exclus√£o realizada com sucesso.");
+		Util.addMessageInfo("Exclus„o realizada com sucesso.");
 	}
 
 	public void editar(int id) {

@@ -28,7 +28,7 @@ public class Repository<T extends DefaultEntity<T>> {
 			getEntityManager().getTransaction().begin();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RepositoryException("Problema ao iniciar uma transaÃ§Ã£o");
+			throw new RepositoryException("Problema ao iniciar uma transação");
 		}
 	}
 
@@ -37,7 +37,7 @@ public class Repository<T extends DefaultEntity<T>> {
 			getEntityManager().getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RepositoryException("Problema ao comitar uma transaÃ§Ã£o");
+			throw new RepositoryException("Problema ao comitar uma transação");
 		}
 	}
 
@@ -62,7 +62,7 @@ public class Repository<T extends DefaultEntity<T>> {
 
 		} catch (OptimisticLockException e) {
 			e.printStackTrace();
-			throw new VersionException("VersÃ£o antiga. Erro de controle de concorrÃªncia.");
+			throw new VersionException("Versão antiga. Erro de controle de concorrência.");
 		} catch (Exception e) {
 			System.out.println("Erro no repositorio " + "ao executar o mÃ©todo merge.");
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class Repository<T extends DefaultEntity<T>> {
 			T obj = getEntityManager().merge(entity);
 			getEntityManager().remove(obj);
 		} catch (Exception e) {
-			System.out.println("Erro no repositorio " + "ao executar o mÃ©todo merge.");
+			System.out.println("Erro no repositorio " + "ao executar o método merge.");
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao salvar.");
 		}
