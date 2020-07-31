@@ -4,7 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import model.validation.Validation;
@@ -13,7 +12,8 @@ import model.validation.Validation;
 public class Fornecedor extends DefaultEntity<Fornecedor> {
 
 	
-	private static final long serialVersionUID = 1673182193055042923L;
+
+	private static final long serialVersionUID = -3722588257509847716L;
 
 	@Column(nullable = false)
 	private String cnpj;
@@ -24,9 +24,7 @@ public class Fornecedor extends DefaultEntity<Fornecedor> {
 	@Column(nullable = false)
 	private String nome;
 	
-	@ManyToOne
-	@JoinColumn(name="idestoque")
-	private EstoqueEntrada estoqueEntrada;
+
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idtelefone", unique = true)
