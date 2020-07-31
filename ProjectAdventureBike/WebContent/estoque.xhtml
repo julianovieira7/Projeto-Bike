@@ -1,0 +1,163 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="head">
+		<style type="text/css">
+.ui-panelgrid.form-elements .ui-grc-2 {
+	padding-left: 60px;
+}
+
+@media ( max-width :1024px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 20px;
+	}
+}
+
+@media ( max-width :640px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 6px;
+	}
+}
+
+.dialogDemo label {
+	line-height: 2.1em;
+}
+</style>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
+
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage name="/images/loading.gif" />
+		</p:dialog>
+
+		<h:form>
+			<p:growl id="growl" globalOnly="false" />
+			<p:panel id="panel">
+				<f:facet name="header">
+					<div align="center">
+						<h1>Cadastro de Fornecedor</h1>
+					</div>
+				</f:facet>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12">
+						<div class="card card-w-title">
+							<p:panelGrid columns="1"
+								styleClass="form-group ui-panelgrid-blank" layout="grid">
+								<p:commandLink value="Fornecedor: "
+									actionListener="#{estoqueController.abrirFornecedorListing}"
+									process="@this" update="@none">
+
+									<p:ajax event="dialogReturn"
+										listener="#{estoqueController.obterFornecedorListing}"
+										update="@this" />
+
+								</p:commandLink>
+								<p:inputText id="Fornecedor"
+									value="#{estoqueController.entity.fornecedor}" required="true"
+									requiredMessage="Informe o fornecedor." />
+
+								<p:outputLabel value="Nota fiscal: ">
+									<p:message for="itNotafiscal" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itNotafiscal"
+									value="#{estoqueController.entity.notaFiscal}" />
+
+								<p:outputLabel value="Quantidade: ">
+									<p:message for="itQuantidade" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itQuantidade"
+									value="#{estoqueController.entity.quantidade}" required="true"
+									requiredMessage="Informe a quantidade." />
+
+								<p:outputLabel value="Preco compra: ">
+									<p:message for="itPrecoCompra" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itPrecoCompra"
+									value="#{estoqueController.entity.precoCompra}" required="true"
+									requiredMessage="Informe o preco de compra." />
+
+							</p:panelGrid>
+
+
+						</div>
+					</div>
+				</div>
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
+							update="@form" action="#{estoqueController.salvar}" />
+
+						<p:commandButton value="Limpar" process="@this" update="panel"
+							action="#{estoqueController.limpar}">
+							<p:ajax update="@form" resetValues="true" />
+						</p:commandButton>
+
+					</f:facet>
+
+					<f:facet name="right">
+						<p:commandButton value="Excluir" icon="pi pi-trash"
+							process="@form" update="panel"
+							action="#{estoqueController.excluir}">
+							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
+						</p:commandButton>
+					</f:facet>
+				</p:toolbar>
+			</p:panel>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" />
+			</p:confirmDialog>
+
+
+			<p:dialog header="Listagem de Fornecedores" widgetVar="listagem"
+				height="300" width="90%" modal="true" resizable="true">
+				<p:outputLabel value="Nome: " />
+				<p:inputText id="itFiltro" value="#{fornecedorController.filtro}" />
+				<p:commandButton value="Pesquisar"
+					actionListener="#{fornecedorController.pesquisar}"
+					process="@this itFiltro" update="dtListagem" />
+				<br />
+				<p:dataTable id="dtListagem" var="entity"
+					value="#{fornecedorController.listaFornecedor}">
+					<p:column headerText="Id">
+						<h:outputText value="#{entity.id}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<p:commandLink value="#{entity.nome}"
+							actionListener="#{fornecedorController.editar(entity.id)}"
+							process="@this" update="@form" resetValues="true" />
+					</p:column>
+
+					<p:column headerText="CNPJ">
+						<h:outputText value="#{entity.cnpj}" />
+					</p:column>
+
+					<p:column headerText="Razao Social">
+						<h:outputText value="#{entity.razaoSocial}" />
+					</p:column>
+
+					<p:column headerText="Telefone">
+						<h:outputText value="#{entity.telefone.codigoArea}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{entity.telefone.entity.numero}" />
+					</p:column>
+
+				</p:dataTable>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
