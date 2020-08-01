@@ -24,4 +24,23 @@ public class FornecedorRepository extends Repository<Fornecedor> {
 		return query.getResultList();
 	}
 
+	public List<Fornecedor> findByNome(String nome, Integer idTelefone) {
+
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append("  c ");
+		jpql.append("FROM ");
+		jpql.append("  Fornecedor c ");
+		jpql.append("WHERE ");
+		jpql.append("  c.telefone.id = :idTelefone ");
+		jpql.append("  AND upper(c.nome) like upper(:nome) ");
+
+		Query query = getEntityManager().createQuery(jpql.toString());
+
+		query.setParameter("idEstado", idTelefone);
+		query.setParameter("nome", "%" + nome + "%");
+
+		return query.getResultList();
+	}
+
 }

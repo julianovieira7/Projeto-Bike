@@ -12,10 +12,10 @@ import controller.listing.FornecedorListing;
 import model.Fornecedor;
 import model.Telefone;
 import repository.FornecedorRepository;
+
 @Named
 @ViewScoped
 public class FornecedorController extends Controller<Fornecedor> {
-
 
 	private static final long serialVersionUID = -7045218033418684119L;
 	private String filtro;
@@ -50,17 +50,18 @@ public class FornecedorController extends Controller<Fornecedor> {
 			listaFornecedor = new ArrayList<Fornecedor>();
 		return listaFornecedor;
 	}
+
 	public void abrirFornecedorListing() {
 		FornecedorListing listing = new FornecedorListing();
 		listing.open();
 	}
-	
+
 	public void obterFornecedorListing(SelectEvent event) {
-        Fornecedor entity = (Fornecedor) event.getObject();
-        setEntity(entity);
-    	if (getEntity().getTelefone() == null) {
+		Fornecedor entity = (Fornecedor) event.getObject();
+		setEntity(entity);
+		if (getEntity().getTelefone() == null) {
 			getEntity().setTelefone(new Telefone());
-    	}
-    }
+		}
+	}
 
 }
