@@ -8,22 +8,20 @@ import model.Estoque;
 
 public class EstoqueRepository extends Repository<Estoque> {
 
-	public List<Estoque> findByNome(String nome, Integer idFornecedor) {
+	public List<Estoque> findByNome(String nome) {
 
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
-		jpql.append("  c ");
+		jpql.append("  a ");
 		jpql.append("FROM ");
-		jpql.append("  Estoque c ");
+		jpql.append("  Estoque a ");
 		jpql.append("WHERE ");
-		jpql.append("  c.fornecedor.id = :idFornecedor ");
-		jpql.append("  AND upper(c.nome) like upper(:nome) ");
+		jpql.append("  upper(a.nome) like upper(:nome) ");
 
 		Query query = getEntityManager().createQuery(jpql.toString());
 
-		query.setParameter("idEstado", idFornecedor);
 		query.setParameter("nome", "%" + nome + "%");
 
 		return query.getResultList();
-	}	
+	}
 }

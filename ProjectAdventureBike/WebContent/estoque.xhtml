@@ -52,33 +52,29 @@
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
 
-
 								<p:commandLink value="Fornecedor: "
-									actionListener="#{fornecedorController.abrirFornecedorListing}"
+									actionListener="#{estoqueController.abrirForncedorListing}"
 									process="@this" update="@none">
 									<p:ajax event="dialogReturn"
-										listener="#{fornecedorController.obterFornecedorListing}"
+										listener="#{estoqueController.obterFornecedorListing}"
 										update="itNomeForn" />
 
 								</p:commandLink>
 								<p:inputText id="itNomeForn"
-									value="#{fornecedorController.entity.nome}" />
-
-
-
-
-								<p:outputLabel value="Nota fiscal: ">
-									<p:message for="itNotafiscal" escape="false" />
+									value="#{estoqueController.entity.fornecedor.nome}" />
+								<p:outputLabel value="Quantidade: ">
+									<p:message for="itQuant" escape="false" />
 								</p:outputLabel>
-								<p:inputText id="itNotafiscal"
+								<p:inputText id="itQuant"
+									value="#{estoqueController.entity.quantidade}" />
+
+								<p:outputLabel value="Nota Fiscal: ">
+									<p:message for="itNotaFiscal" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itNotaFiscal"
 									value="#{estoqueController.entity.notaFiscal}" />
 
-								<p:outputLabel value="Quantidade: ">
-									<p:message for="itQuantidade" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itQuantidade"
-									value="#{estoqueController.entity.quantidade}" required="true"
-									requiredMessage="Informe a quantidade." />
+
 
 								<p:outputLabel value="Preco compra: ">
 									<p:message for="itPrecoCompra" escape="false" />
@@ -86,6 +82,8 @@
 								<p:inputText id="itPrecoCompra"
 									value="#{estoqueController.entity.precoCompra}" required="true"
 									requiredMessage="Informe o preco de compra." />
+
+
 
 							</p:panelGrid>
 
@@ -123,7 +121,7 @@
 			</p:confirmDialog>
 
 
-			<p:dialog header="Listagem de Fornecedores" widgetVar="listagem"
+			<p:dialog header="Listagem de Usuarios" widgetVar="listagem"
 				height="300" width="90%" modal="true" resizable="true">
 				<p:outputLabel value="Nome: " />
 				<p:inputText id="itFiltro" value="#{fornecedorController.filtro}" />

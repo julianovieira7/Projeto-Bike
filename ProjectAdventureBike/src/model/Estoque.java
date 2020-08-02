@@ -10,39 +10,42 @@ import model.validation.Validation;
 @Entity
 public class Estoque extends DefaultEntity<Estoque> {
 
-	private static final long serialVersionUID = 7046042711462419030L;
+	private static final long serialVersionUID = -8872910067989503786L;
 	@Column(nullable = false)
-	private int quantidade;
-	@Column(nullable = false)
-	private Double valorTotal;
+	private Integer quantidade;
+//	@Column(nullable = false)
+//	private Double valorTotal;
 	@Column(nullable = false)
 	private Double precoCompra;
-
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "idfornecedor")
 	private Fornecedor fornecedor;
 
-//	@ManyToOne
-//	@JoinColumn(name = "idproduto")
-//	private Produto produto;
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
 
-	@Column(nullable = false)
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	@Column()
 	private String notaFiscal;
 
-	public int getQuantidade() {
+//	public Double getValorTotal() {
+//		return valorTotal;
+//	}
+//
+//	public void setValorTotal(Double valorTotal) {
+//		this.valorTotal = valorTotal;
+//	}
+
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
-	}
-
-	public Double getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
 	}
 
 	public Double getPrecoCompra() {
@@ -51,14 +54,6 @@ public class Estoque extends DefaultEntity<Estoque> {
 
 	public void setPrecoCompra(Double precoCompra) {
 		this.precoCompra = precoCompra;
-	}
-
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
 	}
 
 //	public Produto getProduto() {
