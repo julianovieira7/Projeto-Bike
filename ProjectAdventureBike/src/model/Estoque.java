@@ -13,8 +13,8 @@ public class Estoque extends DefaultEntity<Estoque> {
 	private static final long serialVersionUID = 7046042711462419030L;
 	@Column(nullable = false)
 	private int quantidade;
-//	@Column(nullable = false)
-//	private Double valorTotal;
+	@Column(nullable = false)
+	private Double valorTotal;
 	@Column(nullable = false)
 	private Double precoCompra;
 
@@ -37,13 +37,13 @@ public class Estoque extends DefaultEntity<Estoque> {
 		this.quantidade = quantidade;
 	}
 
-//	public Double getValorTotal() {
-//		return valorTotal;
-//	}
-//
-//	public void setValorTotal(Double valorTotal) {
-//		this.valorTotal = valorTotal;
-//	}
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
 
 	public Double getPrecoCompra() {
 		return precoCompra;

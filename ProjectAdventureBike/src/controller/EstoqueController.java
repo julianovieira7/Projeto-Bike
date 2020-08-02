@@ -34,12 +34,13 @@ public class EstoqueController extends Controller<Estoque> {
 
 	public void abrirFornecedorListing() {
 		FornecedorListing listing = new FornecedorListing();
-		listing.open(getEntity().getFornecedor().getTelefone().getId());
+		listing.open();
 	}
 
 	public void obterFornecedorListing(SelectEvent event) {
 		Fornecedor entity = (Fornecedor) event.getObject();
 		getEntity().setFornecedor(entity);
+
 	}
 
 	public List<Estoque> getListaEstoque() {
@@ -54,10 +55,6 @@ public class EstoqueController extends Controller<Estoque> {
 
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
-	}
-
-	public void setListaEstoque(List<Estoque> listaEstoque) {
-		this.listaEstoque = listaEstoque;
 	}
 
 //	public static void main(String[] args) {

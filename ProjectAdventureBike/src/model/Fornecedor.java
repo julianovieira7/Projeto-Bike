@@ -11,8 +11,6 @@ import model.validation.Validation;
 @Entity
 public class Fornecedor extends DefaultEntity<Fornecedor> {
 
-	
-
 	private static final long serialVersionUID = -3722588257509847716L;
 
 	@Column(nullable = false)
@@ -23,8 +21,6 @@ public class Fornecedor extends DefaultEntity<Fornecedor> {
 
 	@Column(nullable = false)
 	private String nome;
-	
-
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idtelefone", unique = true)

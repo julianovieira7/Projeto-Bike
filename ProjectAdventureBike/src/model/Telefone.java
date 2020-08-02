@@ -6,17 +6,10 @@ import model.validation.Validation;
 
 @Entity
 public class Telefone extends DefaultEntity<Telefone> {
-	private Integer id;
+
+	private static final long serialVersionUID = 4368844581125273114L;
 	private Integer codigoArea;
 	private String numero;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Integer getCodigoArea() {
 		return codigoArea;
@@ -39,5 +32,5 @@ public class Telefone extends DefaultEntity<Telefone> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

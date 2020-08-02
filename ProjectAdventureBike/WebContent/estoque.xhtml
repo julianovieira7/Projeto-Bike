@@ -43,7 +43,7 @@
 			<p:panel id="panel">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Cadastro de Fornecedor</h1>
+						<h1>Entrada de Estoque</h1>
 					</div>
 				</f:facet>
 				<div class="ui-g ui-fluid">
@@ -53,17 +53,16 @@
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
 
 
-								<p:commandLink value="Fornecedor: " id="clFornecedor"
-									actionListener="#{estoqueController.abrirFornecedorListing}"
+								<p:commandLink value="Fornecedor: "
+									actionListener="#{fornecedorController.abrirFornecedorListing}"
 									process="@this" update="@none">
-
 									<p:ajax event="dialogReturn"
-										listener="#{estoqueController.obterFornecedorListing}"
-										update="itNomeFornecedor" />
+										listener="#{fornecedorController.obterFornecedorListing}"
+										update="itNomeForn" />
 
 								</p:commandLink>
-								<p:inputText id="itNomeFornecedor"
-									value="#{estoqueController.entity.fornecedor.nome}" />
+								<p:inputText id="itNomeForn"
+									value="#{fornecedorController.entity.nome}" />
 
 
 
