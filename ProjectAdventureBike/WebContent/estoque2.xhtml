@@ -68,10 +68,10 @@
 									process="@this" update="@none">
 									<p:ajax event="dialogReturn"
 										listener="#{estoqueController.obterFornecedorListing}"
-										update="itNomeEstado " />
+										update="itNomeFornecedor" />
 
 								</p:commandLink>
-								<p:inputText id="itNomeEstado"
+								<p:inputText id="itNomeFornecedor"
 									value="#{estoqueController.entity.fornecedor.nome}" />
 
 							

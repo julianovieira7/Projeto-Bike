@@ -16,7 +16,8 @@ import repository.MarcaRepository;
 @Named
 @ViewScoped
 public class MarcaListing extends Listing<Marca> {
-	private static final long serialVersionUID = 1195112441140009909L;
+
+	private static final long serialVersionUID = -2853437258107472756L;
 	private List<Marca> list;
 	private String filtro;
 

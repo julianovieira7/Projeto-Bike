@@ -6,31 +6,41 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
+
+import controller.listing.MarcaListing;
 import model.Marca;
-import repository.MarcaRepository;
 
 @Named
 @ViewScoped
 public class MarcaController extends Controller<Marca> {
-	private static final long serialVersionUID = 3333036870565170151L;
 	private String filtro;
 	private List<Marca> listaMarca;
 
-	public void pesquisar() {
-//		EntityManager em = JPAFactory.getEntityManager();
-//		Query query = em.createQuery("Select a " + "From Marca a " + "Where upper(a.nome) like upper(:filtro)");
-//		query.setParameter("filtro", "%" + getFiltro() + "%");
-//		listaMarca = query.getResultList();
-
-		MarcaRepository repo = new MarcaRepository();
-		listaMarca = repo.findByNome(getFiltro());
-	}
+	private static final long serialVersionUID = -3111377090925332626L;
 
 	@Override
 	public Marca getEntity() {
-		if (entity == null)
+		if (entity == null) {
 			entity = new Marca();
+		}
 		return entity;
+	}
+
+	public List<Marca> getListaMarca() {
+		if (listaMarca == null)
+			listaMarca = new ArrayList<Marca>();
+		return listaMarca;
+	}
+
+	public void abrirMarcaListing() {
+		MarcaListing listing = new MarcaListing();
+		listing.open();
+	}
+
+	public void obterMarcaListing(SelectEvent event) {
+		Marca entity = (Marca) event.getObject();
+		setEntity(entity);
 	}
 
 	public String getFiltro() {
@@ -39,13 +49,6 @@ public class MarcaController extends Controller<Marca> {
 
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
-	}
-
-	public List<Marca> getListaMarca() {
-		if (listaMarca == null)
-			listaMarca = new ArrayList<Marca>();
-
-		return listaMarca;
 	}
 
 }

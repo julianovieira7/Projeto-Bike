@@ -83,21 +83,11 @@
 
 								<p:outputLabel id="labelMarca" value="Marca:" />
 								<p:selectOneMenu id="selectMarca"
-									value="#{produtoController.entity.marca.marca}">
+									value="#{produtoController.entity.marca.nome}">
 									<f:selectItem itemLabel="Selecione uma Marca ..."
 										itemValue="null" />
 									<f:selectItems value="#{produtoController.listaMarca}"
-										var="marca" itemLabel="#{marca.marca}" itemValue="#{marca}" />
-								</p:selectOneMenu>
-
-								<p:outputLabel id="labelTipoProduto" value="TipoProduto:" />
-								<p:selectOneMenu id="selectTipoProduto"
-									value="#{produtoController.entity.tipoProduto}">
-									<f:selectItem itemLabel="Selecione uma TipoProduto ..."
-										itemValue="null" />
-									<f:selectItems value="#{produtoController.listaTipoProduto}"
-										var="tipoProduto" itemLabel="#{tipoProduto.tipoProduto}"
-										itemValue="#{tipoProduto}" />
+										var="marca" itemLabel="#{marca.nome}" itemValue="#{marca}" />
 								</p:selectOneMenu>
 
 								<p:outputLabel value="Valor: ">

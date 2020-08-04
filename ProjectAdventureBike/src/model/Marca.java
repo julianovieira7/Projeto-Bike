@@ -5,29 +5,23 @@ import javax.persistence.Entity;
 
 import model.validation.Validation;
 
-
 @Entity
 public class Marca extends DefaultEntity<Marca> {
 
 	private static final long serialVersionUID = -7607211676214204484L;
+	@Column(nullable = false)
+	private String nome;
 
-	@Column(length = 100, nullable = false)
-	private String marca;
-
-	public String getMarca() {
-		return marca;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override
 	public Validation<Marca> getValidation() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
 }

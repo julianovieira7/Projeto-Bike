@@ -51,12 +51,20 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:outputLabel value="Nome ">
-									<p:message for="itNome" escape="false" />
-								</p:outputLabel>
+								
+								<p:commandLink value="Nome: "
+									actionListener="#{marcaController.abrirMarcaListing}"
+									process="@this" update="@none">
+
+									<p:ajax event="dialogReturn"
+										listener="#{marcaController.obterMarcaListing}"
+										update="@form" />
+
+								</p:commandLink>
 								<p:inputText id="itNome"
-									value="#{marcaController.entity.marca}" />
-						
+									value="#{marcaController.entity.nome}" required="true"
+									requiredMessage="Informe o nome." />
+
 							</p:panelGrid>
 
 

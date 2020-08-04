@@ -1,6 +1,5 @@
 package model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -8,18 +7,13 @@ import javax.persistence.ManyToOne;
 
 import model.validation.Validation;
 
-//import model.validation.Validation;
 @Entity
 public class Produto extends DefaultEntity<Produto> {
 
-	private static final long serialVersionUID = 2517369960396705568L;
+	private static final long serialVersionUID = 3284762516679493143L;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idtipoproduto", nullable = true)
-	private TipoProduto tipoProduto;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idmarca", nullable = true)
+	@ManyToOne()
+	@JoinColumn(name = "idmarca")
 	private Marca marca;
 	
 	@Column(length = 120, nullable = false)
@@ -36,13 +30,13 @@ public class Produto extends DefaultEntity<Produto> {
 	
 	@Column(nullable = false)
 	private Double valor;
-
-	public void setTipoProduto(TipoProduto tipoProduto) {
-		this.tipoProduto = tipoProduto;
+	
+	public Marca getMarca() {
+		return marca;
 	}
 
-	public TipoProduto getTipoProduto() {
-		return tipoProduto;
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 
 	public String getMaterial() {
@@ -51,14 +45,6 @@ public class Produto extends DefaultEntity<Produto> {
 
 	public void setMaterial(String material) {
 		this.material = material;
-	}
-
-	public Marca getMarca() {
-		return marca;
-	}
-
-	public void setMarca(Marca marca) {
-		this.marca = marca;
 	}
 
 	public String getDescricao() {
@@ -92,11 +78,15 @@ public class Produto extends DefaultEntity<Produto> {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+	
+	@Override
+	public String toString() {
+		return "Produto [marca=" + marca + ", material=" + material + ", descricao=" + descricao + ", nome=" + nome
+				+ ", modelo=" + modelo + ", valor=" + valor + "]";
+	}
 
 	@Override
 	public Validation<Produto> getValidation() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

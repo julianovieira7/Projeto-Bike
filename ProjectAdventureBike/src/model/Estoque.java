@@ -10,7 +10,7 @@ import model.validation.Validation;
 @Entity
 public class Estoque extends DefaultEntity<Estoque> {
 
-	private static final long serialVersionUID = -8872910067989503786L;
+	private static final long serialVersionUID = 268507942847684339L;
 	@Column(nullable = false)
 	private Integer quantidade;
 //	@Column(nullable = false)
