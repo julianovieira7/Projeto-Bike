@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Consulta de produto</title>
+	<title>Consulta de Produto</title>
 </h:head>
 
 <h:body>
@@ -60,14 +60,14 @@
 
 							<p:column headerText="Marca"
 								style="width: 65px; text-align: center;">
-								<p:commandLink value="#{entity.marca}"
+								<p:commandLink value="#{entity.marca.nome}"
 									actionListener="#{produtoListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
-
-							<p:column headerText="Tipo do Produto"
+							
+							<p:column headerText="Tipo de Produto"
 								style="width: 65px; text-align: center;">
-								<p:commandLink value="#{entity.tipoProduto}"
+								<p:commandLink value="#{entity.tipoProduto.nome}"
 									actionListener="#{produtoListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>

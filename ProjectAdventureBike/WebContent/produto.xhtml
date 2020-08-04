@@ -56,16 +56,16 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								
+
 								<p:commandLink value="Nome: "
 									actionListener="#{produtoController.abrirProdutoListing}"
 									process="@this" update="@none">
 
 									<p:ajax event="dialogReturn"
 										listener="#{produtoController.obterProdutoListing}"
-										update="@form" />
+										update="itProduto" />
 								</p:commandLink>
-								<p:inputText id="itNome"
+								<p:inputText id="itProduto"
 									value="#{produtoController.entity.nome}" required="true"
 									requiredMessage="Informe o nome." />
 
@@ -81,14 +81,31 @@
 								<p:inputText id="itModelo"
 									value="#{produtoController.entity.modelo}" />
 
-								<p:outputLabel id="labelMarca" value="Marca:" />
-								<p:selectOneMenu id="selectMarca"
-									value="#{produtoController.entity.marca.nome}">
-									<f:selectItem itemLabel="Selecione uma Marca ..."
-										itemValue="null" />
-									<f:selectItems value="#{produtoController.listaMarca}"
-										var="marca" itemLabel="#{marca.nome}" itemValue="#{marca}" />
-								</p:selectOneMenu>
+								<p:commandLink value="Marca: "
+									actionListener="#{produtoController.abrirMarcaListing}"
+									process="@this" update="@none">
+
+									<p:ajax event="dialogReturn"
+										listener="#{produtoController.obterMarcaListing}"
+										update="itMarca" />
+								</p:commandLink>
+								
+								<p:inputText id="itMarca"
+									value="#{produtoController.entity.marca.nome}" required="true"
+									requiredMessage="Informe a marca." />
+
+								<p:commandLink value="Tipo de produto: "
+									actionListener="#{produtoController.abrirTipoProdutoListing}"
+									process="@this" update="@none">
+
+									<p:ajax event="dialogReturn"
+										listener="#{produtoController.obterTipoProdutoListing}"
+										update="itTipoProduto" />
+								
+								</p:commandLink>
+								<p:inputText id="itTipoProduto"
+									value="#{produtoController.entity.tipoProduto.nome}"
+									required="true" requiredMessage="Informe o tipo de produto." />
 
 								<p:outputLabel value="Valor: ">
 									<p:message for="itValor" escape="false" />

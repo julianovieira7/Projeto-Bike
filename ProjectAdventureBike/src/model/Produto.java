@@ -15,28 +15,40 @@ public class Produto extends DefaultEntity<Produto> {
 	@ManyToOne()
 	@JoinColumn(name = "idmarca")
 	private Marca marca;
-	
+
+	@ManyToOne()
+	@JoinColumn(name = "idtipoproduto")
+	private TipoProduto tipoProduto;
+
 	@Column(length = 120, nullable = false)
 	private String material;
-	
+
 	@Column(length = 400)
 	private String descricao;
-	
+
 	@Column(length = 100, nullable = false)
 	private String nome;
-	
+
 	@Column(length = 100, nullable = false)
 	private String modelo;
-	
+
 	@Column(nullable = false)
 	private Double valor;
-	
+
 	public Marca getMarca() {
 		return marca;
 	}
 
 	public void setMarca(Marca marca) {
 		this.marca = marca;
+	}
+
+	public TipoProduto getTipoProduto() {
+		return tipoProduto;
+	}
+
+	public void setTipoProduto(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
 	}
 
 	public String getMaterial() {
@@ -78,7 +90,7 @@ public class Produto extends DefaultEntity<Produto> {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Produto [marca=" + marca + ", material=" + material + ", descricao=" + descricao + ", nome=" + nome

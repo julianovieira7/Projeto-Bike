@@ -43,7 +43,7 @@
 			<p:panel id="panel">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Cadastro de Tipo de Produto</h1>
+						<h1>Cadastro de Serviços Prestados</h1>
 					</div>
 				</f:facet>
 				<div class="ui-g ui-fluid">
@@ -51,30 +51,33 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
+								
 								<p:commandLink value="Nome: "
-									actionListener="#{tipoProdutoController.abrirTipoProdutoListing}"
+									actionListener="#{servicoPrestadoController.abrirServicoPrestadoListing}"
 									process="@this" update="@none">
 
 									<p:ajax event="dialogReturn"
-										listener="#{tipoProdutoController.obterTipoProdutoListing}"
+										listener="#{servicoPrestadoController.obterServicoPrestadoListing}"
 										update="@form" />
 
 								</p:commandLink>
 								<p:inputText id="itNome"
-									value="#{tipoProdutoController.entity.nome}" required="true"
+									value="#{servicoPrestadoController.entity.nome}" required="true"
 									requiredMessage="Informe o nome." />
 
 							</p:panelGrid>
+
+
 						</div>
 					</div>
 				</div>
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
-							update="@form" action="#{tipoProdutoController.salvar}" />
+							update="@form" action="#{servicoPrestadoController.salvar}" />
 
 						<p:commandButton value="Limpar" process="@this" update="panel"
-							action="#{tipoProdutoController.limpar}">
+							action="#{servicoPrestadoController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
 
@@ -83,7 +86,7 @@
 					<f:facet name="right">
 						<p:commandButton value="Excluir" icon="pi pi-trash"
 							process="@form" update="panel"
-							action="#{tipoProdutoController.excluir}">
+							action="#{servicoPrestadoController.excluir}">
 							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
 						</p:commandButton>
 					</f:facet>
