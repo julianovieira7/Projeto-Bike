@@ -1,6 +1,13 @@
 package model;
 
-public class Endereco {
+import javax.persistence.Entity;
+
+import model.validation.Validation;
+
+@Entity
+public class Endereco extends DefaultEntity<Endereco>{
+
+	private static final long serialVersionUID = 4989928930162461941L;
 	private Integer id;
 	private String cep;
 	private String numero;
@@ -54,5 +61,10 @@ public class Endereco {
 
 	public void setPontoReferencia(String pontoReferencia) {
 		this.pontoReferencia = pontoReferencia;
+	}
+
+	@Override
+	public Validation<Endereco> getValidation() {
+		return null;
 	}
 }

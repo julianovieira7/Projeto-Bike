@@ -11,9 +11,6 @@ import javax.persistence.TemporalType;
 
 import model.validation.Validation;
 
-//import model.validation.UsuarioValidation;
-//import model.validation.Validation;
-
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
 
@@ -33,29 +30,39 @@ public class Usuario extends DefaultEntity<Usuario> {
 	private Date dataAniversario;
 	private String cpf;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "idendereco")
-//	private Endereco endereco;
-//
-//	@ManyToOne()
-//	@JoinColumn(name = "idtelefone", nullable = true)
-//	private Telefone telefone;
-//
-//	public Telefone getTelefone() {
-//		return telefone;
-//	}
-//
-//	public void setTelefone(Telefone telefone) {
-//		this.telefone = telefone;
-//	}
-//
-//	public Endereco getEndereco() {
-//		return endereco;
-//	}
-//
-//	public void setEndereco(Endereco endereco) {
-//		this.endereco = endereco;
-//	}
+	@ManyToOne()
+	@JoinColumn(name = "idendereco")
+	private Endereco endereco;
+
+	@ManyToOne()
+	@JoinColumn(name = "idtelefone", nullable = true)
+	private Telefone telefone;
+   
+	private TipoUsuario tipoUsuario;
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public String getNome() {
 		return nome;
@@ -100,7 +107,6 @@ public class Usuario extends DefaultEntity<Usuario> {
 
 	@Override
 	public Validation<Usuario> getValidation() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

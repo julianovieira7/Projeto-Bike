@@ -8,6 +8,8 @@
 		<class>model.Estoque</class>
 		<class>model.Fornecedor</class>
 		<class>model.Marca</class>
+		<class>model.Endereco</class>
+		<class>model.Bicicleta</class>
 		<class>model.TipoRevisao</class>
 		<class>model.ServicoPrestado</class>
 		<class>model.Produto</class>

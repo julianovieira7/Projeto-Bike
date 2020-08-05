@@ -37,9 +37,9 @@
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-core</artifactId>
-		    <version>5.4.17.Final</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.17.Final</version>
 		</dependency>
 
 
@@ -57,14 +57,14 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.13</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.0.17.Final</version>
 		</dependency>
-		
+
 		<!-- Bibliotecas para utilizar com o flashscope -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -85,7 +85,16 @@
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 			<version>1.1.1</version>
-		</dependency>			
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
