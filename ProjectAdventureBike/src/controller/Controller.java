@@ -27,30 +27,36 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 		super();
 	}
 
-	public void salvar() {
+	protected boolean salvarEspecial() {
 		Repository<T> r = new Repository<T>();
 		try {
 			r.beginTransaction();
-			r.salvar(getEntity());
+			setEntity(r.salvar(getEntity()));
 			r.commitTransaction();
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			r.rollbackTransaction();
 			Util.addMessageError("Problema ao salvar.");
-			return;
+			return false;
 		} catch (VersionException e) {
 			e.printStackTrace();
 			r.rollbackTransaction();
-			Util.addMessageError("Problema ao salvar. Por favor, atualize a p·gina e faÁa o cadastro novamente.");
-			return;
+			Util.addMessageError("Problema ao salvar. Por favor, atualize a p√°gina e fa√ßa o cadastro novamente.");
+			return false;
 		} catch (ValidationException e) {
 			System.out.println(e.getMessage());
 			r.rollbackTransaction();
 			Util.addMessageError(e.getMessage());
-			return;
+			return false;
 		}
-		limpar();
-		Util.addMessageInfo("Salvo  com sucesso.");
+		return true;
+	}
+
+	public void salvar() {
+		if (salvarEspecial()) {
+			limpar();
+			Util.addMessageInfo("Cadastro realizado com sucesso.");
+		}
 	}
 
 	public void excluir() {
@@ -66,7 +72,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 			return;
 		}
 		limpar();
-		Util.addMessageInfo("Exclus„o realizada com sucesso.");
+		Util.addMessageInfo("Exclus√£o realizada com sucesso.");
 	}
 
 	public void editar(int id) {

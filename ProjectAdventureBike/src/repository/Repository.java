@@ -14,33 +14,33 @@ import model.DefaultEntity;
 public class Repository<T extends DefaultEntity<T>> {
 
 	private EntityManager entityManager;
-
+	
 	public Repository() {
 		entityManager = JPAFactory.getEntityManager();
 	}
-
+	
 	public Repository(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-
+	
 	public void beginTransaction() throws RepositoryException {
 		try {
 			getEntityManager().getTransaction().begin();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RepositoryException("Problema ao iniciar uma transaÁ„o");
+			throw new RepositoryException("Problema ao iniciar uma transa√ß√£o");
 		}
 	}
-
+	
 	public void commitTransaction() throws RepositoryException {
 		try {
 			getEntityManager().getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RepositoryException("Problema ao comitar uma transaÁ„o");
+			throw new RepositoryException("Problema ao comitar uma transa√ß√£o");
 		}
 	}
-
+	
 	public void rollbackTransaction() {
 		try {
 			getEntityManager().getTransaction().rollback();
@@ -48,47 +48,49 @@ public class Repository<T extends DefaultEntity<T>> {
 			e.printStackTrace();
 		}
 	}
-
-	public void salvar(T entity) throws RepositoryException, ValidationException, VersionException {
+	
+	public T salvar(T entity) throws RepositoryException, ValidationException, VersionException {
 		try {
 			if (entity.getValidation() != null)
 				entity.getValidation().validate(entity);
-
-			getEntityManager().merge(entity);
+			
+			return getEntityManager().merge(entity);
 		} catch (ValidationException e) {
 //			e.printStackTrace();
 			System.out.println(e.getMessage());
 			throw e;
-
+		
 		} catch (OptimisticLockException e) {
 			e.printStackTrace();
-			throw new VersionException("Vers„o antiga. Erro de controle de concorrÍncia.");
+			throw new VersionException("Vers√£o antiga. Erro de controle de concorr√™ncia.");
 		} catch (Exception e) {
-			System.out.println("Erro no repositorio " + "ao executar o m√©todo merge.");
+			System.out.println("Erro no repositorio "
+					+ "ao executar o m√©todo merge.");
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao salvar.");
-		}
+		} 
 	}
-
+	
 	public void excluir(T entity) throws RepositoryException {
 		try {
 			T obj = getEntityManager().merge(entity);
 			getEntityManager().remove(obj);
 		} catch (Exception e) {
-			System.out.println("Erro no repositorio " + "ao executar o mÈtodo merge.");
+			System.out.println("Erro no repositorio "
+					+ "ao executar o m√©todo merge.");
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao salvar.");
 		}
 	}
-
+	
 	public T findById(Integer id) {
 		// obtendo o tipo da classe de forma generica (a classe deve ser publica)
-		final ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+		final ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass(); 
 		Class<T> theType = (Class<T>) (type).getActualTypeArguments()[0];
-
+		
 		// pesquisando pelo id no banco
 		T t = (T) getEntityManager().find(theType, id);
-
+		
 		return t;
 	}
 
@@ -99,4 +101,5 @@ public class Repository<T extends DefaultEntity<T>> {
 	private void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
+
 }

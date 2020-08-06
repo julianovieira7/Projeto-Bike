@@ -50,6 +50,11 @@
 					<div align="center">
 						<h1>Cadastro de Produto</h1>
 					</div>
+					<div align="right" style="float: right; position: relative;">
+						<img class="img-responsive"
+							style="max-width: 80px !important; max-height: 80px !important;"
+							src="img-produto?nome=#{produtoController.entity.id}.png" />
+					</div>
 				</f:facet>
 				<div class="ui-g ui-fluid">
 					<div class="ui-g-12">
@@ -89,7 +94,7 @@
 										listener="#{produtoController.obterMarcaListing}"
 										update="itMarca" />
 								</p:commandLink>
-								
+
 								<p:inputText id="itMarca"
 									value="#{produtoController.entity.marca.nome}" required="true"
 									requiredMessage="Informe a marca." />
@@ -101,7 +106,7 @@
 									<p:ajax event="dialogReturn"
 										listener="#{produtoController.obterTipoProdutoListing}"
 										update="itTipoProduto" />
-								
+
 								</p:commandLink>
 								<p:inputText id="itTipoProduto"
 									value="#{produtoController.entity.tipoProduto.nome}"
@@ -113,6 +118,14 @@
 								<p:inputText id="itValor"
 									value="#{produtoController.entity.valor}" />
 
+								<h:form enctype="multipart/form-data">
+									<p:fileUpload listener="#{produtoController.upload}"
+										label="#{produtoController.nomeFoto}" mode="advanced"
+										update="@this messages" auto="false" sizeLimit="200000"
+										allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+									<p:growl id="messages" showDetail="true" />
+								</h:form>
 
 								<p:inputTextarea rows="5" cols="30" counter="descricao"
 									maxlength="10" counterTemplate="{0} characters remaining."
