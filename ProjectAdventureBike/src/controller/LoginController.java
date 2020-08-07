@@ -6,67 +6,72 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import application.Session;
 import application.Util;
 import factory.JPAFactory;
 import model.Usuario;
+import repository.UsuarioRepository;
 
 @Named
 @RequestScoped
-public class LoginController extends Controller<Usuario> {
+public class LoginController {
 
-	private static final long serialVersionUID = 1466023629247610838L;
 	private Usuario usuario;
 
+//	public String logar() {
+//
+//		String hashSenha = Util.hashSHA256(getUsuario().getSenha());
+//		usuario = getUsuario(getUsuario().getNome(), hashSenha);
+//
+//		if (usuario != null) {
+//			// adicionando um ussuario na sessao
+//			Session.getInstance().setAttribute("usuarioLogado", usuario);
+//			// redirecionando para o template
+//			return "professor.xhtml?faces-redirect=true";
+//		}
+//		Util.addMessageError("Usuario ou senha incorretos.");
+//		return null;
+//	}
+
 	public String logar() {
+		String hashSenha = Util.hashSHA256(getUsuario().getSenha());
+		UsuarioRepository repo = new UsuarioRepository();
+		Usuario usuarioLogin = repo.verificarLoginSenha(getUsuario().getEmail(), getUsuario().getSenha());
 
-		String hashSenha = Util.hashSHA256(getEntity().getSenha());
-		usuario = getUsuario(getEntity().getNome(), hashSenha);
 		if (usuario != null) {
-			Util.addMessageInfo("Login com sucesso.");
-			return "usuario.xhtml?faces-redirect=true";
+			if ( usuarioLogin.equals(hashSenha)) {
+			// adicionando um ussuario na sessao
+			Session.getInstance().setAttribute("usuarioLogado", usuario);
+			// redirecionando para o template
+			return "professor.xhtml?faces-redirect=true";
+			}
 		}
-		Util.addMessageError("Usuario ou senha incorretos.");
-		return null;
+		Util.addMessageError("Login ou Senha inválido.");
+		return "";
 	}
-//	public String envia() {
-//        
-//	    usuario = usuarioDAO.getUsuario(usuario.getNomeUsuario(), usuario.getSenha());
-//	    if (usuario == null) {
-//	      usuario = new Usuario();
-//	      FacesContext.getCurrentInstance().addMessage(
-//	         null,
-//	         new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!",
-//	           "Erro no Login!"));
-//	      return null;
-//	    } else {
-//	          return "/main";
-//	    }
-//	         
-
-//	  }
 
 	public Usuario getUsuario(String email, String senha) {
 
 		try {
 			EntityManager em = JPAFactory.getEntityManager();
-			Query query = em.createQuery("SELECT a " + "From Usuario a " + "where a.email = :email and a.senha = :senha");
+			Query query = em
+					.createQuery("SELECT a " + "From Usuario a " + "where a.email = :email and a.senha = :senha");
 			query.setParameter("email", email);
 			query.setParameter("senha", senha);
 
-			return entity;
+			return usuario;
 		} catch (NoResultException e) {
 			return null;
 		}
 	}
 
 	public void limpar() {
-		entity = new Usuario();
+		usuario = new Usuario();
 	}
 
-	@Override
-	public Usuario getEntity() {
-		if (entity == null)
-			entity = new Usuario();
-		return entity;
+	public Usuario getUsuario() {
+		if (usuario == null)
+			usuario = new Usuario();
+		return usuario;
 	}
 }

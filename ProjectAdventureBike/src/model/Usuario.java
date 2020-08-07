@@ -2,6 +2,7 @@ package model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -28,24 +29,27 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dataAniversario;
+	@Column(nullable = false)
 	private String cpf;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idendereco")
 	private Endereco endereco;
 
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idtelefone", nullable = true)
 	private Telefone telefone;
    
-	private TipoUsuario tipoUsuario;
+	private Perfil perfil;
 	
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
+
+
+	public Perfil getPerfil() {
+		return perfil;
 	}
 
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 
 	public Telefone getTelefone() {
@@ -109,5 +113,14 @@ public class Usuario extends DefaultEntity<Usuario> {
 	public Validation<Usuario> getValidation() {
 		return null;
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", dataAniversario="
+//				+ dataAniversario + ", cpf=" + cpf + ", endereco=" + endereco + ", telefone=" + telefone + ", perfil="
+//				+ perfil + "]";
+//	}
+	
+	
 
 }

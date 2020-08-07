@@ -31,6 +31,7 @@ public class SecurityFilter implements Filter {
 // 	 	Para desabilitar o filter, descomente as duas proximas linhas e comente o restante		
 //		chain.doFilter(request, response);
 //		return;
+	
 
 		// filtrando o nome da pagina
 		if (endereco != null) {
@@ -58,7 +59,7 @@ public class SecurityFilter implements Filter {
 			((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/login.xhtml");
 		} else {
 			// nesse local podemos trabalhar as permissoes por pagina
-			if (usuario.getTipoUsuario().getPaginasAcesso().contains(endereco)) {
+			if (usuario.getPerfil().getPaginasAcesso().contains(endereco)) {
 				// segue o fluxo
 				chain.doFilter(request, response);
 				return;
@@ -75,7 +76,7 @@ public class SecurityFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		System.out.println("SecurityFilter Iniciado.");
 	}
-
+//
 	@Override
 	public void destroy() {
 

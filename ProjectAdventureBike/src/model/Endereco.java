@@ -1,27 +1,22 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import model.validation.Validation;
 
 @Entity
-public class Endereco extends DefaultEntity<Endereco>{
+public class Endereco extends DefaultEntity<Endereco> {
 
-	private static final long serialVersionUID = 4989928930162461941L;
-	private Integer id;
+	private static final long serialVersionUID = -4624192438309428426L;
+	@Column(nullable = false)
 	private String cep;
+	@Column(nullable = false)
 	private String numero;
+	@Column(nullable = false)
 	private String rua;
 	private String complemento;
 	private String pontoReferencia;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getCep() {
 		return cep;
@@ -67,4 +62,14 @@ public class Endereco extends DefaultEntity<Endereco>{
 	public Validation<Endereco> getValidation() {
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		super.toString();
+		return "Endereco [cep=" + cep + ", numero=" + numero + ", rua=" + rua + ", complemento=" + complemento
+				+ ", pontoReferencia=" + pontoReferencia + "]";
+		
+	}
+	
+	
 }

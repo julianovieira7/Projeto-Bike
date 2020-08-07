@@ -20,11 +20,11 @@
 		<div>
 			<div>
 				<h:outputLabel value="Usuário:" />
-				<h:inputText value="#{loginController.entity.email}" />
+				<h:inputText value="#{loginController.usuario.email}" />
 			</div>
 			<div>
 				<h:outputLabel value="Senha:" />
-				<h:inputSecret value="#{loginController.entity.senha}" />
+				<h:inputSecret value="#{loginController.usuario.senha}" />
 			</div>
 			<h:commandButton value="Logar" action="#{loginController.logar()}" />
 		</div>

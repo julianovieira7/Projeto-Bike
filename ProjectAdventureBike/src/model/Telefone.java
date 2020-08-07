@@ -33,4 +33,12 @@ public class Telefone extends DefaultEntity<Telefone> {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		super.toString();
+		return "Telefone [codigoArea=" + codigoArea + ", numero=" + numero + "]";
+	}
+	
+	
+
 }

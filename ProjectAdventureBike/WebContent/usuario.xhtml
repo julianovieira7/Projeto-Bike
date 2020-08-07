@@ -6,26 +6,26 @@
 
 	<ui:define name="head">
 		<style type="text/css">
-			.ui-panelgrid.form-elements .ui-grc-2 {
-				padding-left: 60px;
-			}
-			
-			@media ( max-width :1024px) {
-				.ui-panelgrid.form-elements .ui-grc-2 {
-					padding-left: 20px;
-				}
-			}
-			
-			@media ( max-width :640px) {
-				.ui-panelgrid.form-elements .ui-grc-2 {
-					padding-left: 6px;
-				}
-			}
-			
-			.dialogDemo label {
-				line-height: 2.1em;
-			}
-			</style>
+.ui-panelgrid.form-elements .ui-grc-2 {
+	padding-left: 60px;
+}
+
+@media ( max-width :1024px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 20px;
+	}
+}
+
+@media ( max-width :640px) {
+	.ui-panelgrid.form-elements .ui-grc-2 {
+		padding-left: 6px;
+	}
+}
+
+.dialogDemo label {
+	line-height: 2.1em;
+}
+</style>
 	</ui:define>
 
 	<ui:define name="content">
@@ -51,17 +51,18 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:commandLink value="Nome: " 
-									actionListener="#{usuarioController.abrirUsuarioListing}" 
+								<p:commandLink value="Nome: "
+									actionListener="#{usuarioController.abrirUsuarioListing}"
 									process="@this" update="@none">
-									
-									<p:ajax event="dialogReturn" 
-										listener="#{usuarioController.obterUsuarioListing}" 
+
+									<p:ajax event="dialogReturn"
+										listener="#{usuarioController.obterUsuarioListing}"
 										update="@form" />
-									
+
 								</p:commandLink>
-								<p:inputText id="itNome" value="#{usuarioController.entity.nome}"
-									required="true" requiredMessage="Informe o nome." />
+								<p:inputText id="itNome"
+									value="#{usuarioController.entity.nome}" required="true"
+									requiredMessage="Informe o nome." />
 
 								<p:outputLabel value="Senha: ">
 									<p:message for="itSenha" escape="false" />
@@ -69,15 +70,58 @@
 								<p:inputText id="itSenha"
 									value="#{usuarioController.entity.senha}" />
 
+								<p:outputLabel value="Cpf: ">
+									<p:message for="itCpf" escape="false" />
+								</p:outputLabel>
+								<p:inputText id="itCpf" value="#{usuarioController.entity.cpf}" />
+
 								<p:outputLabel value="Data de Aniversário:" />
 								<p:calendar value="#{usuarioController.entity.dataAniversario}"
 									pattern="dd/MM/yyyy" />
 
 								<p:outputLabel value="E-mail:" />
 								<p:inputText value="#{usuarioController.entity.email}" />
-									</p:panelGrid>
 
-							
+								<p:outputLabel value="Perfil de Usuario: " />
+								<p:selectOneMenu value="#{usuarioController.entity.perfil}">
+									<f:selectItem itemLabel="Selecione ..." itemValue="" />
+									<f:selectItems value="#{usuarioController.listaPerfil}"
+										var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
+								</p:selectOneMenu>
+
+
+
+								<p:outputLabel value="Endereco cep:" />
+								<p:inputText value="#{usuarioController.entity.endereco.cep}" />
+
+
+								<p:outputLabel value="rua :" />
+								<p:inputText value="#{usuarioController.entity.endereco.rua}" />
+
+								<p:outputLabel value="numero :" />
+								<p:inputText value="#{usuarioController.entity.endereco.numero}" />
+
+
+								<p:outputLabel value="ponto de referencia :" />
+								<p:inputText
+									value="#{usuarioController.entity.endereco.pontoReferencia}" />
+
+								<p:outputLabel value="complemento :" />
+								<p:inputText
+									value="#{usuarioController.entity.endereco.complemento}" />
+								<p:outputLabel value="Telefone (DDD):" />
+								<p:inputText
+									value="#{usuarioController.entity.telefone.codigoArea}" />
+
+
+								<p:outputLabel value="Telefone (Número):" />
+								<p:inputText value="#{usuarioController.entity.telefone.numero}" />
+
+
+
+							</p:panelGrid>
+
+
 						</div>
 					</div>
 				</div>
@@ -86,8 +130,7 @@
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
 							update="@form" action="#{usuarioController.salvar}" />
 
-						<p:commandButton value="Limpar" 
-							process="@this" update="panel"
+						<p:commandButton value="Limpar" process="@this" update="panel"
 							action="#{usuarioController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
@@ -104,9 +147,7 @@
 				</p:toolbar>
 			</p:panel>
 
-			<p:confirmDialog global="true" 
-				showEffect="fade" 
-				hideEffect="fade">
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" />
 				<p:commandButton value="Não" type="button"
@@ -116,4 +157,3 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
-		
