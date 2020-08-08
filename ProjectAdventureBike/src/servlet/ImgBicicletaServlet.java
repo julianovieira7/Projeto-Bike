@@ -13,21 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import application.Util;
  
 //servlet responsavel por retornar uma imagem atrav� do nome da imagem (ex. 01.png)
-@WebServlet("/img-usuario")
-public class ImgUsuarioServlet extends HttpServlet {
+@WebServlet("/img-bicicleta")
+public class ImgBicicletaServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -2690141791728441639L;
+	private static final long serialVersionUID = -5681030537322840192L;
 
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         // recebendo o nome da imagem 
         String nome = request.getParameter("nome");
         
-        // /home/janio/images/usuario/
-        String diretorio = System.getProperty("user.home") + File.separator + Util.PATH_IMAGES_USUARIO + File.separator;
+        // /home/janio/images/bicicleta/
+        String diretorio = System.getProperty("user.home") + File.separator + Util.PATH_IMAGES_BICICLETA + File.separator;
         
         // montando a imagem com e endereco do servidor
-        // /home/janio/images/usuario/2.png
+        // /home/janio/images/bicicleta/2.png
         File image = new File(diretorio + nome);
         
         // se o nome da imagem for nulo ou se a imagem nao existir, enviar uma imagem padrao
