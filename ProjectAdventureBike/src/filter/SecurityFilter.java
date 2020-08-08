@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Usuario;
 
-@WebFilter()
+@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/faces/*"})
 public class SecurityFilter implements Filter {
 
 	@Override
@@ -31,8 +31,8 @@ public class SecurityFilter implements Filter {
 // 	 	Para desabilitar o filter, descomente as duas proximas linhas e comente o restante		
 //		chain.doFilter(request, response);
 //		return;
-	
-
+//	}
+//
 		// filtrando o nome da pagina
 		if (endereco != null) {
 			int inicio = endereco.lastIndexOf("/faces/") + 7;

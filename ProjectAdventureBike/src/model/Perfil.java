@@ -22,11 +22,12 @@ public enum Perfil {
 			paginasAcesso.add("fornecedorlisting.xhtml");
 			paginasAcesso.add("marcalisting.xhtml");
 			paginasAcesso.add("tiporevisao.xhtml");
-			paginasAcesso.add("tipoprodutolisting.xhtml");
+			paginasAcesso.add("tipoprodutolisting.xhtml");	
 			paginasAcesso.add("tipoproduto.xhtml");
-			paginasAcesso.add("tipoprodutolisting.xhtml");
-		} else {
+			paginasAcesso.add("produto.xhtml");
+  		} else {
 			paginasAcesso.add("estoque.xhtml");
+			paginasAcesso.add("hello.xhtml");
 
 		}
 
