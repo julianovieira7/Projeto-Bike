@@ -16,18 +16,18 @@ public enum Perfil {
 		this.label = label;
 		paginasAcesso = new ArrayList<String>();
 		if (id == 0) {
-			paginasAcesso.add("usuario.xhtml");
-			paginasAcesso.add("usuariolisting.xhtml");
-			paginasAcesso.add("fornecedor.xhtml");
-			paginasAcesso.add("fornecedorlisting.xhtml");
-			paginasAcesso.add("marcalisting.xhtml");
-			paginasAcesso.add("tiporevisao.xhtml");
-			paginasAcesso.add("tipoprodutolisting.xhtml");	
-			paginasAcesso.add("tipoproduto.xhtml");
-			paginasAcesso.add("produto.xhtml");
+			paginasAcesso.add("pages/usuario.xhtml");
+			paginasAcesso.add("pages/usuariolisting.xhtml");
+			paginasAcesso.add("pages/fornecedor.xhtml");
+			paginasAcesso.add("pages/fornecedorlisting.xhtml");
+			paginasAcesso.add("pages/marcalisting.xhtml");
+			paginasAcesso.add("pages/tiporevisao.xhtml");
+			paginasAcesso.add("pages/tipoprodutolisting.xhtml");	
+			paginasAcesso.add("pages/tipoproduto.xhtml");
+			paginasAcesso.add("pages/produto.xhtml");
   		} else {
-			paginasAcesso.add("estoque.xhtml");
-			paginasAcesso.add("hello.xhtml");
+			paginasAcesso.add("pages/estoque.xhtml");
+			paginasAcesso.add("pages/hello.xhtml");
 
 		}
 

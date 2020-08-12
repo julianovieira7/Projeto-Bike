@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -17,6 +18,7 @@ import controller.listing.TipoProdutoListing;
 import model.Produto;
 import model.TipoProduto;
 import model.Marca;
+import repository.MarcaRepository;
 
 @Named
 @ViewScoped
@@ -84,7 +86,6 @@ public class ProdutoController extends Controller<Produto> {
 		if (entity == null) {
 			entity = new Produto();
 			entity.setMarca(new Marca());
-			entity.setTipoProduto(new TipoProduto());
 		}
 		return entity;
 	}
@@ -107,9 +108,6 @@ public class ProdutoController extends Controller<Produto> {
 		setEntity(entity);
 		if (getEntity().getMarca() == null) {
 			getEntity().setMarca(new Marca());
-		}
-		if (getEntity().getTipoProduto() == null) {
-			getEntity().setTipoProduto(new TipoProduto());
 		}
 	}
 
