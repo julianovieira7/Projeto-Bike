@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 
@@ -17,7 +18,7 @@ public class Util {
 	public static final String PATH_IMAGES_PRODUTO = PATH_IMAGES + File.separator + "produto";
 	public static final String PATH_IMAGES_BICICLETA = PATH_IMAGES + File.separator + "bicicleta";
 	public static final String PATH_IMAGES_USUARIO = PATH_IMAGES + File.separator + "usuario";
-	
+
 	public static String hashSHA256(String valor) {
 		return DigestUtils.sha256Hex(valor);
 	}
@@ -64,6 +65,7 @@ public class Util {
 
 		return true;
 	}
+
 	public static boolean saveImageBicicleta(InputStream inputStream, String imageType, int idBicicleta) {
 		// Exemplo da maquina do janio: /home/janio/images/professor
 		String diretorio = System.getProperty("user.home") + PATH_IMAGES_BICICLETA;
@@ -93,6 +95,7 @@ public class Util {
 
 		return true;
 	}
+
 	public static boolean saveImageUsuario(InputStream inputStream, String imageType, int idUsuario) {
 		// Exemplo da maquina do janio: /home/janio/images/professor
 		String diretorio = System.getProperty("user.home") + PATH_IMAGES_USUARIO;
@@ -121,5 +124,16 @@ public class Util {
 		}
 
 		return true;
+	}
+
+	public static void redirect(String page) {
+		ExternalContext external = FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			// external.getRequesContextPath() = http://localhost:8080/Academico
+			external.redirect(external.getRequestContextPath() + page);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -29,7 +29,7 @@
 							<div class="card card-w-title">
 								<div class="ui-inputgroup">
 									<p:inputText id="itFiltro" value="#{usuarioListing.filtro}"
-										placeholder="Informe o nome do usuario ..." />
+										placeholder="Informe o nome do Usuario ..." />
 									<p:commandButton value="Pesquisar"
 										actionListener="#{usuarioListing.pesquisar}"
 										process="@this itFiltro" update="dtListagem" />
@@ -46,7 +46,7 @@
 					<div class="card card-w-title">
 
 						<p:dataTable id="dtListagem" var="entity" rowIndexVar="row"
-							paginator="false" reflow="true" value="#{usuarioisting.list}">
+							paginator="false" reflow="true" value="#{usuarioListing.list}">
 							<p:column headerText="N."
 								style="width: 30px; text-align: center;">
 								<h:outputText value="#{row + 1}" />
@@ -58,28 +58,27 @@
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
 
-							<p:column headerText="Email"
-								style="width: 65px; text-align: center;">
-								<p:commandLink value="#{entity.email}"
-									actionListener="#{usuarioListing.select(entity.id)}"
-									process="@this" update="@form" resetValues="true" />
-							</p:column>
-							<p:column headerText="cpf"
+							<p:column headerText="CPF"
 								style="width: 65px; text-align: center;">
 								<p:commandLink value="#{entity.cpf}"
 									actionListener="#{usuarioListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
+							<p:column headerText="codigo Area"
+								style="width: 65px; text-align: center;">
+								<p:commandLink value="#{entity.telefone.codigoArea}"
+									actionListener="#{fornecedorListing.select(entity.id)}"
+									process="@this" update="@form" resetValues="true" />
+							</p:column>
 							<p:column headerText="Numero"
 								style="width: 65px; text-align: center;">
-								<p:commandLink
-									value="#{entity.telefone.codigoArea} - #{entity.telefone.numero}"
+								<p:commandLink value="#{entity.telefone.numero}"
 									actionListener="#{usuarioListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
 
 							<f:facet name="footer">
-							        Total de #{fornecedorListing.list.size()} fornecedores.
+							        Total de #{usuarioListing.list.size()} usuarios.
 							    </f:facet>
 						</p:dataTable>
 					</div>

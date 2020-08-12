@@ -24,9 +24,9 @@ public class LoginController {
 			Session.getInstance().setAttribute("usuarioLogado", usuario);
 			// redirecionando para o template
 			if (usuario.getPerfil().getId() == 0)
-				return "produto.xhtml?faces-redirect=true";
+				return "pages/produto.xhtml?faces-redirect=true";
 			else
-				return "hello.xhtml?faces-redirect=true";
+				return "pages/hello.xhtml?faces-redirect=true";
 
 		}
 		Util.addMessageError("Login ou Senha inválido.");
