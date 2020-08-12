@@ -81,6 +81,10 @@
 							action="#{loginController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
+						
+						<p:commandButton value="Cadastrar" icon="pi pi-check" process="@form"
+							update="@form" action="#{loginController.cadastrar}" />
+						
 					</div>
 				</f:facet>
 			</p:panel>

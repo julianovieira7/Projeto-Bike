@@ -47,31 +47,31 @@ public class SecurityFilter implements Filter {
 			chain.doFilter(request, response);
 			return;
 		}
-
-		// retorna a sessao corrente (false - para nao criar uma nova sessao)
-		HttpSession session = servletRequest.getSession(false);
-
-		Usuario usuario = null;
-		if (session != null)
-			usuario = (Usuario) session.getAttribute("usuarioLogado");
-
-		if (usuario == null) {
-			((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/login.xhtml");
-		} else {
-			// nesse local podemos trabalhar as permissoes por pagina
-			if (usuario.getPerfil().getPaginasAcesso().contains(endereco)) {
-				// segue o fluxo
-				chain.doFilter(request, response);
-				return;
-			} else {
-				for (String paginas : usuario.getPerfil().getPaginasAcesso()) {
-					System.out.println(paginas);
-				}
-				// seria melhor redirecionar para uma pagina dizendo que nao tem permissao
-				((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/pages/login.xhtml");
-			}
-
-		}
+//
+//		// retorna a sessao corrente (false - para nao criar uma nova sessao)
+//		HttpSession session = servletRequest.getSession(false);
+//
+//		Usuario usuario = null;
+//		if (session != null)
+//			usuario = (Usuario) session.getAttribute("usuarioLogado");
+//
+//		if (usuario == null) {
+//			((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/login.xhtml");
+//		} else {
+//			// nesse local podemos trabalhar as permissoes por pagina
+//			if (usuario.getPerfil().getPaginasAcesso().contains(endereco)) {
+//				// segue o fluxo
+//				chain.doFilter(request, response);
+//				return;
+//			} else {
+//				for (String paginas : usuario.getPerfil().getPaginasAcesso()) {
+//					System.out.println(paginas);
+//				}
+//				// seria melhor redirecionar para uma pagina dizendo que nao tem permissao
+//				((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/pages/login.xhtml");
+//			}
+//
+//		}
 
 	}
 

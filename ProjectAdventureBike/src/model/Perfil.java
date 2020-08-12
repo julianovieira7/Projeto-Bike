@@ -20,11 +20,16 @@ public enum Perfil {
 			paginasAcesso.add("pages/usuariolisting.xhtml");
 			paginasAcesso.add("pages/fornecedor.xhtml");
 			paginasAcesso.add("pages/fornecedorlisting.xhtml");
+			paginasAcesso.add("pages/marca.xhtml");
 			paginasAcesso.add("pages/marcalisting.xhtml");
 			paginasAcesso.add("pages/tiporevisao.xhtml");
 			paginasAcesso.add("pages/tipoprodutolisting.xhtml");	
 			paginasAcesso.add("pages/tipoproduto.xhtml");
 			paginasAcesso.add("pages/produto.xhtml");
+			paginasAcesso.add("pages/bicicleta.xhtml");
+			paginasAcesso.add("pages/bicicletalisting.xhtml");	
+			paginasAcesso.add("pages/estoque.xhtml");
+			
   		} else {
 			paginasAcesso.add("pages/estoque.xhtml");
 			paginasAcesso.add("pages/hello.xhtml");

@@ -12,7 +12,7 @@ import factory.JPAFactory;
 import model.DefaultEntity;
 import repository.Repository;
 
-public abstract class Controller<T extends DefaultEntity<T>> implements Serializable {
+public abstract class Controller<T extends DefaultEntity<? super T>> implements Serializable {
 
 	private static final long serialVersionUID = 5864180948764640904L;
 	protected T entity;

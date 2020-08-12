@@ -1,9 +1,6 @@
 package model;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,19 +10,18 @@ import javax.persistence.ManyToOne;
 import model.validation.Validation;
 
 @Entity
-//@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "tipo", length = 1, discriminatorType = DiscriminatorType.STRING)
-//@DiscriminatorValue("P")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Produto extends DefaultEntity<Produto> {
 
-	private static final long serialVersionUID = 3284762516679493143L;
+
+	private static final long serialVersionUID = -8579376882467070134L;
 
 	@ManyToOne()
-	@JoinColumn(name = "idmarca")
+	@JoinColumn(name = "idmarca", nullable = false)
 	private Marca marca;
 
 	@ManyToOne()
-	@JoinColumn(name = "idtipoproduto")
+	@JoinColumn(name = "idtipoproduto", nullable = false)
 	private TipoProduto tipoProduto;
 
 	@Column(length = 120, nullable = false)

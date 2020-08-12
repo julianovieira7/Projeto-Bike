@@ -65,6 +65,20 @@
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
 							
+							<p:column headerText="marchas"
+								style="width: 65px; text-align: center;">
+								<p:commandLink value="#{entity.quantMarcha.quantidade}"
+									actionListener="#{bicicletaListing.select(entity.id)}"
+									process="@this" update="@form" resetValues="true" />
+							</p:column>
+							
+							<p:column headerText="modalidade"
+								style="width: 65px; text-align: center;">
+								<p:commandLink value="#{entity.modalidade.label}"
+									actionListener="#{bicicletaListing.select(entity.id)}"
+									process="@this" update="@form" resetValues="true" />
+							</p:column>
+							
 							<f:facet name="footer">
 							        Total de #{bicicletaListing.list.size()} bicicletas.
 							    </f:facet>

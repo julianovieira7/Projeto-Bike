@@ -29,10 +29,14 @@ public class LoginController {
 				return "pages/hello.xhtml?faces-redirect=true";
 
 		}
-		Util.addMessageError("Login ou Senha inválido.");
+		Util.addMessageError("Login ou Senha invï¿½lido.");
 		return "";
 	}
 
+	public String cadastrar() {
+		return "cadastrarcliente.xhtml?faces-redirect=true";
+	}
+	
 	public void limpar() {
 		usuario = new Usuario();
 	}

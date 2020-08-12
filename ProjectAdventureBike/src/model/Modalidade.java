@@ -2,14 +2,14 @@ package model;
 
 public enum Modalidade {
 
-	URBANA(0, "Urbana"), BMX(0, "BMX"), ESTRADA(0, "Estrada"), DOWNHILL(1, "Downhill");
+	URBANA(0, "Urbana"), BMX(1, "BMX"), ESTRADA(2, "Estrada"), DOWNHILL(3, "Downhill");
 
 	private int id;
-	private String modalidade;
+	private String label;
 
-	private Modalidade(int id, String modalidade) {
+	private Modalidade(int id, String label) {
 		this.id = id;
-		this.modalidade = modalidade;
+		this.label = label;
 
 	}
 
@@ -17,8 +17,8 @@ public enum Modalidade {
 		return id;
 	}
 
-	public String modalidade() {
-		return modalidade;
+	public String getLabel() {
+		return label;
 	}
 
 	public static Modalidade valueOf(int valor) {

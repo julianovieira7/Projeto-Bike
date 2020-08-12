@@ -96,15 +96,45 @@
 								</p:commandLink>
 
 								<p:inputText id="itMarca"
-									value="#{bicicletaController.entity.marca.nome}" required="true"
-									requiredMessage="Informe a marca." />
+									value="#{bicicletaController.entity.marca.nome}"
+									required="true" requiredMessage="Informe a marca." />
 
+								<p:commandLink value="Tipo de produto: "
+									actionListener="#{bicicletaController.abrirTipoProdutoListing}"
+									process="@this" update="@none">
 
+									<p:ajax event="dialogReturn"
+										listener="#{bicicletaController.obterTipoProdutoListing}"
+										update="itTipoProduto" />
+
+								</p:commandLink>
+								<p:inputText id="itTipoProduto"
+									value="#{bicicletaController.entity.tipoProduto.nome}"
+									required="true" requiredMessage="Informe o tipo de produto." />
+									
 								<p:outputLabel value="Valor: ">
 									<p:message for="itValor" escape="false" />
 								</p:outputLabel>
 								<p:inputText id="itValor"
 									value="#{bicicletaController.entity.valor}" />
+
+								<p:outputLabel value="Selecione a modalidade: " />
+								<p:selectOneMenu
+									value="#{bicicletaController.entity.modalidade}">
+									<f:selectItem itemLabel="Selecione ..." itemValue="" />
+									<f:selectItems value="#{bicicletaController.listaModalidade}"
+										var="modalidade" itemLabel="#{modalidade.label}"
+										itemValue="#{modalidade}" />
+								</p:selectOneMenu>
+								<p:outputLabel value="Selecione a quantidade de marchas: " />
+								<p:selectOneMenu
+									value="#{bicicletaController.entity.quantMarcha}">
+									<f:selectItem itemLabel="Selecione ..." itemValue="" />
+									<f:selectItems value="#{bicicletaController.listaQuantMarcha}"
+										var="quantMarcha" itemLabel="#{quantMarcha.quantidade}"
+										itemValue="#{quantMarcha}" />
+								</p:selectOneMenu>
+
 
 								<h:form enctype="multipart/form-data">
 									<p:fileUpload listener="#{bicicletaController.upload}"

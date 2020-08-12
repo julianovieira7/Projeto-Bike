@@ -11,7 +11,7 @@ import application.VersionException;
 import factory.JPAFactory;
 import model.DefaultEntity;
 
-public class Repository<T extends DefaultEntity<T>> {
+public class Repository<T extends DefaultEntity<? super T>> {
 
 	private EntityManager entityManager;
 	
