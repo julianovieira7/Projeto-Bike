@@ -1,9 +1,11 @@
 package model;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 import model.validation.Validation;
 
+@Entity
 public class ItemPedido extends DefaultEntity<ItemPedido> {
 
 	private static final long serialVersionUID = 885652744452932617L;

@@ -6,6 +6,7 @@
 	<persistence-unit name="ProjectAdventureBike">
 		<class>model.DefaultEntity</class>
 		<class>model.Estoque</class>
+		<class>model.ItemPedido</class>
 		<class>model.Fornecedor</class>
 		<class>model.Marca</class>
 		<class>model.Endereco</class>

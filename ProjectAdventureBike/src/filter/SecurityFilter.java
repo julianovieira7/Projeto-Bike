@@ -29,24 +29,24 @@ public class SecurityFilter implements Filter {
 		System.out.println(endereco);
 
 // 	 	Para desabilitar o filter, descomente as duas proximas linhas e comente o restante		
-//		chain.doFilter(request, response);
-//		return;
-//	}
+		chain.doFilter(request, response);
+		return;
+	}
 //
-		// filtrando o nome da pagina
-		if (endereco != null) {
-			int inicio = endereco.lastIndexOf("/faces/") + 7;
-			int fim = endereco.length();
-			endereco = endereco.substring(inicio, fim);
-		}
-		System.out.println(endereco);
-
-		// caso seja a pagina de login .. nao sera feita nenhuma restricao
-		// deixo o fluxo seguir
-		if (endereco.equals("login.xhtml") || servletRequest.getRequestURI().matches(".*(css|jpg|png|gif|js)")) {
-			chain.doFilter(request, response);
-			return;
-		}
+//		// filtrando o nome da pagina
+//		if (endereco != null) {
+//			int inicio = endereco.lastIndexOf("/faces/") + 7;
+//			int fim = endereco.length();
+//			endereco = endereco.substring(inicio, fim);
+//		}
+//		System.out.println(endereco);
+//
+//		// caso seja a pagina de login .. nao sera feita nenhuma restricao
+//		// deixo o fluxo seguir
+//		if (endereco.equals("login.xhtml") || servletRequest.getRequestURI().matches(".*(css|jpg|png|gif|js)")) {
+//			chain.doFilter(request, response);
+//			return;
+//		}
 //
 //		// retorna a sessao corrente (false - para nao criar uma nova sessao)
 //		HttpSession session = servletRequest.getSession(false);
@@ -73,7 +73,7 @@ public class SecurityFilter implements Filter {
 //
 //		}
 
-	}
+//	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
