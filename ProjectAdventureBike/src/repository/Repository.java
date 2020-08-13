@@ -65,7 +65,7 @@ public class Repository<T extends DefaultEntity<? super T>> {
 			throw new VersionException("Versão antiga. Erro de controle de concorrência.");
 		} catch (Exception e) {
 			System.out.println("Erro no repositorio "
-					+ "ao executar o m�todo merge.");
+					+ "ao executar o m�todo merge.");
 			e.printStackTrace();
 			throw new RepositoryException("Erro ao salvar.");
 		} 

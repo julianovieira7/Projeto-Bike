@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
 import model.validation.Validation;
@@ -15,7 +16,11 @@ public class ItemPedido extends DefaultEntity<ItemPedido> {
 	@ManyToOne
 	@JoinColumn(name = "idproduto")
 	private Produto produto;
-
+	@ManyToOne
+	@JoinTable(name = "carrinho_itempedido", joinColumns = {
+			@JoinColumn(name = "idcarrinho", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "iditempedido", referencedColumnName = "id") })
+	private Carrinho carrinho;
 	public Double getValor() {
 		return valor;
 	}

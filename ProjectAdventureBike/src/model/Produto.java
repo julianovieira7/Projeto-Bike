@@ -95,10 +95,13 @@ public class Produto extends DefaultEntity<Produto> {
 		this.valor = valor;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Produto [marca=" + marca + ", material=" + material + ", descricao=" + descricao + ", nome=" + nome
-				+ ", modelo=" + modelo + ", valor=" + valor + "]";
+		return "Produto [marca=" + marca + ", tipoProduto=" + tipoProduto + ", material=" + material + ", descricao="
+				+ descricao + ", nome=" + nome + ", modelo=" + modelo + ", valor=" + valor + ", getId()=" + getId()
+				+ "]";
 	}
 
 	@Override

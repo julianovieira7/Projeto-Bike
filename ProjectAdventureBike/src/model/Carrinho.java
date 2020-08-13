@@ -2,8 +2,10 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -14,17 +16,31 @@ import model.validation.Validation;
 public class Carrinho extends DefaultEntity<Carrinho> {
 
 	private static final long serialVersionUID = 131791403543271208L;
-	@ManyToOne
-	@JoinColumn(name = "idusuario")
-	private Usuario usuario;
-	@OneToOne
+//	@ManyToOne
+//	@JoinColumn(name = "idusuario")
+//	private Usuario usuario;
+
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idpedido", unique = true)
 	private Pedido pedido;
-//	@OneToMany(mappedBy="itemPedido")
-	@JoinColumn(name = "iditempedido")
-	private List<ItemPedido>itemPedido;
 
+	@OneToMany(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "iditempedido")
+//	@JoinTable(name = "carrinho_itempedido", joinColumns = {
+//			@JoinColumn(name = "idcarrinho", referencedColumnName = "id") }, inverseJoinColumns = {
+//					@JoinColumn(name = "iditempedido", referencedColumnName = "id") })
+	private List<ItemPedido> listaItem;
+	
 	private Double valorCarrinho;
+	private Produto produto;
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 
 	public Double getValorCarrinho() {
 		return valorCarrinho;
@@ -34,21 +50,21 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 		this.valorCarrinho = valorCarrinho;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-//	public List<ItemPedido> getListaItem() {
-//		return listaItem;
+//	public Usuario getUsuario() {
+//		return usuario;
 //	}
 //
-//	public void setListaItem(List<ItemPedido> listaItem) {
-//		this.listaItem = listaItem;
+//	public void setUsuario(Usuario usuario) {
+//		this.usuario = usuario;
 //	}
+
+	public List<ItemPedido> getListaItem() {
+		return listaItem;
+	}
+
+	public void setListaItem(List<ItemPedido> listaItem) {
+		this.listaItem = listaItem;
+	}
 
 	public Pedido getPedido() {
 		return pedido;
@@ -67,7 +83,7 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 
 	public String toString() {
 		super.toString();
-		return "Carrinho [usuario=" + usuario + ", listaItem=" + listaItem + ", pedido=" + pedido + "]";
+		return "Carrinho [listaItem=" + listaItem + ", pedido=" + pedido + "]";
 
 	}
 
