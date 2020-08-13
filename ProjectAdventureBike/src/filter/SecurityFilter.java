@@ -29,49 +29,49 @@ public class SecurityFilter implements Filter {
 		System.out.println(endereco);
 
 // 	 	Para desabilitar o filter, descomente as duas proximas linhas e comente o restante		
-		chain.doFilter(request, response);
-		return;
+//		chain.doFilter(request, response);
+//		return;
+//	}
+
+		// filtrando o nome da pagina
+		if (endereco != null) {
+			int inicio = endereco.lastIndexOf("/faces/") + 7;
+			int fim = endereco.length();
+			endereco = endereco.substring(inicio, fim);
+		}
+		System.out.println(endereco);
+
+		// caso seja a pagina de login .. nao sera feita nenhuma restricao
+		// deixo o fluxo seguir
+		if (endereco.equals("login.xhtml") || servletRequest.getRequestURI().matches(".*(css|jpg|png|gif|js)")) {
+			chain.doFilter(request, response);
+			return;
+		}
+
+		// retorna a sessao corrente (false - para nao criar uma nova sessao)
+		HttpSession session = servletRequest.getSession(false);
+
+		Usuario usuario = null;
+		if (session != null)
+			usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+		if (usuario == null) {
+			((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/login.xhtml");
+		} else {
+			// nesse local podemos trabalhar as permissoes por pagina
+			if (usuario.getPerfil().getPaginasAcesso().contains(endereco)) {
+				// segue o fluxo
+				chain.doFilter(request, response);
+				return;
+			} else {
+				for (String paginas : usuario.getPerfil().getPaginasAcesso()) {
+					System.out.println(paginas);
+				}
+				// seria melhor redirecionar para uma pagina dizendo que nao tem permissao
+				((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/pages/login.xhtml");
+			}
+		}
 	}
-//
-//		// filtrando o nome da pagina
-//		if (endereco != null) {
-//			int inicio = endereco.lastIndexOf("/faces/") + 7;
-//			int fim = endereco.length();
-//			endereco = endereco.substring(inicio, fim);
-//		}
-//		System.out.println(endereco);
-//
-//		// caso seja a pagina de login .. nao sera feita nenhuma restricao
-//		// deixo o fluxo seguir
-//		if (endereco.equals("login.xhtml") || servletRequest.getRequestURI().matches(".*(css|jpg|png|gif|js)")) {
-//			chain.doFilter(request, response);
-//			return;
-//		}
-//
-//		// retorna a sessao corrente (false - para nao criar uma nova sessao)
-//		HttpSession session = servletRequest.getSession(false);
-//
-//		Usuario usuario = null;
-//		if (session != null)
-//			usuario = (Usuario) session.getAttribute("usuarioLogado");
-//
-//		if (usuario == null) {
-//			((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/login.xhtml");
-//		} else {
-//			// nesse local podemos trabalhar as permissoes por pagina
-//			if (usuario.getPerfil().getPaginasAcesso().contains(endereco)) {
-//				// segue o fluxo
-//				chain.doFilter(request, response);
-//				return;
-//			} else {
-//				for (String paginas : usuario.getPerfil().getPaginasAcesso()) {
-//					System.out.println(paginas);
-//				}
-//				// seria melhor redirecionar para uma pagina dizendo que nao tem permissao
-//				((HttpServletResponse) response).sendRedirect("/ProjectAdventureBike/faces/pages/login.xhtml");
-//			}
-//
-//		}
 
 //	}
 

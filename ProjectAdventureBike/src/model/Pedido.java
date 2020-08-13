@@ -1,7 +1,10 @@
 package model;
 
+import javax.persistence.Entity;
+
 import model.validation.Validation;
 
+@Entity
 public class Pedido extends DefaultEntity<Pedido> {
 
 	private static final long serialVersionUID = 8178659409930742984L;
@@ -23,6 +26,7 @@ public class Pedido extends DefaultEntity<Pedido> {
 	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
 
 	@Override
 	public Validation<Pedido> getValidation() {

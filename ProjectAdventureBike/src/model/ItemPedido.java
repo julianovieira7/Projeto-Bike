@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import model.validation.Validation;
@@ -12,6 +13,7 @@ public class ItemPedido extends DefaultEntity<ItemPedido> {
 	private Double valor;
 	private int quantidade;
 	@ManyToOne
+	@JoinColumn(name = "idproduto")
 	private Produto produto;
 
 	public Double getValor() {
@@ -43,5 +45,12 @@ public class ItemPedido extends DefaultEntity<ItemPedido> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		super.toString();
+		return "ItemPedido [valor=" + valor + ", quantidade=" + quantidade + ", produto=" + produto + "]";
+	}
+	
 
 }

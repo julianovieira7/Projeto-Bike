@@ -5,6 +5,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="ProjectAdventureBike">
 		<class>model.DefaultEntity</class>
+		<class>model.Carrinho</class>
 		<class>model.Estoque</class>
 		<class>model.ItemPedido</class>
 		<class>model.Fornecedor</class>
@@ -13,6 +14,7 @@
 		<class>model.Bicicleta</class>
 		<class>model.TipoRevisao</class>
 		<class>model.ServicoPrestado</class>
+		<class>model.Pedido</class>
 		<class>model.Produto</class>
 		<class>model.Telefone</class>
 		<class>model.TipoProduto</class>
@@ -29,7 +31,7 @@
 
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.PostgreSQLDialect" /> <!-- DB Dialect -->
-			<property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" /> <!-- create / create-drop / update -->
 
 			<property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
 			<property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->

@@ -10,6 +10,7 @@ import application.Session;
 import application.Util;
 import model.Carrinho;
 import model.ItemPedido;
+import model.Pedido;
 import model.Usuario;
 
 @Named
@@ -58,12 +59,20 @@ public class CarrinhoController extends Controller<Carrinho> {
 			Util.addMessageWarn("É preciso estar logado para realizar uma venda. Faca o Login!!");
 			return;
 		}
+		Pedido pedido = new Pedido();
+
+		pedido.setNumeroPedido("12345");
+		pedido.setValorTotal(carrinho.getValorCarrinho());
 
 		Carrinho carrinho = new Carrinho();
 		carrinho.setUsuario(usuario);
 		List<ItemPedido> carrinhoPedido = (ArrayList<ItemPedido>) Session.getInstance().getAttribute("carrinho");
 		carrinho.setListaItem(carrinhoPedido);
+		System.out.println(carrinho);
 		super.salvar();
+		Util.addMessageInfo("Venda realizada com sucesso.");
+		// limpando o carrinho
+		Session.getInstance().setAttribute("carrinho", null);
 	}
 
 	@Override
