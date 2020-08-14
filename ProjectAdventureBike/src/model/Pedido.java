@@ -16,6 +16,9 @@ public class Pedido extends DefaultEntity<Pedido> {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idcarrinho", unique = true)
 	private Carrinho carrinho;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pagamento", unique = true)
+	private Pagamento pagamento;
 
 	public Carrinho getCarrinho() {
 		return carrinho;
@@ -23,6 +26,14 @@ public class Pedido extends DefaultEntity<Pedido> {
 
 	public void setCarrinho(Carrinho carrinho) {
 		this.carrinho = carrinho;
+	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 
 	public String getNumeroPedido() {

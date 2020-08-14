@@ -27,14 +27,14 @@ public class PedidoController extends Controller<Pedido> {
 	private static final long serialVersionUID = 8702988121934899052L;
 	private String nome;
 	private List<Produto> listaProduto = null;
-	private Carrinho carrinho;
 
-	public Carrinho getCarrinho() {
-		return carrinho;
-	}
-
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	@Override
+	public Pedido getEntity() {
+		if (entity == null) {
+			setEntity(new Pedido());
+			entity.setCarrinho(new Carrinho());
+		}
+		return null;
 	}
 
 	public void pesquisar() {
@@ -64,13 +64,6 @@ public class PedidoController extends Controller<Pedido> {
 		this.listaProduto = listaProduto;
 	}
 
-	@Override
-	public Pedido getEntity() {
-		if (entity == null) {
-			setEntity(new Pedido());
-			entity.setCarrinho(new Carrinho());
-		}
-		return null;
-	}
+
 
 }

@@ -19,6 +19,11 @@
 		<class>model.Telefone</class>
 		<class>model.TipoProduto</class>
 		<class>model.Usuario</class>
+		<class>model.Boleto</class>
+		<class>model.FormaPagamento</class>
+		<class>model.NotaFiscal</class>
+		<class>model.CartaoCredito</class>
+		<class>model.Pagamento</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" /> <!-- DB Driver -->
