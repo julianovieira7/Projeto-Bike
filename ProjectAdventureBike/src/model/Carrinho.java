@@ -20,15 +20,15 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 //	@JoinColumn(name = "idusuario")
 //	private Usuario usuario;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idpedido", unique = true)
-	private Pedido pedido;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "idpedido", unique = true)
+//	private Pedido pedido;
 
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade =CascadeType.ALL)
 	@JoinColumn(name = "iditempedido")
-//	@JoinTable(name = "carrinho_itempedido", joinColumns = {
-//			@JoinColumn(name = "idcarrinho", referencedColumnName = "id") }, inverseJoinColumns = {
-//					@JoinColumn(name = "iditempedido", referencedColumnName = "id") })
+	@JoinTable(name = "carrinho_itempedido", joinColumns = {
+			@JoinColumn(name = "idcarrinho", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "iditempedido", referencedColumnName = "id") })
 	private List<ItemPedido> listaItem;
 	
 	private Double valorCarrinho;
@@ -66,13 +66,13 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 		this.listaItem = listaItem;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
+//	public Pedido getPedido() {
+//		return pedido;
+//	}
+//
+//	public void setPedido(Pedido pedido) {
+//		this.pedido = pedido;
+//	}
 
 	@Override
 	public Validation<Carrinho> getValidation() {
@@ -83,7 +83,7 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 
 	public String toString() {
 		super.toString();
-		return "Carrinho [listaItem=" + listaItem + ", pedido=" + pedido + "]";
+		return "Carrinho [listaItem=" + listaItem +  "]";
 
 	}
 

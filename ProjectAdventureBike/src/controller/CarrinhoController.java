@@ -23,7 +23,7 @@ public class CarrinhoController extends Controller<Carrinho> {
 	public Carrinho getEntity() {
 		if (entity == null) {
 			entity = new Carrinho();
-			entity.setPedido(new Pedido());
+//			entity.setPedido(new Pedido());
 //			entity.setUsuario(new Usuario());
 
 		}
@@ -35,7 +35,6 @@ public class CarrinhoController extends Controller<Carrinho> {
 		entity.setListaItem(carrinhoPedido);
 		return entity;
 	}
-
 
 	public void remover(Integer idProduto) {
 		Usuario usuario = (Usuario) Session.getInstance().getAttribute("usuarioLogado");

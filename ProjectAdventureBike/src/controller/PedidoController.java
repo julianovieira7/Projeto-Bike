@@ -31,27 +31,12 @@ public class PedidoController extends Controller<Pedido> {
 		setListaProduto(repo.findByNome(getNome()));
 	}
 
-//	@Override
-//	public void salvar() {
-//		super.salvar();
-//		EntityManager em = JPAFactory.getEntityManager();
-//		em.getTransaction().begin();
-////		List<ItemPedido> carrinhoPedido = (ArrayList<ItemPedido>) Session.getInstance().getAttribute("carrinho");
-////		carrinho.setListaItem(carrinhoPedido);
-//		System.out.println(carrinho.toString());
-//		System.out.println(entity.toString());
-//		for (ItemPedido itemPedido : carrinho.getListaItem()) {
-//			em.persist(itemPedido);
-//			em.getTransaction().commit();
-//			return;
-//		}
-////		em.getTransaction().commit();
-//		System.out.println("Feito.");
-//		Util.addMessageInfo("Venda realizada com sucesso.");
-//		// limpando o carrinho
-//		Session.getInstance().setAttribute("carrinho", null);
-//		super.salvar();
-//	}
+	@Override
+	public void salvar() {
+		
+		super.salvar();
+
+	}
 
 	public List<Produto> getListaProduto() {
 		if (listaProduto == null) {
@@ -77,7 +62,10 @@ public class PedidoController extends Controller<Pedido> {
 
 	@Override
 	public Pedido getEntity() {
-		// TODO Auto-generated method stub
+		if (entity == null) {
+			setEntity(new Pedido());
+			entity.setCarrinho(new Carrinho());
+		}
 		return null;
 	}
 

@@ -13,9 +13,17 @@ public class Pedido extends DefaultEntity<Pedido> {
 	private static final long serialVersionUID = 8178659409930742984L;
 	private String numeroPedido;
 	private Double valorTotal;
-	@OneToOne()
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idcarrinho")
 	private Carrinho carrinho;
+
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
 
 	public String getNumeroPedido() {
 		return numeroPedido;
