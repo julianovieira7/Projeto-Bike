@@ -24,4 +24,18 @@ public class EstoqueRepository extends Repository<Estoque> {
 
 		return query.getResultList();
 	}
+
+	public List<Estoque> findAll() {
+
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append("  a ");
+		jpql.append("FROM ");
+		jpql.append("  Estoque  a ");
+
+		Query query = getEntityManager().createQuery(jpql.toString());
+
+		return query.getResultList();
+	}
+
 }

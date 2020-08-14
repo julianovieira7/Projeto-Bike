@@ -40,7 +40,7 @@ public class CarrinhoController extends Controller<Carrinho> {
 	public void remover(Integer idProduto) {
 		Usuario usuario = (Usuario) Session.getInstance().getAttribute("usuarioLogado");
 		if (usuario == null)
-			Util.addMessageWarn("� preciso estar logado para realizar uma pedido. Faca o Login!!");
+			Util.addMessageWarn("Eh preciso estar logado para realizar uma pedido. Faca o Login!!");
 		else {
 			List<ItemPedido> carrinho = (List<ItemPedido>) Session.getInstance().getAttribute("carrinho");
 

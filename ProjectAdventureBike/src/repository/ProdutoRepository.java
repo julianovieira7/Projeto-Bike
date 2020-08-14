@@ -24,4 +24,5 @@ public class ProdutoRepository extends Repository<Produto> {
 
 		return query.getResultList();
 	}
+	
 }

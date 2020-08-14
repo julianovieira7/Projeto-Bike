@@ -1,21 +1,27 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
 import controller.listing.FornecedorListing;
+import controller.listing.ProdutoListing;
 import model.Estoque;
 import model.Fornecedor;
+import model.Produto;
 import model.Telefone;
+import repository.EstoqueRepository;
 
 @Named
 @ViewScoped
 public class EstoqueController extends Controller<Estoque> {
 
 	private static final long serialVersionUID = -6051599150675827361L;
-	private Telefone telefone;
+	private List<Estoque> listaEstoque = null;
 
 	@Override
 	public Estoque getEntity() {
@@ -25,6 +31,21 @@ public class EstoqueController extends Controller<Estoque> {
 			entity.getFornecedor().setTelefone(new Telefone());
 		}
 		return entity;
+	}
+
+	public List<Estoque> getListaEstoque() {
+		if (listaEstoque == null) {
+			listaEstoque = new ArrayList<Estoque>();
+			EstoqueRepository repo = new EstoqueRepository();
+			listaEstoque = repo.findAll();
+		}
+		return listaEstoque;
+	}
+
+
+
+	public void setListaEstoque(List<Estoque> listaEstoque) {
+		this.listaEstoque = listaEstoque;
 	}
 
 	public void abrirForncedorListing() {
@@ -37,12 +58,14 @@ public class EstoqueController extends Controller<Estoque> {
 		getEntity().setFornecedor(entity);
 	}
 
-	public Telefone getTelefone() {
-		return telefone;
+	public void abrirProdutoListing() {
+		ProdutoListing listing = new ProdutoListing();
+		listing.open();
 	}
 
-	public void setTelefone(Telefone telefone) {
-		this.telefone = telefone;
+	public void obterProdutoListing(SelectEvent event) {
+		Produto entity = (Produto) event.getObject();
+		getEntity().setProduto(entity);
 	}
-	
+
 }
