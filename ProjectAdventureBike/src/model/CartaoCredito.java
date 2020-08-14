@@ -3,6 +3,8 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import model.validation.Validation;
+
 @Entity
 public class CartaoCredito extends FormaPagamento {
 
@@ -47,5 +49,6 @@ public class CartaoCredito extends FormaPagamento {
 	public void setBandeira(Bandeira bandeira) {
 		this.bandeira = bandeira;
 	}
+
 
 }

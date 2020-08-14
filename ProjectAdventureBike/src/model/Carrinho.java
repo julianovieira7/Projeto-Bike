@@ -20,26 +20,17 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 	@JoinColumn(name = "idusuario")
 	private Usuario usuario;
 
-	@OneToOne(mappedBy="carrinho",cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Pedido pedido;
 
-	@OneToMany(cascade =CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "iditempedido")
 	@JoinTable(name = "carrinho_itempedido", joinColumns = {
 			@JoinColumn(name = "idcarrinho", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "iditempedido", referencedColumnName = "id") })
 	private List<ItemPedido> listaItem;
-	
+
 	private Double valorCarrinho;
-	private Produto produto;
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
 
 	public Double getValorCarrinho() {
 		return valorCarrinho;
@@ -79,11 +70,9 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 	}
 
 	@Override
-
 	public String toString() {
-		super.toString();
-		return "Carrinho [listaItem=" + listaItem +  "]";
-
+		return "Carrinho [usuario=" + usuario + ", pedido=" + pedido + ", listaItem=" + listaItem + ", valorCarrinho="
+				+ valorCarrinho + "]";
 	}
 
 }

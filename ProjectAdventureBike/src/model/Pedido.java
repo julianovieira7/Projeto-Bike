@@ -13,7 +13,7 @@ public class Pedido extends DefaultEntity<Pedido> {
 	private static final long serialVersionUID = 8178659409930742984L;
 	private String numeroPedido;
 	private Double valorTotal;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
 	@JoinColumn(name = "idcarrinho", unique = true)
 	private Carrinho carrinho;
 	@OneToOne(cascade = CascadeType.ALL)

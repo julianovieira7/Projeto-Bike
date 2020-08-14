@@ -9,8 +9,10 @@ import javax.inject.Named;
 import application.Session;
 import application.Util;
 import model.Carrinho;
+import model.Estoque;
 import model.ItemPedido;
 import model.Pedido;
+import model.Produto;
 import model.Usuario;
 import repository.CarrinhoRepository;
 
@@ -19,6 +21,9 @@ import repository.CarrinhoRepository;
 public class CarrinhoController extends Controller<Carrinho> {
 
 	private static final long serialVersionUID = -7303558665258909306L;
+	private Estoque estoque;
+	int quant;
+	Double valorCarrinho = 0.00;
 
 	@Override
 	public Carrinho getEntity() {
@@ -53,8 +58,51 @@ public class CarrinhoController extends Controller<Carrinho> {
 					return;
 				}
 			}
-			
+
 		}
+	}
+
+	public String finalizar() {
+//		Usuario usuario = (Usuario) Session.getInstance().getAttribute("usuarioLogado");
+//		if (usuario == null)
+//			Util.addMessageWarn("Eh preciso estar logado para realizar uma pedido. Faca o Login!!");
+//		else {
+		List<ItemPedido> carrinho = (List<ItemPedido>) Session.getInstance().getAttribute("carrinho");
+		int i = 0;
+		for (ItemPedido itemPedido : carrinho) {
+			System.out.println(itemPedido.getProduto().toString());
+
+			valorCarrinho = valorCarrinho + carrinho.get(i).getValor();
+			quant = quant + carrinho.get(i).getQuantidade();
+			i = i + 1;
+			System.out.println("carrinho:" + carrinho.toString());
+			System.out.println("quant: " + quant);
+			System.out.println("valor do carrinho: " + valorCarrinho);
+
+		}
+
+//		}
+//		if (usuario != null) {
+//			// adicionando um ussuario na sessao
+//			Session.getInstance().setAttribute("usuarioLogado", usuario);
+//			// redirecionando para o template
+//			if (usuario.getPerfil().getId() == 0)
+		return "pedido.xhtml?faces-redirect=true";
+
+//			else
+//				return "login.xhtml?faces-redirect=true";
+//
+//		}
+//		Util.addMessageError("Login ou Senha inv�lido.");
+//		return "";
+	}
+
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
 	}
 
 }

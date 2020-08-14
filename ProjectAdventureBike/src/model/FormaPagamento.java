@@ -22,6 +22,25 @@ public class FormaPagamento extends DefaultEntity<FormaPagamento> {
 	@Column(nullable = false)
 	private String nome;
 
+	private Boleto boleto;
+	private CartaoCredito cartaoCredito;
+
+	public Boleto getBoleto() {
+		return boleto;
+	}
+
+	public void setBoleto(Boleto boleto) {
+		this.boleto = boleto;
+	}
+
+	public CartaoCredito getCartaoCredito() {
+		return cartaoCredito;
+	}
+
+	public void setCartaoCredito(CartaoCredito cartaoCredito) {
+		this.cartaoCredito = cartaoCredito;
+	}
+
 	public Date getDataVencimento() {
 		return dataVencimento;
 	}

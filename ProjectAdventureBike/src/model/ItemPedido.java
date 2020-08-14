@@ -12,7 +12,7 @@ public class ItemPedido extends DefaultEntity<ItemPedido> {
 
 	private static final long serialVersionUID = 885652744452932617L;
 	private Double valor;
-	private int quantidade;
+	private int quantidade = 0;
 	@ManyToOne
 	@JoinColumn(name = "idproduto")
 	private Produto produto;

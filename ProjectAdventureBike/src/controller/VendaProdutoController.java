@@ -10,21 +10,64 @@ import javax.inject.Named;
 import application.Session;
 import application.Util;
 import model.ItemPedido;
-import model.Pedido;
 import model.Produto;
+import model.Usuario;
 import repository.ProdutoRepository;
 
 @Named
 @ViewScoped
-public class VendaController implements Serializable {
+public class VendaProdutoController implements Serializable {
 
 	private static final long serialVersionUID = 2230641043240396866L;
 	private String nome;
 	private List<Produto> listaProduto = null;
+	private Usuario usuario;
+	private Produto produto;
+
+	private ItemPedido itemPedido;
+
+	public ItemPedido getItemPedido() {
+		return itemPedido;
+	}
+
+	public void setItemPedido(ItemPedido itemPedido) {
+		this.itemPedido = itemPedido;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public void pesquisar() {
 		ProdutoRepository repo = new ProdutoRepository();
 		setListaProduto(repo.findByNome(getNome()));
+	}
+
+	public String carrinho() {
+//		if (usuario != null) {
+//			// adicionando um ussuario na sessao
+//			Session.getInstance().setAttribute("usuarioLogado", usuario);
+//			// redirecionando para o template
+//			if (usuario.getPerfil().getId() == 0)
+		return "carrinho.xhtml?faces-redirect=true";
+//			else
+//				return "login.xhtml?faces-redirect=true";
+//
+//		}
+//		Util.addMessageError("Login ou Senha inv�lido.");
+//		return "";
 	}
 
 	public void adicionar(int idProduto) {
@@ -43,13 +86,12 @@ public class VendaController implements Serializable {
 		ItemPedido item = new ItemPedido();
 		item.setProduto(produto);
 		item.setValor(produto.getValor());
-
 		// adicionando o item no carrinho (variavel local)
 		carrinho.add(item);
 
 		// atualizando o carrinho na sessao
 		Session.getInstance().setAttribute("carrinho", carrinho);
-
+		System.out.println(item.toString());
 		Util.addMessageInfo("Produto adicionado no carrinho. " + "Quantidade de Itens: " + carrinho.size());
 
 	}
@@ -75,7 +117,5 @@ public class VendaController implements Serializable {
 	public void setListaProduto(List<Produto> listaProduto) {
 		this.listaProduto = listaProduto;
 	}
-
-	
 
 }
