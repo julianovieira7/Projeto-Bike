@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 
 import application.Session;
@@ -14,8 +15,10 @@ import model.Carrinho;
 import model.ItemPedido;
 import model.Pedido;
 import model.Produto;
+import repository.CarrinhoRepository;
 import repository.FornecedorRepository;
 import repository.ProdutoRepository;
+import repository.Repository;
 
 @Named
 @ViewScoped
@@ -24,18 +27,19 @@ public class PedidoController extends Controller<Pedido> {
 	private static final long serialVersionUID = 8702988121934899052L;
 	private String nome;
 	private List<Produto> listaProduto = null;
-//	private Carrinho carrinho;
+	private Carrinho carrinho;
+
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
 
 	public void pesquisar() {
 		ProdutoRepository repo = new ProdutoRepository();
 		setListaProduto(repo.findByNome(getNome()));
-	}
-
-	@Override
-	public void salvar() {
-		
-		super.salvar();
-
 	}
 
 	public List<Produto> getListaProduto() {

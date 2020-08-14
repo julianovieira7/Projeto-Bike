@@ -12,6 +12,7 @@ import model.Carrinho;
 import model.ItemPedido;
 import model.Pedido;
 import model.Usuario;
+import repository.CarrinhoRepository;
 
 @Named
 @ViewScoped
@@ -23,8 +24,8 @@ public class CarrinhoController extends Controller<Carrinho> {
 	public Carrinho getEntity() {
 		if (entity == null) {
 			entity = new Carrinho();
-//			entity.setPedido(new Pedido());
-//			entity.setUsuario(new Usuario());
+			entity.setPedido(new Pedido());
+			entity.setUsuario(new Usuario());
 
 		}
 		List<ItemPedido> carrinhoPedido = (ArrayList<ItemPedido>) Session.getInstance().getAttribute("carrinho");
@@ -52,6 +53,7 @@ public class CarrinhoController extends Controller<Carrinho> {
 					return;
 				}
 			}
+			
 		}
 	}
 

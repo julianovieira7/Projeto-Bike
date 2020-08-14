@@ -16,13 +16,12 @@ import model.validation.Validation;
 public class Carrinho extends DefaultEntity<Carrinho> {
 
 	private static final long serialVersionUID = 131791403543271208L;
-//	@ManyToOne
-//	@JoinColumn(name = "idusuario")
-//	private Usuario usuario;
+	@ManyToOne(optional = true, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idusuario")
+	private Usuario usuario;
 
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "idpedido", unique = true)
-//	private Pedido pedido;
+	@OneToOne(mappedBy="carrinho",cascade = CascadeType.ALL)
+	private Pedido pedido;
 
 	@OneToMany(cascade =CascadeType.ALL)
 	@JoinColumn(name = "iditempedido")
@@ -50,13 +49,13 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 		this.valorCarrinho = valorCarrinho;
 	}
 
-//	public Usuario getUsuario() {
-//		return usuario;
-//	}
-//
-//	public void setUsuario(Usuario usuario) {
-//		this.usuario = usuario;
-//	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public List<ItemPedido> getListaItem() {
 		return listaItem;
@@ -66,13 +65,13 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 		this.listaItem = listaItem;
 	}
 
-//	public Pedido getPedido() {
-//		return pedido;
-//	}
-//
-//	public void setPedido(Pedido pedido) {
-//		this.pedido = pedido;
-//	}
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 
 	@Override
 	public Validation<Carrinho> getValidation() {

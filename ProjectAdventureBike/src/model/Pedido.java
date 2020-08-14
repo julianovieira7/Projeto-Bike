@@ -14,7 +14,7 @@ public class Pedido extends DefaultEntity<Pedido> {
 	private String numeroPedido;
 	private Double valorTotal;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idcarrinho")
+	@JoinColumn(name = "idcarrinho", unique = true)
 	private Carrinho carrinho;
 
 	public Carrinho getCarrinho() {
