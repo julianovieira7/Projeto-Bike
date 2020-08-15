@@ -33,6 +33,7 @@ public enum Perfil {
   		} else {
 			paginasAcesso.add("pages/estoque.xhtml");
 			paginasAcesso.add("pages/hello.xhtml");
+			paginasAcesso.add("vendaproduto.xhtml");
 
 		}
 
