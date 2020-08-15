@@ -50,11 +50,7 @@
 					<div align="center">
 						<h1>Cadastro de Produto</h1>
 					</div>
-					<div align="right" style="float: right; position: relative;">
-						<img class="img-responsive"
-							style="max-width: 80px !important; max-height: 80px !important;"
-							src="img-produto?nome=#{produtoController.entity.id}.png" />
-					</div>
+					
 				</f:facet>
 				<div class="ui-g ui-fluid">
 					<div class="ui-g-12">
@@ -68,7 +64,7 @@
 
 									<p:ajax event="dialogReturn"
 										listener="#{produtoController.obterProdutoListing}"
-										update="itProduto" />
+										update="@form" />
 								</p:commandLink>
 								<p:inputText id="itProduto"
 									value="#{produtoController.entity.nome}" required="true"
