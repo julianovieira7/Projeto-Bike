@@ -1,5 +1,6 @@
 package repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -25,44 +26,44 @@ public class UsuarioRepository extends Repository<Usuario> {
 		return query.getResultList();
 	}
 
-	public boolean containsEmail(Integer id, String email) {
-		StringBuffer jpql = new StringBuffer();
-		jpql.append("SELECT ");
-		jpql.append("  count(*) ");
-		jpql.append("FROM ");
-		jpql.append("  Usuario a ");
-		jpql.append("WHERE ");
-		jpql.append("  upper(a.email) = upper(?) ");
-		jpql.append("  AND a.id <> ? ");
-		// adicionando aqui um comentario so pra upar
-		Query query = getEntityManager().createNativeQuery(jpql.toString());
+	public boolean contains(Integer id, String email) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append("  count(*) ");
+		sql.append("FROM ");
+		sql.append("  Usuario u ");
+		sql.append("WHERE ");
+		sql.append("  upper(u.email) = upper(?) ");
+		sql.append("  AND u.id <> ? ");
+		
+		Query query = getEntityManager().createNativeQuery(sql.toString());
 
 		query.setParameter(1, email);
 		query.setParameter(2, id == null ? -1 : id);
-
-		long resultado = (long) query.getSingleResult();
-
-		return resultado == 0 ? false : true;
+		
+		BigInteger resultado = (BigInteger) query.getSingleResult();
+		
+		return (resultado == null || resultado.equals(BigInteger.ZERO)) ? false : true;
 	}
 
 	public boolean containsCpf(Integer id, String cpf) {
-		StringBuffer jpql = new StringBuffer();
-		jpql.append("SELECT ");
-		jpql.append("  count(*) ");
-		jpql.append("FROM ");
-		jpql.append("  Usuario a ");
-		jpql.append("WHERE ");
-		jpql.append("  upper(a.cpf) = upper(?) ");
-		jpql.append("  AND a.id <> ? ");
-
-		Query query = getEntityManager().createNativeQuery(jpql.toString());
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append("  count(*) ");
+		sql.append("FROM ");
+		sql.append("  Usuario u ");
+		sql.append("WHERE ");
+		sql.append("  upper(u.cpf) = upper(?) ");
+		sql.append("  AND u.id <> ? ");
+		
+		Query query = getEntityManager().createNativeQuery(sql.toString());
 
 		query.setParameter(1, cpf);
 		query.setParameter(2, id == null ? -1 : id);
-
-		long resultado = (long) query.getSingleResult();
-
-		return resultado == 0 ? false : true;
+		
+		BigInteger resultado = (BigInteger) query.getSingleResult();
+		
+		return (resultado == null || resultado.equals(BigInteger.ZERO)) ? false : true;
 	}
 
 	public Usuario verificarLoginSenha(String email, String senha) {

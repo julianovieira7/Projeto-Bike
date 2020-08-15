@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import model.validation.Validation;
@@ -9,6 +10,7 @@ public class Telefone extends DefaultEntity<Telefone> {
 
 	private static final long serialVersionUID = 4368844581125273114L;
 
+	@Column(nullable = false)
 	private String numero;
 
 	public String getNumero() {

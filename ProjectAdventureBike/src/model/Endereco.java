@@ -15,7 +15,9 @@ public class Endereco extends DefaultEntity<Endereco> {
 	private String numero;
 	@Column(nullable = false)
 	private String rua;
+	@Column(nullable = false)
 	private String complemento;
+	@Column(nullable = false)
 	private String pontoReferencia;
 
 	public String getCep() {

@@ -92,6 +92,12 @@ public class UsuarioController extends Controller<Usuario> {
 		}
 		String hashSenha = Util.hashSHA256(getEntity().getSenha());
 		getEntity().setSenha(hashSenha);
+		UsuarioRepository repo = new UsuarioRepository();
+		if (repo.containsCpf(entity.getId(), entity.getCpf())) {
+			Util.addMessageError("CPF já cadastrado no sistema");
+		}
+		
+		else 
 		super.salvar();
 	}
 
