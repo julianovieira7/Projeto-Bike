@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -12,7 +14,6 @@ import model.validation.Validation;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Produto extends DefaultEntity<Produto> {
-
 
 	private static final long serialVersionUID = -8579376882467070134L;
 
@@ -95,8 +96,6 @@ public class Produto extends DefaultEntity<Produto> {
 		this.valor = valor;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Produto [marca=" + marca + ", tipoProduto=" + tipoProduto + ", material=" + material + ", descricao="
@@ -108,4 +107,26 @@ public class Produto extends DefaultEntity<Produto> {
 	public Validation<Produto> getValidation() {
 		return null;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(nome);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		return Objects.equals(nome, other.nome);
+	}
+	
+
 }

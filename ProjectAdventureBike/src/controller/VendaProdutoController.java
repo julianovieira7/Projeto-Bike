@@ -23,6 +23,8 @@ public class VendaProdutoController implements Serializable {
 	private List<Produto> listaProduto = null;
 	private Usuario usuario;
 	private Produto produto;
+	int quant;
+	Double valorCarrinho = 0.00;
 
 	private ItemPedido itemPedido;
 
@@ -70,7 +72,7 @@ public class VendaProdutoController implements Serializable {
 //		return "";
 	}
 
-	public void adicionar(int idProduto) {
+	public Double adicionar(int idProduto) {
 		ProdutoRepository repo = new ProdutoRepository();
 		Produto produto = repo.findById(idProduto);
 		// verifica se existe um carrinho na sessao
@@ -88,22 +90,37 @@ public class VendaProdutoController implements Serializable {
 		item.setValor(produto.getValor());
 		// adicionando o item no carrinho (variavel local)
 		carrinho.add(item);
+		int i = 0;
+		for (ItemPedido itemPedido : carrinho) {
+			System.out.println(itemPedido.getProduto().toString());
+
+			valorCarrinho = valorCarrinho + carrinho.get(i).getValor();
+			quant = quant + carrinho.get(i).getQuantidade();
+			i = i + 1;
+			System.out.println("carrinho:" + carrinho.toString());
+			System.out.println("quant: " + quant);
+			System.out.println("valor do carrinho: " + valorCarrinho);
+
+		}
 
 		// atualizando o carrinho na sessao
 		Session.getInstance().setAttribute("carrinho", carrinho);
 		System.out.println(item.toString());
 		Util.addMessageInfo("Produto adicionado no carrinho. " + "Quantidade de Itens: " + carrinho.size());
+		return valorCarrinho;
 
 	}
 
 	public List<Produto> getListaProduto() {
+		ProdutoRepository repo = new ProdutoRepository();
 		if (listaProduto == null) {
-			ProdutoRepository repo = new ProdutoRepository();
+			listaProduto = new ArrayList<Produto>();
+			listaProduto = repo.findByAll();
+			return listaProduto;
+		} else {
 			listaProduto = repo.findByNome(getNome());
-			if (listaProduto == null)
-				listaProduto = new ArrayList<Produto>();
+			return listaProduto;
 		}
-		return listaProduto;
 	}
 
 	public String getNome() {
@@ -118,4 +135,16 @@ public class VendaProdutoController implements Serializable {
 		this.listaProduto = listaProduto;
 	}
 
+//	public void clearMultiViewState() {
+//		FacesContext context = FacesContext.getCurrentInstance();
+//		String viewId = context.getViewRoot().getViewId();
+//		PrimeFaces.current().multiViewState().clearAll(viewId, true, (clientId) -> {
+//			showMessage(clientId);
+//		});
+//	}
+//
+//	private void showMessage(String clientId) {
+//		FacesContext.getCurrentInstance().addMessage(null,
+//				new FacesMessage(FacesMessage.SEVERITY_INFO, clientId + " multiview state has been cleared out", null));
+//	}
 }

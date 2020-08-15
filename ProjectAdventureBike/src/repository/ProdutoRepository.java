@@ -24,5 +24,17 @@ public class ProdutoRepository extends Repository<Produto> {
 
 		return query.getResultList();
 	}
-	
+
+	public List<Produto> findByAll() {
+
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append("  a ");
+		jpql.append("FROM ");
+		jpql.append("  Produto a ");
+
+		Query query = getEntityManager().createQuery(jpql.toString());
+
+		return query.getResultList();
+	}
 }
