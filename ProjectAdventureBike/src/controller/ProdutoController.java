@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -130,4 +132,5 @@ public class ProdutoController extends Controller<Produto> {
 		TipoProduto entity = (TipoProduto) event.getObject();
 		getEntity().setTipoProduto(entity);
 	}
+
 }

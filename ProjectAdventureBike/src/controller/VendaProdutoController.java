@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -135,16 +137,12 @@ public class VendaProdutoController implements Serializable {
 		this.listaProduto = listaProduto;
 	}
 
-//	public void clearMultiViewState() {
-//		FacesContext context = FacesContext.getCurrentInstance();
-//		String viewId = context.getViewRoot().getViewId();
-//		PrimeFaces.current().multiViewState().clearAll(viewId, true, (clientId) -> {
-//			showMessage(clientId);
-//		});
-//	}
-//
-//	private void showMessage(String clientId) {
-//		FacesContext.getCurrentInstance().addMessage(null,
-//				new FacesMessage(FacesMessage.SEVERITY_INFO, clientId + " multiview state has been cleared out", null));
-//	}
+	public String descricao(int idproduto) {
+		ProdutoRepository repo = new ProdutoRepository();
+		produto = repo.findById(idproduto);
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("produtoFlash", produto);
+
+		return "descricao.xhtml?faces-redirect=true";
+	}
 }

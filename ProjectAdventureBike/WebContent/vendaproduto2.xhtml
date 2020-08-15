@@ -37,8 +37,8 @@
 			<div align="center">
 				<h:panelGrid id="panelForm" columns="3">
 
-					<p:outputLabel value="Nome do Produto: " />
-					<p:inputText value="#{vendaProdutoController.nome}" size="40" />
+					<p:outputLabel value="Nome do Produto: " class="container d-flex justify-content-center"/>
+					<p:inputText value="#{vendaProdutoController.nome}" size="50"/>
 
 					<p:commandButton value="Pesquisar"
 						actionListener="#{vendaProdutoController.pesquisar}">
@@ -59,15 +59,14 @@
 
 				<p:panel header="#{produto.nome}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%">
-						<img class="img-responsive"
-							style="max-width: 100px !important; max-height: 100px !important;"
-							src="img-produto?nome=#{produto.id}.png" />
+						<p:graphicImage name="home/images/produto/#{produto.id}.png" />
 
-						<h:outputText value="#{produto.nome}" />
+						<h:outputText value="#{produto.valor}" />
+
 
 						<p:commandButton value="descricao" icon="pi pi-bars"
-							process="@none" update="@none"
-							action="#{vendaProdutoController.descricao(produto.id)}" />
+							process="@form" update="@form"
+							action="#{vendaProdutoController.carrinho}" />
 
 					</h:panelGrid>
 				</p:panel>

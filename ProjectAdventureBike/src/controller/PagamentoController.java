@@ -3,10 +3,10 @@ package controller;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import model.Boleto;
-import model.CartaoCredito;
+import model.Bandeira;
 import model.Pagamento;
 import model.Pedido;
+import model.QuantMarcha;
 
 @Named
 @ViewScoped
@@ -30,5 +30,12 @@ public class PagamentoController extends Controller<Pagamento> {
 	@Override
 	public Pagamento getEntity() {
 		return null;
+	}
+	public Bandeira[] getListaBandeira() {
+		return Bandeira.values();
+	}
+
+	public QuantMarcha[] getListaQuantMarcha() {
+		return QuantMarcha.values();
 	}
 }
