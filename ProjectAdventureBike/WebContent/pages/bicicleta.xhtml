@@ -77,17 +77,20 @@
 								<p:outputLabel value="Material: ">
 									<p:message for="itMaterial" escape="false" />
 								</p:outputLabel>
-								<p:inputText id="itMaterial"
+								<p:inputText id="itMaterial" required="true"
+									requiredMessage="Informe o material."
 									value="#{bicicletaController.entity.material}" />
 
 								<p:outputLabel value="Modelo: ">
 									<p:message for="itModelo" escape="false" />
 								</p:outputLabel>
-								<p:inputText id="itModelo"
+								<p:inputText id="itModelo" required="true"
+									requiredMessage="Informe o modelo."
 									value="#{bicicletaController.entity.modelo}" />
 
 								<p:commandLink value="Marca: "
 									actionListener="#{bicicletaController.abrirMarcaListing}"
+									required="true" requiredMessage="Informe a marca."
 									process="@this" update="@none">
 
 									<p:ajax event="dialogReturn"
@@ -111,11 +114,12 @@
 								<p:inputText id="itTipoProduto"
 									value="#{bicicletaController.entity.tipoProduto.nome}"
 									required="true" requiredMessage="Informe o tipo de produto." />
-									
+
 								<p:outputLabel value="Valor: ">
 									<p:message for="itValor" escape="false" />
 								</p:outputLabel>
-								<p:inputText id="itValor"
+								<p:inputText id="itValor" required="true"
+									requiredMessage="Informe o valor."
 									value="#{bicicletaController.entity.valor}" />
 
 								<p:outputLabel value="Selecione a modalidade: " />
@@ -147,6 +151,7 @@
 
 								<p:inputTextarea rows="5" cols="30" counter="descricao"
 									maxlength="10" counterTemplate="{0} characters remaining."
+									required="true" requiredMessage="Informe o numero."
 									autoResize="false" />
 								<br />
 								<h:outputText id="descricao" />

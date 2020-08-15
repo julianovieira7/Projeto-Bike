@@ -96,9 +96,11 @@ public class UsuarioController extends Controller<Usuario> {
 		if (repo.containsCpf(entity.getId(), entity.getCpf())) {
 			Util.addMessageError("CPF já cadastrado no sistema");
 		}
-		
-		else 
-		super.salvar();
+
+		else if (repo.contains(entity.getId(), entity.getEmail())) {
+			Util.addMessageError("Email já cadastrado no sistema");
+		} else
+			super.salvar();
 	}
 
 	public String getAuxiliar() {
