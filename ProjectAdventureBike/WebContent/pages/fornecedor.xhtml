@@ -60,31 +60,36 @@
 										update="@form" />
 
 								</p:commandLink>
-								<p:inputText id="itCnpj"
-									value="#{fornecedorController.entity.cnpj}" required="true"
-									requiredMessage="Informe o cnpj." />
+
+								<p:inputMask id="itCpf"
+									value="#{fornecedorController.entity.cnpj}"
+									mask="99.999.999/9999-99"
+									styleClass="form-control pr-3 d-flex justify-content-start"
+									size="24" />
 
 								<p:outputLabel value="Razao Social: ">
 									<p:message for="itRazaoSocial" escape="false" />
 								</p:outputLabel>
 								<p:inputText id="itRazaoSocial"
-									value="#{fornecedorController.entity.razaoSocial}" />
+									value="#{fornecedorController.entity.razaoSocial}"  size="24" />
 
 								<p:outputLabel value="Nome: ">
 									<p:message for="itNome" escape="false" />
 								</p:outputLabel>
 								<p:inputText id="itNome"
 									value="#{fornecedorController.entity.nome}" required="true"
-									requiredMessage="Informe o nome." />
+									requiredMessage="Informe o nome." size="24"  />
 
-								<p:outputLabel value="Telefone (DDD):" />
-								<p:inputText
-									value="#{fornecedorController.entity.telefone.codigoArea}" />
+
 
 
 								<p:outputLabel value="Telefone (Número):" />
-								<p:inputText
-									value="#{fornecedorController.entity.telefone.numero}" />
+								<p:inputMask
+									value="#{fornecedorController.entity.telefone.numero}"
+									mask="(99) 99999-9999"
+									styleClass="form-control pr-3 d-flex justify-content-start"
+									size="15" />
+
 
 
 

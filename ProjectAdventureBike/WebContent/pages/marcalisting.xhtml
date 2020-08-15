@@ -52,7 +52,7 @@
 								<h:outputText value="#{row + 1}" />
 							</p:column>
 
-							<p:column headerText="Nome">
+							<p:column headerText="Nome" style="width: 150px; text-align: center;">
 								<p:commandLink value="#{entity.nome}"
 									actionListener="#{marcaListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />

@@ -46,87 +46,112 @@
 						<h1>Cadastro de Usuario</h1>
 					</div>
 				</f:facet>
-				<div class="ui-g ui-fluid">
-					<div class="ui-g-12">
-						<div class="card card-w-title">
-							<p:panelGrid columns="1"
-								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:commandLink value="Nome: "
-									actionListener="#{usuarioController.abrirUsuarioListing}"
-									process="@this" update="@none">
+				<div>
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12">
+							<div class="card card-w-title">
+								<p:panelGrid columns="2"
+									styleClass="form-group ui-panelgrid-blank" layout="grid"
+									align="center">
 
-									<p:ajax event="dialogReturn"
-										listener="#{usuarioController.obterUsuarioListing}"
-										update="@form" />
+									<p:panelGrid columns="2"
+										styleClass="form-group ui-panelgrid-blank" layout="grid">
+										<p:column style="width=50%">
+											<p:commandLink value="Nome: "
+												actionListener="#{usuarioController.abrirUsuarioListing}"
+												process="@this" update="@none">
 
-								</p:commandLink>
-								<p:inputText id="itNome"
-									value="#{usuarioController.entity.nome}" required="true"
-									requiredMessage="Informe o nome." />
+												<p:ajax event="dialogReturn"
+													listener="#{usuarioController.obterUsuarioListing}"
+													update="@form" />
 
-								<p:outputLabel value="Senha:" />
-								<p:password id="feedback"
-									value="#{usuarioController.entity.senha}" feedback="true" />
+											</p:commandLink>
+											<p:inputText id="itNome"
+												value="#{usuarioController.entity.nome}" required="true"
+												requiredMessage="Informe o nome." />
 
-								<p:outputLabel value="Cpf: ">
-									<p:message for="itCpf" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itCpf" value="#{usuarioController.entity.cpf}" />
+											<p:outputLabel value="Senha:" />
+											<p:password id="feedback"
+												value="#{usuarioController.entity.senha}" feedback="true" />
 
-								<p:outputLabel value="Data de Aniversário:" />
-								<p:calendar value="#{usuarioController.entity.dataAniversario}"
-									pattern="dd/MM/yyyy" />
+											<p:outputLabel value="Cpf: ">
+												<p:message for="itCpf" escape="false" />
+											</p:outputLabel>
+											<p:inputMask id="itCpf"
+												value="#{usuarioController.entity.cpf}"
+												mask="999.999.999-99"
+												styleClass="form-control pr-3 d-flex justify-content-start"
+												size="24" />
 
-								<p:outputLabel value="E-mail:" />
-								<p:inputText value="#{usuarioController.entity.email}" />
+											<p:outputLabel for="date" value="Data de Aniversário:" />
+											<p:inputMask id="date" value="#{usuarioController.auxiliar}"
+												mask="99/99/9999"
+												styleClass="form-control pr-3 d-flex justify-content-start" />
 
-								<p:outputLabel value="Perfil de Usuario: " />
-								<p:selectOneMenu value="#{usuarioController.entity.perfil}">
-									<f:selectItem itemLabel="Selecione ..." itemValue="" />
-									<f:selectItems value="#{usuarioController.listaPerfil}"
-										var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
-								</p:selectOneMenu>
-
-
-
-								<p:outputLabel value="Endereco cep:" />
-								<p:inputText value="#{usuarioController.entity.endereco.cep}" />
-
-
-								<p:outputLabel value="rua :" />
-								<p:inputText value="#{usuarioController.entity.endereco.rua}" />
-
-								<p:outputLabel value="numero :" />
-								<p:inputText value="#{usuarioController.entity.endereco.numero}" />
-
-
-								<p:outputLabel value="ponto de referencia :" />
-								<p:inputText
-									value="#{usuarioController.entity.endereco.pontoReferencia}" />
-
-								<p:outputLabel value="complemento :" />
-								<p:inputText
-									value="#{usuarioController.entity.endereco.complemento}" />
-								<p:outputLabel value="Telefone (DDD):" />
-								<p:inputText
-									value="#{usuarioController.entity.telefone.codigoArea}" />
-
-
-								<p:outputLabel value="Telefone (Número):" />
-								<p:inputText value="#{usuarioController.entity.telefone.numero}" />
+											<p:outputLabel value="E-mail:" />
+											<p:inputText value="#{usuarioController.entity.email}" />
+											<p:outputLabel value="Perfil de Usuario: " />
+											<p:selectOneMenu value="#{usuarioController.entity.perfil}">
+												<f:selectItem itemLabel="Selecione ..." itemValue="" />
+												<f:selectItems value="#{usuarioController.listaPerfil}"
+													var="perfil" itemLabel="#{perfil.label}"
+													itemValue="#{perfil}" />
+											</p:selectOneMenu>
 
 
 
-							</p:panelGrid>
+											<p:outputLabel value="Cep: " />
+											<p:inputMask value="#{usuarioController.entity.endereco.cep}"
+												mask="99999-999"
+												styleClass="form-control pr-3 d-flex justify-content-start"
+												size="24" />
+										</p:column>
+										<p:column style="width=50%">
 
 
+											<p:outputLabel value="rua :" />
+											<p:inputText value="#{usuarioController.entity.endereco.rua}" />
+
+											<p:outputLabel value="numero :" />
+											<p:inputText
+												value="#{usuarioController.entity.endereco.numero}" />
+
+
+											<p:outputLabel value="ponto de referencia :" />
+											<p:inputText
+												value="#{usuarioController.entity.endereco.pontoReferencia}" />
+
+											<p:outputLabel value="complemento :" />
+											<p:inputText
+												value="#{usuarioController.entity.endereco.complemento}" />
+
+
+
+											<p:outputLabel value="Telefone:" />
+
+											<div>
+
+
+												<p:inputMask
+													value="#{usuarioController.entity.telefone.numero}"
+													mask="(99) 99999-9999"
+													styleClass="form-control pr-3 d-flex justify-content-start"
+													size="15" />
+
+											</div>
+
+										</p:column>
+									</p:panelGrid>
+
+								</p:panelGrid>
+							</div>
 						</div>
 					</div>
 				</div>
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
-							update="@form" action="#{usuarioController.salvar}" />
+							update="@form date" action="#{usuarioController.salvar}" />
 
 						<p:commandButton value="Limpar" process="@this" update="panel"
 							action="#{usuarioController.limpar}">
@@ -142,15 +167,18 @@
 							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
 						</p:commandButton>
 					</f:facet>
+
+
 				</p:toolbar>
 			</p:panel>
-
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" />
 				<p:commandButton value="Não" type="button"
 					styleClass="ui-confirmdialog-no" />
 			</p:confirmDialog>
+
+
 
 		</h:form>
 	</ui:define>

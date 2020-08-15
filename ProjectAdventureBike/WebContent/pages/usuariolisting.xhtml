@@ -64,13 +64,8 @@
 									actionListener="#{usuarioListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
-							<p:column headerText="codigo Area"
-								style="width: 65px; text-align: center;">
-								<p:commandLink value="#{entity.telefone.codigoArea}"
-									actionListener="#{fornecedorListing.select(entity.id)}"
-									process="@this" update="@form" resetValues="true" />
-							</p:column>
-							<p:column headerText="Numero"
+							
+							<p:column headerText="Telefone"
 								style="width: 65px; text-align: center;">
 								<p:commandLink value="#{entity.telefone.numero}"
 									actionListener="#{usuarioListing.select(entity.id)}"

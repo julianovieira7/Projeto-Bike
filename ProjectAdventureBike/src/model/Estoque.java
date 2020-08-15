@@ -23,8 +23,6 @@ public class Estoque extends DefaultEntity<Estoque> {
 	@ManyToOne()
 	@JoinColumn(name = "idproduto")
 	private Produto produto;
-	
-	
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;
@@ -82,4 +80,11 @@ public class Estoque extends DefaultEntity<Estoque> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return "Estoque [quantidade=" + quantidade + ", valorTotal=" + valorTotal + ", precoCompra=" + precoCompra
+				+ ", fornecedor=" + fornecedor + ", produto=" + produto + ", notaFiscal=" + notaFiscal + "]";
+	}
+
 }

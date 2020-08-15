@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Hello, World!</title>
+</h:head>
+	<h:form>
+			<h:messages style="color:red" />
+
+
+
+			<h:dataTable value="#{produtoController.list}" var="obj">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputLabel value="#{obj.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Valor</f:facet>
+					<h:outputLabel value="#{obj.valor}">
+						<f:convertNumber locale="pt_BR" currencySymbol="R$"
+							type="currency" />
+					</h:outputLabel>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Material</f:facet>
+					<h:outputLabel value="#{obj.material}" />
+
+
+				</h:column>
+
+			</h:dataTable>
+
+		</h:form>
+</html>

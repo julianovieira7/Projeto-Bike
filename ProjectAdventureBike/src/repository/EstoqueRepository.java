@@ -38,4 +38,20 @@ public class EstoqueRepository extends Repository<Estoque> {
 		return query.getResultList();
 	}
 
+	public List<Estoque> findProdutoEstoque() {
+
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append("  e ");
+		jpql.append("FROM ");
+		jpql.append("  Estoque e ");
+		jpql.append("   JOIN FETCH e.produto ");
+//		jpql.append("WHERE ");
+//		jpql.append("  upper(e.idproduto) = upper(p.id) ");
+
+		Query query = getEntityManager().createQuery(jpql.toString());
+
+		return query.getResultList();
+	}
+
 }

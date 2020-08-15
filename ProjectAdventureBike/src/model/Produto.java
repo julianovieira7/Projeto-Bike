@@ -1,13 +1,12 @@
 package model;
 
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import model.validation.Validation;
 
@@ -98,6 +97,7 @@ public class Produto extends DefaultEntity<Produto> {
 
 	@Override
 	public String toString() {
+		super.toString();
 		return "Produto [marca=" + marca + ", tipoProduto=" + tipoProduto + ", material=" + material + ", descricao="
 				+ descricao + ", nome=" + nome + ", modelo=" + modelo + ", valor=" + valor + ", getId()=" + getId()
 				+ "]";
@@ -107,26 +107,4 @@ public class Produto extends DefaultEntity<Produto> {
 	public Validation<Produto> getValidation() {
 		return null;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + Objects.hash(nome);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Produto other = (Produto) obj;
-		return Objects.equals(nome, other.nome);
-	}
-	
-
 }

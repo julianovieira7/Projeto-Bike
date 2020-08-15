@@ -8,16 +8,8 @@ import model.validation.Validation;
 public class Telefone extends DefaultEntity<Telefone> {
 
 	private static final long serialVersionUID = 4368844581125273114L;
-	private Integer codigoArea;
+
 	private String numero;
-
-	public Integer getCodigoArea() {
-		return codigoArea;
-	}
-
-	public void setCodigoArea(Integer codigoArea) {
-		this.codigoArea = codigoArea;
-	}
 
 	public String getNumero() {
 		return numero;
@@ -36,9 +28,7 @@ public class Telefone extends DefaultEntity<Telefone> {
 	@Override
 	public String toString() {
 		super.toString();
-		return "Telefone [codigoArea=" + codigoArea + ", numero=" + numero + "]";
+		return "Telefone [ numero=" + numero + "]";
 	}
-	
-	
 
 }
