@@ -43,7 +43,7 @@
 			<p:panel id="panel">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Venda</h1>
+						<h1>Carrinho</h1>
 					</div>
 				</f:facet>
 				<center>
@@ -77,10 +77,8 @@
 
 								</h:dataTable>
 							</div>
-							<h:outputLabel value="Nome do Produto: " />
-							<h:outputLabel value="#{carrinhoController.valorCarrinho}">
-								<f:convertNumber locale="pt_BR" currencySymbol="R$"
-									type="currency" />
+							<h:outputLabel value="valor do carrinho: " />
+							
 								<p:toolbar>
 									<f:facet name="right">
 										<p:commandButton value="finalizar carrinho" icon="pi pi-check"
@@ -89,7 +87,8 @@
 
 									</f:facet>
 								</p:toolbar>
-						</div>
+								</div>
+							
 					</div>
 				</center>
 			</p:panel>

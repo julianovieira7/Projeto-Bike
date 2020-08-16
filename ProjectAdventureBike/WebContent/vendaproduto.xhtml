@@ -52,33 +52,26 @@
 
 				</h:panelGrid>
 			</div>
-			<p:dataGrid var="produto"
+			<p:dataGrid var="produto" id="data"
 				value="#{vendaProdutoController.listaProduto}" columns="3"
-				layout="grid" rows="12" paginator="true" id="listaProduto"
+				layout="grid" rows="12" paginator="true" 
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="6,12,16">
 
-				<f:facet name="header">
-           Produtos a Venda
-        </f:facet>
-
-				<p:panel header="#{produto.nome}" style="text-align:center">
+				<p:panel id="panel" header="#{produto.nome}" style="text-align:center">
 					<h:panelGrid columns="1" style="width:100%">
 						<img class="img-responsive"
-							style="max-width: 100px !important; max-height: 100px !important;"
+							style="max-width: 290px !important; max-height: 290px !important;"
 							src="img-produto?nome=#{produto.id}.png" />
 
 						<h:outputText value="#{produto.nome}" />
 
 						<p:commandButton value="descricao" icon="pi pi-bars"
-							process="@none" update="@none"
 							action="#{vendaProdutoController.descricao(produto.id)}" />
 
 					</h:panelGrid>
 				</p:panel>
-
 			</p:dataGrid>
-
 		</h:form>
 	</ui:define>
 </ui:composition>

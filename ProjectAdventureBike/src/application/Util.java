@@ -36,7 +36,6 @@ public class Util {
 				new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
 	}
 
-
 	public static boolean saveImageProduto(InputStream inputStream, String imageType, int idProduto) {
 		// Exemplo da maquina do janio: /home/janio/images/professor
 		String diretorio = System.getProperty("user.home") + PATH_IMAGES_PRODUTO;
@@ -66,6 +65,7 @@ public class Util {
 
 		return true;
 	}
+
 	public static boolean saveImageBicicleta(InputStream inputStream, String imageType, int idBicicleta) {
 		// Exemplo da maquina do janio: /home/janio/images/professor
 		String diretorio = System.getProperty("user.home") + PATH_IMAGES_BICICLETA;
@@ -95,6 +95,7 @@ public class Util {
 
 		return true;
 	}
+
 	public static boolean saveImageUsuario(InputStream inputStream, String imageType, int idUsuario) {
 		// Exemplo da maquina do janio: /home/janio/images/professor
 		String diretorio = System.getProperty("user.home") + PATH_IMAGES_USUARIO;
