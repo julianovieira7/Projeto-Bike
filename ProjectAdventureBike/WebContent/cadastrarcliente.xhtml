@@ -38,6 +38,7 @@
 			<p:graphicImage name="/images/loading.gif" />
 		</p:dialog>
 
+
 		<h:form>
 			<p:growl id="growl" globalOnly="false" />
 			<p:panel id="panel">
@@ -46,100 +47,85 @@
 						<h1>Cadastro de Cliente</h1>
 					</div>
 				</f:facet>
-				<div class="ui-g ui-fluid">
-					<div class="ui-g-12">
-						<div class="card card-w-title">
-							<p:panelGrid columns="2"
-								styleClass="form-group ui-panelgrid-blank" layout="grid">
+				<p:tabView>
+					<p:tab title="Dados Pessoais">
+						<h:panelGrid columns="2" cellpadding="10">
+							<p:outputLabel value="Nome: ">
+								<p:message for="itNome" escape="false" />
+							</p:outputLabel>
+							<p:inputText id="itNome" value="#{clienteController.entity.nome}"
+								required="true" requiredMessage="Informe o nome." />
 
-								<p:panelGrid columns="2"
-									styleClass="form-group ui-panelgrid-blank" layout="grid">
-									<p:column style="width=50%">
-										<p:outputLabel value="Nome: ">
-											<p:message for="itNome" escape="false" />
-										</p:outputLabel>
-										<p:inputText id="itNome"
-											value="#{clienteController.entity.nome}" required="true"
-											requiredMessage="Informe o nome." />
-
-										<p:outputLabel value="Senha:" />
-										<p:password id="feedback"
-											value="#{clienteController.entity.senha}" feedback="true"
-											required="true" requiredMessage="Informe a senha." />
-
-										<p:outputLabel value="Cpf: ">
-											<p:message for="itCpf" escape="false" />
-										</p:outputLabel>
-										<p:inputMask id="itCpf"
-											value="#{clienteController.entity.cpf}" mask="999.999.999-99"
-											styleClass="form-control pr-3 d-flex justify-content-start"
-											size="24" required="true" requiredMessage="Informe o cpf." />
-
-										<p:outputLabel value="Data de Aniversário:" />
-										<p:inputMask style="color: black; background: white; "
-											value="#{clienteController.auxiliar}" mask="99/99/9999"
-											styleClass="form-control pr-3 d-flex justify-content-start"
-											size="24" required="true" requiredMessage="Informe a data." />
+							<p:outputLabel value="Cpf: ">
+								<p:message for="itCpf" escape="false" />
+							</p:outputLabel>
 
 
-										<p:outputLabel value="E-mail:" />
-										<p:inputText value="#{clienteController.entity.email}"
-											required="true" requiredMessage="Informe o email." />
+							<p:inputMask id="itCpf" value="#{clienteController.entity.cpf}"
+								mask="999.999.999-99"
+								styleClass="form-control pr-3 d-flex justify-content-start"
+								size="24" required="true" requiredMessage="Informe o cpf." />
+
+							<p:outputLabel value="E-mail:" />
+							<p:inputText value="#{clienteController.entity.email}"
+								required="true" requiredMessage="Informe o email." />
+
+							<p:outputLabel value="Senha:" />
+							<p:password id="feedback"
+								value="#{clienteController.entity.senha}" feedback="true"
+								required="true" requiredMessage="Informe a senha." />
+
+
+							<p:outputLabel value="Data de Nascimento:" />
+							<p:inputMask style="color: black; background: white; "
+								value="#{clienteController.auxiliar}" mask="99/99/9999"
+								styleClass="form-control pr-3 d-flex justify-content-start"
+								size="24" required="true" requiredMessage="Informe a data." />
 
 
 
-										<p:outputLabel value="Endereco cep:" />
-										<p:inputMask value="#{clienteController.entity.endereco.cep}"
-											mask="99999-999"
-											styleClass="form-control pr-3 d-flex justify-content-start"
-											size="24" required="true" requiredMessage="Informe o cep." />
-								
-
-
-										<p:outputLabel value="rua :" />
-										<p:inputText value="#{clienteController.entity.endereco.rua}"
-											required="true" requiredMessage="Informe a rua." />
-
-										<p:outputLabel value="numero :" />
-										<p:inputText
-											value="#{clienteController.entity.endereco.numero}"
-											required="true" requiredMessage="Informe o numero." />
-
-
-										<p:outputLabel value="ponto de referencia :" />
-										<p:inputText
-											value="#{clienteController.entity.endereco.pontoReferencia}"
-											required="true"
-											requiredMessage="Informe o ponrto de referencia." />
-
-										<p:outputLabel value="complemento :" />
-										<p:inputText
-											value="#{clienteController.entity.endereco.complemento}"
-											required="true" requiredMessage="Informe o complemento." />
 
 
 
-										<p:outputLabel value="Telefone:" />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Endereco e Telefone">
+						<h:panelGrid columns="2" cellpadding="10">
+							<p:outputLabel value="Endereco cep:" />
+							<p:inputMask value="#{clienteController.entity.endereco.cep}"
+								mask="99999-999"
+								styleClass="form-control pr-3 d-flex justify-content-start"
+								size="24" required="true" requiredMessage="Informe o cep." />
 
-										<div>
 
 
-											<p:inputMask
-												value="#{clienteController.entity.telefone.numero}"
-												mask="(99) 99999-9999"
-												styleClass="form-control pr-3 d-flex justify-content-start"
-												size="15" required="true"
-												requiredMessage="Informe o telefone." />
+							<p:outputLabel value="Rua :" />
+							<p:inputText value="#{clienteController.entity.endereco.rua}"
+								required="true" requiredMessage="Informe a rua." />
 
-										</div>
+							<p:outputLabel value="Numero :" />
+							<p:inputText value="#{clienteController.entity.endereco.numero}"
+								required="true" requiredMessage="Informe o numero." />
 
-									</p:column>
-								</p:panelGrid>
 
-							</p:panelGrid>
-						</div>
-					</div>
-				</div>
+							<p:outputLabel value="Ponto de referencia :" />
+							<p:inputText
+								value="#{clienteController.entity.endereco.pontoReferencia}"
+								/>
+
+							<p:outputLabel value="Complemento :" />
+							<p:inputText
+								value="#{clienteController.entity.endereco.complemento}"
+								 />
+							<p:outputLabel value="Telefone (Número):" />
+							<p:inputMask value="#{clienteController.entity.telefone.numero}"
+								mask="(99) 99999-9999"
+								styleClass="form-control pr-3 d-flex justify-content-start"
+								size="15" required="true" requiredMessage="Informe o telefone." />
+						</h:panelGrid>
+					</p:tab>
+
+				</p:tabView>
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
@@ -155,6 +141,10 @@
 
 				</p:toolbar>
 			</p:panel>
+
+
+
+
 
 
 

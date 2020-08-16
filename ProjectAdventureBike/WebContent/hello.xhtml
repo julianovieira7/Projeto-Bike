@@ -38,86 +38,93 @@
 			<p:graphicImage name="/images/loading.gif" />
 		</p:dialog>
 
+
 		<h:form>
 			<p:growl id="growl" globalOnly="false" />
 			<p:panel id="panel">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Cadastro de Cliente</h1>
+						<h1>Cadastro de Usuario</h1>
 					</div>
 				</f:facet>
-					<p:tabView>
+				<p:tabView>
 					<p:tab title="Dados Pessoais">
 						<h:panelGrid columns="2" cellpadding="10">
-							<p:outputLabel value="Nome: ">
-								<p:message for="itNome" escape="false" />
-							</p:outputLabel>
-							<p:inputText id="itNome" value="#{clienteController.entity.nome}"
+							<p:commandLink value="Nome: "
+								actionListener="#{usuarioController.abrirUsuarioListing}"
+								process="@this" update="@none">
+
+								<p:ajax event="dialogReturn"
+									listener="#{usuarioController.obterUsuarioListing}"
+									update="@form" />
+
+							</p:commandLink>
+							<p:inputText id="itNome" value="#{usuarioController.entity.nome}"
 								required="true" requiredMessage="Informe o nome." />
 
-							<p:outputLabel value="Senha:" />
-							<p:password id="feedback"
-								value="#{clienteController.entity.senha}" feedback="true"
-								required="true" requiredMessage="Informe a senha." />
 
 							<p:outputLabel value="Cpf: ">
 								<p:message for="itCpf" escape="false" />
 							</p:outputLabel>
-
-
-							<p:inputMask id="itCpf" value="#{clienteController.entity.cpf}"
-								mask="999.999.999-99"
+							<p:inputMask id="itCpf" value="#{usuarioController.entity.cpf}"
+								mask="999.999.999-99" required="true"
+								requiredMessage="Informe o nome."
 								styleClass="form-control pr-3 d-flex justify-content-start"
-								size="24" required="true" requiredMessage="Informe o cpf." />
+								size="24" />
 
-							<p:outputLabel value="Data de Aniversário:" />
-							<p:inputMask style="color: black; background: white; "
-								value="#{clienteController.auxiliar}" mask="99/99/9999"
-								styleClass="form-control pr-3 d-flex justify-content-start"
-								size="24" required="true" requiredMessage="Informe a data." />
-
-
+							<p:outputLabel value="Senha:" />
+							<p:password id="feedback" required="true"
+								requiredMessage="Informe o nome."
+								value="#{usuarioController.entity.senha}" feedback="true" />
 							<p:outputLabel value="E-mail:" />
-							<p:inputText value="#{clienteController.entity.email}"
-								required="true" requiredMessage="Informe o email." />
+							<p:inputText required="true" requiredMessage="Informe o nome."
+								value="#{usuarioController.entity.email}" />
 
+							<p:outputLabel value="Data de Nascimento:" />
+							<p:calendar value="#{usuarioController.entity.dataAniversario}"
+								pattern="dd/MM/yyyy" />
+
+							<p:outputLabel value="Perfil de Usuario: " />
+							<p:selectOneMenu value="#{usuarioController.entity.perfil}">
+								<f:selectItem itemLabel="Selecione ..." itemValue="" />
+								<f:selectItems value="#{usuarioController.listaPerfil}"
+									var="perfil" itemLabel="#{perfil.label}" required="true"
+									requiredMessage="selecione o perfil." itemValue="#{perfil}" />
+							</p:selectOneMenu>
 
 						</h:panelGrid>
 					</p:tab>
 					<p:tab title="Endereco e Telefone">
 						<h:panelGrid columns="2" cellpadding="10">
 							<p:outputLabel value="Endereco cep:" />
-							<p:inputMask value="#{clienteController.entity.endereco.cep}"
+							<p:inputMask value="#{usuarioController.entity.endereco.cep}"
 								mask="99999-999"
 								styleClass="form-control pr-3 d-flex justify-content-start"
 								size="24" required="true" requiredMessage="Informe o cep." />
 
 
 
-							<p:outputLabel value="rua :" />
-							<p:inputText value="#{clienteController.entity.endereco.rua}"
+							<p:outputLabel value="Rua :" />
+							<p:inputText value="#{usuarioController.entity.endereco.rua}"
 								required="true" requiredMessage="Informe a rua." />
 
-							<p:outputLabel value="numero :" />
-							<p:inputText value="#{clienteController.entity.endereco.numero}"
+							<p:outputLabel value="Numero :" />
+							<p:inputText value="#{usuarioController.entity.endereco.numero}"
 								required="true" requiredMessage="Informe o numero." />
 
 
-							<p:outputLabel value="ponto de referencia :" />
+							<p:outputLabel value="Ponto de referencia :" />
 							<p:inputText
-								value="#{clienteController.entity.endereco.pontoReferencia}"
-								required="true"
-								requiredMessage="Informe o ponrto de referencia." />
+								value="#{usuarioController.entity.endereco.pontoReferencia}" />
 
-							<p:outputLabel value="complemento :" />
+							<p:outputLabel value="Complemento :" />
 							<p:inputText
-								value="#{clienteController.entity.endereco.complemento}"
-								required="true" requiredMessage="Informe o complemento." />
+								value="#{usuarioController.entity.endereco.complemento}" />
 							<p:outputLabel value="Telefone (Número):" />
-							<p:inputMask value="#{clienteController.entity.telefone.numero}"
+							<p:inputMask value="#{usuarioController.entity.telefone.numero}"
 								mask="(99) 99999-9999"
 								styleClass="form-control pr-3 d-flex justify-content-start"
-								size="15" />
+								size="15" required="true" requiredMessage="Informe o telefone." />
 						</h:panelGrid>
 					</p:tab>
 
@@ -125,18 +132,31 @@
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
-							update="@form" action="#{clienteController.salvar}" />
+							update="@form" action="#{usuarioController.salvar}" />
 
 						<p:commandButton value="Limpar" process="@this" update="panel"
-							action="#{clienteController.limpar}">
+							action="#{usuarioController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
 
+					</f:facet>
+					<f:facet name="right">
+						<p:commandButton value="Excluir" icon="pi pi-trash"
+							process="@form" update="panel"
+							action="#{usuarioController.excluir}">
+							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
+						</p:commandButton>
 					</f:facet>
 
 
 				</p:toolbar>
 			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" />
+			</p:confirmDialog>
 
 
 

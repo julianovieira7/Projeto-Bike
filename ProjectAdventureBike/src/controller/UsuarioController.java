@@ -27,7 +27,7 @@ public class UsuarioController extends Controller<Usuario> {
 	private static final long serialVersionUID = 6037007969793097884L;
 	private String filtro;
 	private List<Usuario> listaUsuario;
-	private String auxiliar;
+
 
 	@Override
 	public Usuario getEntity() {
@@ -79,17 +79,7 @@ public class UsuarioController extends Controller<Usuario> {
 
 	@Override
 	public void salvar() {
-		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			Date date = (Date) formatter.parse(getAuxiliar());
-			getEntity().setDataAniversario(date);
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			Util.addMessageWarn("Data incorreta");
-			e.printStackTrace();
-
-		}
+		
 		String hashSenha = Util.hashSHA256(getEntity().getSenha());
 		getEntity().setSenha(hashSenha);
 		UsuarioRepository repo = new UsuarioRepository();
@@ -103,12 +93,6 @@ public class UsuarioController extends Controller<Usuario> {
 			super.salvar();
 	}
 
-	public String getAuxiliar() {
-		return auxiliar;
-	}
 
-	public void setAuxiliar(String auxiliar) {
-		this.auxiliar = auxiliar;
-	}
 
 }
