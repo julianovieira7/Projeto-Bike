@@ -124,14 +124,25 @@ body {
     }
 
     .layout-footer {
-        width: 100%;
         background-color: #343c41;
-        padding: 16px;
-        padding-left: 266px;
         color: #d8d8d8;
+		border-top: 1px solid #333;
+	    bottom: 0;
+	    left: 0;
+	    height: 40px;
+	    position: fixed;
+	    width: 100%;
+       
+      
     }
 }
 
+.alinha {
+   margin-left: 50%;
+   margin-right: 50%;
+  
+	
+}
 .card {
     border-radius: 3px;
     background: #ffffff;

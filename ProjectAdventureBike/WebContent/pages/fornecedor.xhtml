@@ -46,56 +46,57 @@
 						<h1>Cadastro de Fornecedor</h1>
 					</div>
 				</f:facet>
-				<div class="ui-g ui-fluid">
-					<div class="ui-g-12">
-						<div class="card card-w-title">
-							<p:panelGrid columns="1"
-								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:commandLink value="Cnpj: "
-									actionListener="#{fornecedorController.abrirFornecedorListing}"
-									process="@this" update="@none">
+				<div >
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12">
+							<div class="card card-w-title">
+								<p:panelGrid columns="1"
+									styleClass="form-group ui-panelgrid-blank" layout="grid">
+									<p:commandLink value="Cnpj: "
+										actionListener="#{fornecedorController.abrirFornecedorListing}"
+										process="@this" update="@none">
 
-									<p:ajax event="dialogReturn"
-										listener="#{fornecedorController.obterFornecedorListing}"
-										update="@form" />
+										<p:ajax event="dialogReturn"
+											listener="#{fornecedorController.obterFornecedorListing}"
+											update="@form" />
 
-								</p:commandLink>
+									</p:commandLink>
 
-								<p:inputMask id="itCpf"
-									value="#{fornecedorController.entity.cnpj}"
-									mask="99.999.999/9999-99"
-									styleClass="form-control pr-3 d-flex justify-content-start"
-									size="24" />
+									<p:inputMask id="itCpf"
+										value="#{fornecedorController.entity.cnpj}"
+										mask="99.999.999/9999-99"
+										styleClass="form-control pr-3 d-flex justify-content-start"
+										size="24" />
 
-								<p:outputLabel value="Razao Social: ">
-									<p:message for="itRazaoSocial" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itRazaoSocial"
-									value="#{fornecedorController.entity.razaoSocial}"  size="24" />
+									<p:outputLabel value="Razao Social: ">
+										<p:message for="itRazaoSocial" escape="false" />
+									</p:outputLabel>
+									<p:inputText id="itRazaoSocial"
+										value="#{fornecedorController.entity.razaoSocial}" size="24" />
 
-								<p:outputLabel value="Nome: ">
-									<p:message for="itNome" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itNome"
-									value="#{fornecedorController.entity.nome}" required="true"
-									requiredMessage="Informe o nome." size="24"  />
-
-
-
-
-								<p:outputLabel value="Telefone (Número):" />
-								<p:inputMask
-									value="#{fornecedorController.entity.telefone.numero}"
-									mask="(99) 99999-9999"
-									styleClass="form-control pr-3 d-flex justify-content-start"
-									size="15" />
+									<p:outputLabel value="Nome: ">
+										<p:message for="itNome" escape="false" />
+									</p:outputLabel>
+									<p:inputText id="itNome"
+										value="#{fornecedorController.entity.nome}" required="true"
+										requiredMessage="Informe o nome." size="24" />
 
 
 
 
-							</p:panelGrid>
+									<p:outputLabel value="Telefone (Número):" />
+									<p:inputMask
+										value="#{fornecedorController.entity.telefone.numero}"
+										mask="(99) 99999-9999"
+										styleClass="form-control pr-3 d-flex justify-content-start"
+										size="15" />
 
 
+
+
+								</p:panelGrid>
+
+							</div>
 						</div>
 					</div>
 				</div>

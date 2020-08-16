@@ -43,7 +43,9 @@
 			<div class="ui-g ui-fluid">
 				<div class="ui-g-12">
 
-					<div class="card card-w-title">
+					<div class="card card-w-title" align="center">
+
+
 
 						<p:dataTable id="dtListagem" var="entity" rowIndexVar="row"
 							paginator="false" reflow="true" value="#{fornecedorListing.list}">
@@ -52,7 +54,8 @@
 								<h:outputText value="#{row + 1}" />
 							</p:column>
 
-							<p:column headerText="Nome" style="width: 150px; text-align: center;">
+							<p:column headerText="Nome"
+								style="width: 150px; text-align: center;">
 								<p:commandLink value="#{entity.nome}"
 									actionListener="#{fornecedorListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
@@ -64,10 +67,10 @@
 									actionListener="#{fornecedorListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
-							
+
 							<p:column headerText="Numero"
 								style="width: 108px; text-align: center;">
-								<p:commandLink value="#{entity.telefone.numero}" 
+								<p:commandLink value="#{entity.telefone.numero}"
 									actionListener="#{fornecedorListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
@@ -79,6 +82,7 @@
 					</div>
 				</div>
 			</div>
+
 		</p:panel>
 
 	</h:form>
