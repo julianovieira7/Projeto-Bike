@@ -1,15 +1,15 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class Bicicleta extends Produto {
 
-
 	private static final long serialVersionUID = -6720114476341967519L;
-
+	@Column(nullable = false)
 	private Modalidade modalidade;
-
+	@Column(nullable = false)
 	private QuantMarcha quantMarcha;
 
 	public Modalidade getModalidade() {

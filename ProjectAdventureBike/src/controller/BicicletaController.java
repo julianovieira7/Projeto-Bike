@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -17,18 +19,20 @@ import controller.listing.TipoProdutoListing;
 import model.Bicicleta;
 import model.Marca;
 import model.Modalidade;
-import model.Produto;
 import model.QuantMarcha;
 import model.TipoProduto;
+import repository.TipoProdutoRepository;
 
 @Named
 @ViewScoped
 public class BicicletaController extends Controller<Bicicleta> {
 
 	private static final long serialVersionUID = -5541416711085840273L;
+	private static final String Bicicleta = null;
 	private String filtro;
 	private InputStream fotoInputStream = null;
 	private String nomeFoto = null;
+	private List<TipoProduto> listaTipoProduto = null;
 
 	public void upload(FileUploadEvent event) {
 
@@ -55,6 +59,10 @@ public class BicicletaController extends Controller<Bicicleta> {
 
 	@Override
 	public void salvar() {
+		System.out.println(listaTipoProduto.toString());
+		for (int i = 0; i < listaTipoProduto.size(); i++) {
+			entity.setTipoProduto(listaTipoProduto.get(i));
+		}
 		// salvando no banco de dados
 		if (salvarEspecial()) {
 			// caso nao tenha selecionado a imagem sair do metodo
@@ -143,4 +151,20 @@ public class BicicletaController extends Controller<Bicicleta> {
 	public QuantMarcha[] getListaQuantMarcha() {
 		return QuantMarcha.values();
 	}
+
+	public List<TipoProduto> getListaTipoProduto() {
+		if (listaTipoProduto == null) {
+			listaTipoProduto = new ArrayList<TipoProduto>();
+			TipoProdutoRepository tipo = new TipoProdutoRepository();
+			setListaTipoProduto(tipo.findByNome("Bicicleta"));
+		}
+
+		return listaTipoProduto;
+	}
+
+	public void setListaTipoProduto(List<TipoProduto> listaTipoProduto) {
+
+		this.listaTipoProduto = listaTipoProduto;
+	}
+
 }

@@ -26,4 +26,9 @@ public class TipoProduto extends DefaultEntity<TipoProduto> {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "TipoProduto [nome=" + nome + "]";
+	}
+
 }

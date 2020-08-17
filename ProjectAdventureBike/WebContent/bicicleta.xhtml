@@ -102,18 +102,7 @@
 									value="#{bicicletaController.entity.marca.nome}"
 									required="true" requiredMessage="Informe a marca." />
 
-								<p:commandLink value="Tipo de produto: "
-									actionListener="#{bicicletaController.abrirTipoProdutoListing}"
-									process="@this" update="@none">
-
-									<p:ajax event="dialogReturn"
-										listener="#{bicicletaController.obterTipoProdutoListing}"
-										update="itTipoProduto" />
-
-								</p:commandLink>
-								<p:inputText id="itTipoProduto"
-									value="#{bicicletaController.entity.tipoProduto.nome}"
-									required="true" requiredMessage="Informe o tipo de produto." />
+								
 
 								<p:outputLabel value="Valor: ">
 									<p:message for="itValor" escape="false" />
