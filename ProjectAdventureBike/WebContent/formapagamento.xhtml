@@ -59,38 +59,23 @@
 				<div class="ui-g ui-fluid">
 					<div class="ui-g-12">
 
-						<p:outputLabel value="Escolha a sua forma de pagamento">
-
-
-							<p:tabView>
-
-								<p:tab title="Boleto">
-									<h:panelGrid columns="2" cellpadding="10">
-										<p:outputLabel value="Boleto" />
-								
-
-										<p:outputLabel value="Rua :" />
-										<h:outputText
-											value="#{pedidoController.carrinho.usuario.endereco.rua}" />
-
-										<p:outputLabel value="Numero :" />
-										<h:outputText
-											value="#{pedidoController.carrinho.usuario.endereco.numero}" />
-
-										<p:outputLabel value="Ponto de referencia :" />
-										<h:outputText
-											value="#{pedidoController.carrinho.usuario.endereco.pontoReferencia}" />
-
-										<p:outputLabel value="Complemento :" />
-										<h:outputText
-											value="#{pedidoController.carrinho.usuario.endereco.complemento}" />
-										<p:outputLabel value="Telefone (Número):" />
-										<h:outputText
-											value="#{pedidoController.carrinho.usuario.telefone.numero}" />
-									</h:panelGrid>
-								</p:tab>
-
-							</p:tabView>
+						<p:outputLabel value="Escolha a sua forma de pagamento" />
+						<p:tabView>
+							<p:tab title="Boleto">
+								<h:panelGrid columns="2" cellpadding="10">
+									<p:outputLabel value="Boleto" />
+								</h:panelGrid>
+							</p:tab>
+							<p:tab title="Cartão de Credito">
+								<p:outputLabel value="Tipo de cartao: " />
+								<p:selectOneMenu
+									value="#{pagamentoController.entity.formaPagamento.cartaoCredito.tipoCartao}">
+									<f:selectItem itemLabel="Selecione ..." itemValue="" />
+									<f:selectItems value="#{pagamentoController.listaTipoCartao}"
+										var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+								</p:selectOneMenu>
+							</p:tab>
+						</p:tabView>
 					</div>
 				</div>
 
@@ -98,7 +83,6 @@
 					<div align="center">
 						<p:commandButton value="Entrar" icon="pi pi-check" process="@form"
 							update="@form" action="#{loginController.logar}" />
-
 
 					</div>
 				</f:facet>

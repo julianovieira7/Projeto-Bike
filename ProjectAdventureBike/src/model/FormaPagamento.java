@@ -58,6 +58,12 @@ public class FormaPagamento extends DefaultEntity<FormaPagamento> {
 	}
 
 	@Override
+	public String toString() {
+		return "FormaPagamento [dataVencimento=" + dataVencimento + ", nome=" + nome + ", boleto=" + boleto
+				+ ", cartaoCredito=" + cartaoCredito + "]";
+	}
+
+	@Override
 	public Validation<FormaPagamento> getValidation() {
 		return null;
 	}
