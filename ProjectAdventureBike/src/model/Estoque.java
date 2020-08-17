@@ -13,16 +13,17 @@ public class Estoque extends DefaultEntity<Estoque> {
 	private static final long serialVersionUID = 268507942847684339L;
 	@Column(nullable = false)
 	private Integer quantidade;
-	@Column(nullable = false)
-	private Double valorTotal;
+
 	@Column(nullable = false)
 	private Double precoCompra;
 	@ManyToOne()
-	@JoinColumn(name = "idfornecedor")
+	@JoinColumn(name = "idfornecedor", nullable = false)
 	private Fornecedor fornecedor;
 	@ManyToOne()
-	@JoinColumn(name = "idproduto")
+	@JoinColumn(name = "idproduto", nullable = false)
 	private Produto produto;
+	@Column(nullable = false)
+	private String notaFiscal;
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;
@@ -30,17 +31,6 @@ public class Estoque extends DefaultEntity<Estoque> {
 
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
-	}
-
-	@Column()
-	private String notaFiscal;
-
-	public Double getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(Double valorTotal) {
-		this.valorTotal = valorTotal;
 	}
 
 	public Integer getQuantidade() {
@@ -83,8 +73,8 @@ public class Estoque extends DefaultEntity<Estoque> {
 
 	@Override
 	public String toString() {
-		return "Estoque [quantidade=" + quantidade + ", valorTotal=" + valorTotal + ", precoCompra=" + precoCompra
-				+ ", fornecedor=" + fornecedor + ", produto=" + produto + ", notaFiscal=" + notaFiscal + "]";
+		return "Estoque [quantidade=" + quantidade + ", valorTotal=" + ", precoCompra=" + precoCompra + ", fornecedor="
+				+ fornecedor + ", produto=" + produto + ", notaFiscal=" + notaFiscal + "]";
 	}
 
 }

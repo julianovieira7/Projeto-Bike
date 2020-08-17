@@ -51,20 +51,29 @@
 						<div class="card card-w-title">
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
-								<p:commandLink value="Nome: "
-									actionListener="#{tipoProdutoController.abrirTipoProdutoListing}"
-									process="@this" update="@none">
 
-									<p:ajax event="dialogReturn"
-										listener="#{tipoProdutoController.obterTipoProdutoListing}"
-										update="@form" />
-
-								</p:commandLink>
-								<p:inputText id="itNome"
+								<p:inputText id="itNome" size="60"
 									value="#{tipoProdutoController.entity.nome}" required="true"
 									requiredMessage="Informe o nome." />
 
+								<h:panelGrid columns="2">
+
+
+									<div class="ui-inputgroup">
+										<p:commandButton value="Listagem de Tipos de Produto"
+											actionListener="#{tipoProdutoController.abrirTipoProdutoListing}"
+											process="@this" update="@none" icon="pi pi-list">
+
+											<p:ajax event="dialogReturn"
+												listener="#{tipoProdutoController.obterTipoProdutoListing}"
+												update="@form" />
+										</p:commandButton>
+
+									</div>
+								</h:panelGrid>
 							</p:panelGrid>
+
+
 						</div>
 					</div>
 				</div>

@@ -42,13 +42,11 @@ public class EstoqueController extends Controller<Estoque> {
 		return listaEstoque;
 	}
 
-
-
 	public void setListaEstoque(List<Estoque> listaEstoque) {
 		this.listaEstoque = listaEstoque;
 	}
 
-	public void abrirForncedorListing() {
+	public void abrirFornecedorListing() {
 		FornecedorListing listing = new FornecedorListing();
 		listing.open();
 	}
