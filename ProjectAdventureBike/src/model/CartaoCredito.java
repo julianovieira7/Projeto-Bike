@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import model.validation.Validation;
 
 @Entity
-public class CartaoCredito extends FormaPagamento {
+public class CartaoCredito extends DefaultEntity<CartaoCredito>{
 
 	private static final long serialVersionUID = -1163228351365280278L;
 	@Column(nullable = false)
@@ -48,6 +48,12 @@ public class CartaoCredito extends FormaPagamento {
 
 	public void setBandeira(Bandeira bandeira) {
 		this.bandeira = bandeira;
+	}
+
+	@Override
+	public Validation<CartaoCredito> getValidation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

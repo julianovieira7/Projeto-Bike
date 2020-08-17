@@ -17,8 +17,8 @@ public class Pedido extends DefaultEntity<Pedido> {
 	@JoinColumn(name = "idcarrinho", unique = true)
 	private Carrinho carrinho;
 	@OneToOne( cascade = CascadeType.ALL)
-	@JoinColumn(name = "idpagamento", unique = true)
-	private Pagamento pagamento;
+	@JoinColumn(name = "idformapagamento", unique = true)
+	private FormaPagamento formaPagamento;
 
 	public Carrinho getCarrinho() {
 		return carrinho;
@@ -28,12 +28,13 @@ public class Pedido extends DefaultEntity<Pedido> {
 		this.carrinho = carrinho;
 	}
 
-	public Pagamento getPagamento() {
-		return pagamento;
+
+	public FormaPagamento getFormaPagamento() {
+		return formaPagamento;
 	}
 
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
 
 	public String getNumeroPedido() {

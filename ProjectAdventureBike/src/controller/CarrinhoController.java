@@ -11,13 +11,8 @@ import javax.inject.Named;
 import application.Session;
 import application.Util;
 import model.Carrinho;
-import model.Estoque;
 import model.ItemPedido;
-import model.Pedido;
-import model.Produto;
 import model.Usuario;
-import repository.CarrinhoRepository;
-import repository.ProdutoRepository;
 
 @Named
 @ViewScoped
@@ -29,8 +24,6 @@ public class CarrinhoController extends Controller<Carrinho> {
 	public Carrinho getEntity() {
 		if (entity == null) {
 			entity = new Carrinho();
-			entity.setPedido(new Pedido());
-			entity.setUsuario(new Usuario());
 		}
 		List<ItemPedido> carrinhoPedido = (ArrayList<ItemPedido>) Session.getInstance().getAttribute("carrinho");
 

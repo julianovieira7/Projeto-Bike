@@ -67,12 +67,44 @@
 								</h:panelGrid>
 							</p:tab>
 							<p:tab title="Cartão de Credito">
+								<p:outputLabel value="nome do titular:" />
+								<p:inputText value="#{formaPagamentoController.entity.nome}"
+									required="true" requiredMessage="Informe o nome do titular." />
+
+								<p:outputLabel value="digite o numero do cartao:" />
+								<p:inputText
+									value="#{formaPagamentoController.entity.cartaoCredito.numeroCartao}"
+									required="true" requiredMessage="Informe o numero do cartao." />
+
+								<p:outputLabel value="codigoSeguranca:" />
+								<p:inputText
+									value="#{formaPagamentoController.entity.cartaoCredito.codigoSeguranca}"
+									required="true"
+									requiredMessage="Informe o codigo de seguranca." />
+
+								<p:outputLabel value="data de vencimento:">
+									<p:message for="itData" escape="false" />
+								</p:outputLabel>
+								<p:calendar id="itData" required="true"
+									requiredMessage="Informe a data de vencimento." size="30"
+									value="#{formaPagamentoController.entity.dataVencimento}"
+									pattern="dd/MM/yyyy" />
+								<p:outputLabel value="bandeira:" />
+								<p:selectOneMenu
+									value="#{formaPagamentoController.entity.cartaoCredito.bandeira}">
+									<f:selectItem itemLabel="Selecione ..." itemValue="" />
+									<f:selectItems
+										value="#{formaPagamentoController.listaBandeira}"
+										var="bandeira" itemLabel="#{bandeira.label}"
+										itemValue="#{bandeira}" />
+								</p:selectOneMenu>
 								<p:outputLabel value="Tipo de cartao: " />
 								<p:selectOneMenu
-									value="#{pagamentoController.entity.formaPagamento.cartaoCredito.tipoCartao}">
+									value="#{formaPagamentoController.entity.cartaoCredito.tipoCartao}">
 									<f:selectItem itemLabel="Selecione ..." itemValue="" />
-									<f:selectItems value="#{pagamentoController.listaTipoCartao}"
-										var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+									<f:selectItems
+										value="#{formaPagamentoController.listaTipoCartao}" var="tipo"
+										itemLabel="#{tipo.label}" itemValue="#{tipo}" />
 								</p:selectOneMenu>
 							</p:tab>
 						</p:tabView>
@@ -82,7 +114,7 @@
 				<f:facet name="footer">
 					<div align="center">
 						<p:commandButton value="Entrar" icon="pi pi-check" process="@form"
-							update="@form" action="#{loginController.logar}" />
+							update="@form" action="#{formaPagamentoController.salvar}" />
 
 					</div>
 				</f:facet>

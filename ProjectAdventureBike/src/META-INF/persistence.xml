@@ -23,7 +23,6 @@
 		<class>model.FormaPagamento</class>
 		<class>model.NotaFiscal</class>
 		<class>model.CartaoCredito</class>
-		<class>model.Pagamento</class>
 		<class>model.Cidade</class>
 		<class>model.Estado</class>
 		<class>converter.jpa.ConverterBandeira</class>
