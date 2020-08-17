@@ -38,7 +38,7 @@
 			<p:graphicImage name="/images/loading.gif" />
 		</p:dialog>
 
-		<h:form id="form">
+		<h:form>
 			<div align="center">
 				<h:panelGrid id="panelForm" columns="3">
 
@@ -64,7 +64,7 @@
 							style="max-width: 290px !important; max-height: 290px !important;"
 							src="img-produto?nome=#{produto.id}.png" />
 
-						<h:outputText value="#{produto.nome}" />
+						<h:outputText value="#{produto.valor}" />
 
 						<p:commandButton value="descricao" icon="pi pi-bars"
 							action="#{vendaProdutoController.descricao(produto.id)}" />

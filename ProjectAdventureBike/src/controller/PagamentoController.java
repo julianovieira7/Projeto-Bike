@@ -4,9 +4,11 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import model.Bandeira;
+import model.Boleto;
+import model.CartaoCredito;
 import model.Pagamento;
 import model.Pedido;
-import model.QuantMarcha;
+import model.TipoCartao;
 
 @Named
 @ViewScoped
@@ -29,13 +31,18 @@ public class PagamentoController extends Controller<Pagamento> {
 
 	@Override
 	public Pagamento getEntity() {
-		return null;
+		if (entity == null) {
+			entity.getFormaPagamento().setBoleto(new Boleto());
+			entity.getFormaPagamento().setCartaoCredito(new CartaoCredito());
+		}
+		return entity;
 	}
+
 	public Bandeira[] getListaBandeira() {
 		return Bandeira.values();
 	}
 
-	public QuantMarcha[] getListaQuantMarcha() {
-		return QuantMarcha.values();
+	public TipoCartao[] getListaTipoCartao() {
+		return TipoCartao.values();
 	}
 }

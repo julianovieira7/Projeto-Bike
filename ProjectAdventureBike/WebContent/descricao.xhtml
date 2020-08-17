@@ -48,13 +48,13 @@
 				<p:growl id="growl" globalOnly="false" />
 				<p:panel id="panel">
 					<f:facet name="header">
-
 						<h:outputText value="#{descricaoController.produto.nome}" />
-						<p:panelGrid>
-							<div align="center" style="float: center; position: relative;">
-								<img class="img-responsive"
-									style="max-width: 270px !important; max-height: 270px !important;"
-									src="img-produto?nome=#{descricaoController.produto.id}.png" />
+						<p:panelGrid columns="3">
+							<div align="left" style="float: left;">
+
+									<img  class="img-responsive"
+										style="max-width: 500px !important; max-height: 500px !important;"
+										src="img-produto?nome=#{descricaoController.produto.id}.png" />
 							</div>
 						</p:panelGrid>
 					</f:facet>
@@ -62,7 +62,7 @@
 						<div class="ui-g-12">
 							<div class="card card-w-title" align="center">
 
-								<p:panelGrid columns="1"
+								<p:panelGrid columns="2"
 									styleClass="form-group ui-panelgrid-blank" layout="grid">
 
 
@@ -81,7 +81,7 @@
 						<f:facet name="left">
 							<p:commandButton value="Comprar" icon="pi pi-check"
 								process="@form" update="@form"
-								action="#{descricaoController.comprar}" />
+								action="#{descricaoController.comprar(descricaoController.produto.id)}" />
 
 						</f:facet>
 

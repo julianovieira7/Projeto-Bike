@@ -1,47 +1,54 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 
 import application.Session;
 import application.Util;
-import factory.JPAFactory;
 import model.Carrinho;
+import model.Endereco;
 import model.ItemPedido;
 import model.Pedido;
-import model.Produto;
+import model.Telefone;
 import model.Usuario;
-import repository.CarrinhoRepository;
-import repository.FornecedorRepository;
 import repository.ProdutoRepository;
-import repository.Repository;
 
 @Named
 @ViewScoped
 public class PedidoController extends Controller<Pedido> {
 
 	private static final long serialVersionUID = 8702988121934899052L;
-	private String nome;
-	private List<Produto> listaProduto = null;
-	private Usuario usuario;
+	private Carrinho carrinho;
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Carrinho getCarrinho() {
+		if (carrinho == null) {
+			setCarrinho(new Carrinho());
+			carrinho.setPedido(new Pedido());
+			carrinho.setUsuario(new Usuario());
+		}
+		return carrinho;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	public PedidoController() {
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.keep("carrinhoFlash");
+		getCarrinho().setListaItem((List<ItemPedido>) flash.get("carrinhoFlash"));
+		getCarrinho().setUsuario((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
+		System.out.println("entreiii");
+		System.out.println(getCarrinho().toString());
 	}
 
 	@Override
 	public void salvar() {
-		entity.getCarrinho().setUsuario(getUsuario());
-		
+		entity.setCarrinho(entity.getCarrinho());
 		super.salvar();
 	}
 
@@ -54,46 +61,8 @@ public class PedidoController extends Controller<Pedido> {
 		return null;
 	}
 
-	public void pesquisar() {
-		ProdutoRepository repo = new ProdutoRepository();
-		setListaProduto(repo.findByNome(getNome()));
-	}
+	public void formaPagamento() {
 
-	public List<Produto> getListaProduto() {
-		if (listaProduto == null) {
-			ProdutoRepository repo = new ProdutoRepository();
-			listaProduto = repo.findByNome(getNome());
-			if (listaProduto == null)
-				listaProduto = new ArrayList<Produto>();
-		}
-		return listaProduto;
+		Util.redirect("/faces/formapagamento.xhtml?faces-redirect=true");
 	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setListaProduto(List<Produto> listaProduto) {
-		this.listaProduto = listaProduto;
-	}
-
-	public String Boleto() {
-//		if (usuario != null) {
-//			// adicionando um ussuario na sessao
-//			Session.getInstance().setAttribute("usuarioLogado", usuario);
-//			// redirecionando para o template
-//			if (usuario.getPerfil().getId() == 0)
-		return "boleto.xhtml?faces-redirect=true";
-//			else
-//				return "login.xhtml?faces-redirect=true";
-//
-//		}
-//		Util.addMessageError("Login ou Senha inv�lido.");
-//		return "";
-	}
-
 }

@@ -16,8 +16,8 @@ public class Pedido extends DefaultEntity<Pedido> {
 	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
 	@JoinColumn(name = "idcarrinho", unique = true)
 	private Carrinho carrinho;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pagamento", unique = true)
+	@OneToOne( cascade = CascadeType.ALL)
+	@JoinColumn(name = "idpagamento", unique = true)
 	private Pagamento pagamento;
 
 	public Carrinho getCarrinho() {

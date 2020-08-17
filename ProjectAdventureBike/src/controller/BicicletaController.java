@@ -63,7 +63,7 @@ public class BicicletaController extends Controller<Bicicleta> {
 				Util.addMessageInfo("Cadastro realizado com sucesso");
 				return;
 			}
-			if (Util.saveImageBicicleta(fotoInputStream, "png", getEntity().getId())) {
+			if (Util.saveImageProduto(fotoInputStream, "png", getEntity().getId())) {
 				limpar();
 				Util.addMessageInfo("Cadastro realizado com sucesso");
 				return;

@@ -62,21 +62,35 @@
 						<p:outputLabel value="Escolha a sua forma de pagamento">
 
 
-							<div class="card card-w-title">
-								<p:panelGrid columns="1"
-									styleClass="form-group ui-panelgrid-blank" layout="grid">
+							<p:tabView>
 
-									<p:outputLabel value="Boleto" />
-									<p:inputText value="#{pagamentoController.boleto}" />
+								<p:tab title="Boleto">
+									<h:panelGrid columns="2" cellpadding="10">
+										<p:outputLabel value="Boleto" />
+								
 
-									<p:outputLabel value="cartao de credito" />
-									<p:password value="#{pagamentoController.cartaoCredito}" />
+										<p:outputLabel value="Rua :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.rua}" />
 
-								</p:panelGrid>
+										<p:outputLabel value="Numero :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.numero}" />
 
+										<p:outputLabel value="Ponto de referencia :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.pontoReferencia}" />
 
-							</div>
-						</p:outputLabel>
+										<p:outputLabel value="Complemento :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.complemento}" />
+										<p:outputLabel value="Telefone (Número):" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.telefone.numero}" />
+									</h:panelGrid>
+								</p:tab>
+
+							</p:tabView>
 					</div>
 				</div>
 

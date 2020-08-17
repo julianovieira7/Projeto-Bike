@@ -49,54 +49,85 @@
 
 	<h:form>
 		<p:growl id="growl" globalOnly="false" />
-		<div align="center">
-			<p:panel id="panel" style="width:500px">
-				<f:facet name="header">
-					<div align="center">
-						<h1>Forma de Pagamento</h1>
-					</div>
-				</f:facet>
+		<p:panel id="panel">
+			<f:facet name="header">
+				<div align="center">
+					<h1>Pedido</h1>
+				</div>
+			</f:facet>
+			<center>
 				<div class="ui-g ui-fluid">
 					<div class="ui-g-12">
+						<div class="card card-w-title">
+							<h:messages style="color:red" />
 
-						<p:outputLabel value="Pedido numero:"
-							rendered="#{pedidoController.entity.numeroPedido}">
+							<p:dataTable value="#{pedidoController.carrinho.listaItem}"
+								var="entity">
+								<p:column>
+									<f:facet name="header">Nome</f:facet>
+									<h:outputLabel value="#{entity.produto.nome}" />
+								</p:column>
 
-							<div class="card card-w-title">
-								<p:panelGrid columns="1"
-									styleClass="form-group ui-panelgrid-blank" layout="grid">
+								<p:column>
+									<f:facet name="header">Valor</f:facet>
+									<h:outputLabel value="#{entity.valor}">
+										<f:convertNumber locale="pt_BR" currencySymbol="R$"
+											type="currency" />
+									</h:outputLabel>
+								</p:column>
 
-									<p:outputLabel value="Boleto" />
-									<p:inputText value="#{loginController.usuario.email}" />
+							</p:dataTable>
+							<p:tabView>
 
-									<p:outputLabel value="Senha" />
-									<p:password value="#{loginController.usuario.senha}" />
+								<p:tab title="Endereco e Telefone">
+									<h:panelGrid columns="2" cellpadding="10">
+										<p:outputLabel value="Endereco cep:" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.cep}" />
 
-								</p:panelGrid>
+										<p:outputLabel value="Rua :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.rua}" />
 
-							</div>
-						</p:outputLabel>
+										<p:outputLabel value="Numero :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.numero}" />
+
+										<p:outputLabel value="Ponto de referencia :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.pontoReferencia}" />
+
+										<p:outputLabel value="Complemento :" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.endereco.complemento}" />
+										<p:outputLabel value="Telefone (Número):" />
+										<h:outputText
+											value="#{pedidoController.carrinho.usuario.telefone.numero}" />
+									</h:panelGrid>
+								</p:tab>
+							
+							</p:tabView>
+						</div>
+
+
+						<div align="center">
+							<p:commandButton value="finalizar pedido" icon="pi pi-check"
+								process="@form" update="@form"
+								action="#{pedidoController.formaPagamento}" />
+						</div>
 					</div>
+
 				</div>
+			</center>
+		</p:panel>
 
-				<f:facet name="footer">
-					<div align="center">
-						<p:commandButton value="Entrar" icon="pi pi-check" process="@form"
-							update="@form" action="#{loginController.logar}" />
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" />
+		</p:confirmDialog>
 
-						<p:commandButton value="Limpar" process="@this" update="panel"
-							action="#{loginController.limpar}">
-							<p:ajax update="@form" resetValues="true" />
-						</p:commandButton>
-
-						<p:commandButton value="Cadastrar" icon="pi pi-check"
-							process="@form" update="@form"
-							action="#{loginController.cadastrar}" />
-
-					</div>
-				</f:facet>
-			</p:panel>
-		</div>
 	</h:form>
 </h:body>
 </html>
