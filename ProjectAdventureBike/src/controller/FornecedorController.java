@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import application.Util;
 import controller.listing.FornecedorListing;
 import model.Fornecedor;
 import model.Telefone;
@@ -28,6 +29,16 @@ public class FornecedorController extends Controller<Fornecedor> {
 			entity.setTelefone(new Telefone());
 		}
 		return entity;
+	}
+
+	@Override
+	public void salvar() {
+		FornecedorRepository repo = new FornecedorRepository();
+		if (repo.containsCnpj(entity.getId(), entity.getCnpj()))
+			Util.addMessageWarn("CNPJ já cadastrado no sistema");
+		
+		super.salvar();
+
 	}
 
 	public void pesquisar() {

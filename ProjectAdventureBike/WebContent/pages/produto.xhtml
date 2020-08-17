@@ -49,7 +49,7 @@
 				</f:facet>
 				<p:tabView>
 					<p:tab title="Dados Básicos">
-						<h:panelGrid columns="2" cellpadding="10">
+						<h:panelGrid columns="2" cellpadding="5">
 							<p:commandLink value="Nome: "
 								actionListener="#{produtoController.abrirProdutoListing}"
 								process="@this" update="@none">
@@ -89,6 +89,7 @@
 										<p:ajax event="dialogReturn"
 											listener="#{produtoController.obterMarcaListing}"
 											update="itMarca" />
+										<p:message for="itModelo" escape="false" />
 									</p:commandButton>
 									<p:inputText id="itMarca"
 										value="#{produtoController.entity.marca.nome}" required="true"

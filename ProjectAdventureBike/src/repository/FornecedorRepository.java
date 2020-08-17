@@ -1,5 +1,6 @@
 package repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -24,23 +25,24 @@ public class FornecedorRepository extends Repository<Fornecedor> {
 		return query.getResultList();
 	}
 
-	public List<Fornecedor> findByNome(String nome, Integer idTelefone) {
+	public boolean containsCnpj(Integer id, String cnpj) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append("  count(*) ");
+		sql.append("FROM ");
+		sql.append("  Fornecedor f ");
+		sql.append("WHERE ");
+		sql.append("  upper(f.cnpj) = upper(?) ");
+		sql.append("  AND f.id <> ? ");
 
-		StringBuffer jpql = new StringBuffer();
-		jpql.append("SELECT ");
-		jpql.append("  c ");
-		jpql.append("FROM ");
-		jpql.append("  Fornecedor c ");
-		jpql.append("WHERE ");
-		jpql.append("  c.telefone.id = :idTelefone ");
-		jpql.append("  AND upper(c.nome) like upper(:nome) ");
+		Query query = getEntityManager().createNativeQuery(sql.toString());
 
-		Query query = getEntityManager().createQuery(jpql.toString());
+		query.setParameter(1, cnpj);
+		query.setParameter(2, id == null ? -1 : id);
 
-		query.setParameter("idEstado", idTelefone);
-		query.setParameter("nome", "%" + nome + "%");
+		BigInteger resultado = (BigInteger) query.getSingleResult();
 
-		return query.getResultList();
+		return (resultado == null || resultado.equals(BigInteger.ZERO)) ? false : true;
 	}
 
 }
