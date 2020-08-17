@@ -24,6 +24,10 @@
 		<class>model.NotaFiscal</class>
 		<class>model.CartaoCredito</class>
 		<class>model.Pagamento</class>
+		<class>model.Cidade</class>
+		<class>model.Estado</class>
+		<class>converter.jpa.ConverterBandeira</class>
+		<class>converter.jpa.ConverterTipoCartao</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" /> <!-- DB Driver -->
