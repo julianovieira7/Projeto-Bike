@@ -1,10 +1,6 @@
 package controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
@@ -27,7 +23,6 @@ public class UsuarioController extends Controller<Usuario> {
 	private static final long serialVersionUID = 6037007969793097884L;
 	private String filtro;
 	private List<Usuario> listaUsuario;
-
 
 	@Override
 	public Usuario getEntity() {
@@ -84,15 +79,12 @@ public class UsuarioController extends Controller<Usuario> {
 		getEntity().setSenha(hashSenha);
 		UsuarioRepository repo = new UsuarioRepository();
 		if (repo.containsCpf(entity.getId(), entity.getCpf())) {
-			Util.addMessageError("CPF já cadastrado no sistema");
+			Util.addMessageError("CPF jï¿½ cadastrado no sistema");
 		}
 
 		else if (repo.contains(entity.getId(), entity.getEmail())) {
-			Util.addMessageError("Email já cadastrado no sistema");
+			Util.addMessageError("Email jï¿½ cadastrado no sistema");
 		} else
 			super.salvar();
 	}
-
-
-
 }

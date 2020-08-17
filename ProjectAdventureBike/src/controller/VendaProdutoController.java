@@ -12,8 +12,6 @@ import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
-import application.Session;
-import application.Util;
 import model.ItemPedido;
 import model.Produto;
 import model.Usuario;

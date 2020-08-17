@@ -1,10 +1,5 @@
 package controller;
 
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -39,11 +34,11 @@ public class ClienteController extends Controller<Usuario> {
 		getEntity().setPerfil(Perfil.CLIENTE);
 		UsuarioRepository repo = new UsuarioRepository();
 		if (repo.containsCpf(entity.getId(), entity.getCpf())) {
-			Util.addMessageError("CPF já cadastrado no sistema");
+			Util.addMessageError("CPF jï¿½ cadastrado no sistema");
 		}
 
 		else if (repo.contains(entity.getId(), entity.getEmail())) {
-			Util.addMessageError("Email já cadastrado no sistema");
+			Util.addMessageError("Email jï¿½ cadastrado no sistema");
 		} else
 			super.salvar();
 	}

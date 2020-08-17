@@ -4,29 +4,29 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="ProjectAdventureBike">
-		<class>model.DefaultEntity</class>
-		<class>model.Carrinho</class>
-		<class>model.Estoque</class>
-		<class>model.ItemPedido</class>
-		<class>model.Fornecedor</class>
-		<class>model.Marca</class>
-		<class>model.Endereco</class>
-		<class>model.Bicicleta</class>
-		<class>model.TipoRevisao</class>
-		<class>model.ServicoPrestado</class>
-		<class>model.Pedido</class>
-		<class>model.Produto</class>
-		<class>model.Telefone</class>
-		<class>model.TipoProduto</class>
-		<class>model.Usuario</class>
-		<class>model.Boleto</class>
-		<class>model.FormaPagamento</class>
-		<class>model.NotaFiscal</class>
-		<class>model.CartaoCredito</class>
-		<class>model.Cidade</class>
-		<class>model.Estado</class>
 		<class>converter.jpa.ConverterBandeira</class>
 		<class>converter.jpa.ConverterTipoCartao</class>
+		<class>model.Bicicleta</class>
+		<class>model.Boleto</class>
+		<class>model.Carrinho</class>
+		<class>model.CartaoCredito</class>
+		<class>model.Cidade</class>
+		<class>model.DefaultEntity</class>
+		<class>model.Endereco</class>
+		<class>model.Estado</class>
+		<class>model.Estoque</class>
+		<class>model.FormaPagamento</class>
+		<class>model.Fornecedor</class>
+		<class>model.ItemPedido</class>
+		<class>model.Marca</class>
+		<class>model.NotaFiscal</class>
+		<class>model.Pedido</class>
+		<class>model.Produto</class>
+		<class>model.ServicoPrestado</class>
+		<class>model.Telefone</class>
+		<class>model.TipoProduto</class>
+		<class>model.TipoRevisao</class>
+		<class>model.Usuario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" /> <!-- DB Driver -->

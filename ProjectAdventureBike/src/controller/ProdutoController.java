@@ -56,9 +56,7 @@ public class ProdutoController extends Controller<Produto> {
 	
 	@Override
 	public void salvar() {
-		// salvando no banco de dados
 		if (salvarEspecial()) {
-			// caso nao tenha selecionado a imagem sair do metodo
 			if (fotoInputStream == null) {
 				limpar();
 				Util.addMessageInfo("Cadastro realizado com sucesso");

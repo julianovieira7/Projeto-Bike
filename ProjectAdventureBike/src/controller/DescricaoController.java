@@ -60,20 +60,15 @@ public class DescricaoController implements Serializable {
 	public Double comprar(int idProduto) {
 		ProdutoRepository repo = new ProdutoRepository();
 		Produto produto = repo.findById(idProduto);
-		// verifica se existe um carrinho na sessao
 		if (Session.getInstance().getAttribute("carrinho") == null) {
-			// adiciona um carrinho (de itens de venda) na sessao
 			Session.getInstance().setAttribute("carrinho", new ArrayList<ItemPedido>());
 		}
 
-		// obtendo o carrinho da sessao
 		List<ItemPedido> carrinho = (ArrayList<ItemPedido>) Session.getInstance().getAttribute("carrinho");
 
-		// criando um item de venda para adicionar no carrinho
 		ItemPedido item = new ItemPedido();
 		item.setProduto(produto);
 		item.setValor(produto.getValor());
-		// adicionando o item no carrinho (variavel local)
 		carrinho.add(item);
 		int i = 0;
 		for (ItemPedido itemPedido : carrinho) {
@@ -87,8 +82,6 @@ public class DescricaoController implements Serializable {
 			System.out.println("valor do carrinho: " + valorCarrinho);
 
 		}
-
-		// atualizando o carrinho na sessao
 		Session.getInstance().setAttribute("carrinho", carrinho);
 		System.out.println(item.toString());
 		Util.addMessageInfo("Produto adicionado no carrinho. " + "Quantidade de Itens: " + carrinho.size());

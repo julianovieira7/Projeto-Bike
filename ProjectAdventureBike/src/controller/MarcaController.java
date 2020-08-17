@@ -24,6 +24,7 @@ public class MarcaController extends Controller<Marca> {
 		if (entity == null) {
 			entity = new Marca();
 		}
+		System.out.println(entity.toString());
 		return entity;
 	}
 

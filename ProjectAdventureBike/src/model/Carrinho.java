@@ -21,6 +21,7 @@ public class Carrinho extends DefaultEntity<Carrinho> {
 	private Usuario usuario;
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idpedido")
 	private Pedido pedido;
 
 	@OneToMany(cascade = CascadeType.ALL)

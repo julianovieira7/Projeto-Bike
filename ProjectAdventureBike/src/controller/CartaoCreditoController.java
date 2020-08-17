@@ -3,13 +3,26 @@ package controller;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import model.Bandeira;
+import model.Boleto;
 import model.CartaoCredito;
+import model.FormaPagamento;
+import model.TipoCartao;
 
 @Named
 @ViewScoped
 public class CartaoCreditoController extends Controller<CartaoCredito> {
 
-	private static final long serialVersionUID = -118637159232779482L;
+	private static final long serialVersionUID = -6808058965760290520L;
+
+	@Override
+	public void salvar() {
+		PedidoController pedido = new PedidoController();
+//		CarrinhoController carrinho = new CarrinhoController();
+		pedido.salvar();
+//		carrinho.salvar();
+		super.salvar();
+	}
 
 	@Override
 	public CartaoCredito getEntity() {
@@ -19,4 +32,11 @@ public class CartaoCreditoController extends Controller<CartaoCredito> {
 		return entity;
 	}
 
+	public Bandeira[] getListaBandeira() {
+		return Bandeira.values();
+	}
+
+	public TipoCartao[] getListaTipoCartao() {
+		return TipoCartao.values();
+	}
 }

@@ -10,12 +10,9 @@ import javax.inject.Named;
 import application.Session;
 import application.Util;
 import model.Carrinho;
-import model.Endereco;
 import model.ItemPedido;
 import model.Pedido;
-import model.Telefone;
 import model.Usuario;
-import repository.ProdutoRepository;
 
 @Named
 @ViewScoped
@@ -48,7 +45,7 @@ public class PedidoController extends Controller<Pedido> {
 
 	@Override
 	public void salvar() {
-		entity.setCarrinho(entity.getCarrinho());
+		getEntity().setCarrinho(getCarrinho());
 		super.salvar();
 	}
 
@@ -56,13 +53,15 @@ public class PedidoController extends Controller<Pedido> {
 	public Pedido getEntity() {
 		if (entity == null) {
 			setEntity(new Pedido());
-			entity.setCarrinho(new Carrinho());
 		}
-		return null;
+		return entity;
 	}
 
-	public void formaPagamento() {
+	public void boleto() {
+		Util.redirect("/faces/boleto.xhtml?faces-redirect=true");
+	}
 
-		Util.redirect("/faces/formapagamento.xhtml?faces-redirect=true");
+	public void cartaoCredito() {
+		Util.redirect("/faces/cartaocredito.xhtml?faces-redirect=true");
 	}
 }

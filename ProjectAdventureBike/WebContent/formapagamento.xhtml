@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" lang="en">
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
 
-<h:head>
-	<f:facet name="first">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-	</f:facet>
-	<title>Login</title>
-	<style type="text/css">
+	<ui:define name="head">
+		<style type="text/css">
 .ui-panelgrid.form-elements .ui-grc-2 {
 	padding-left: 60px;
 }
@@ -35,91 +26,92 @@
 	line-height: 2.1em;
 }
 </style>
-</h:head>
+	</ui:define>
 
-<h:body>
+	<ui:define name="content">
 
-	<p:ajaxStatus onstart="PF('statusDialog').show()"
-		onsuccess="PF('statusDialog').hide()" />
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" />
 
-	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-		closable="false" resizable="false" showHeader="false">
-		<p:graphicImage name="/images/loading.gif" />
-	</p:dialog>
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage name="/images/loading.gif" />
+		</p:dialog>
 
-	<h:form>
-		<p:growl id="growl" globalOnly="false" />
-		<div align="center">
-			<p:panel id="panel" style="width:500px">
-				<f:facet name="header">
-					<div align="center">
-						<h1>Forma de Pagamento</h1>
+		<h:form>
+			<p:growl id="growl" globalOnly="false" />
+			<div align="center">
+				<p:panel id="panel" style="width:500px">
+					<f:facet name="header">
+						<div align="center">
+							<h1>Forma de Pagamento</h1>
+						</div>
+					</f:facet>
+					<div class="ui-g ui-fluid">
+						<div class="ui-g-12">
+
+							<p:outputLabel value="Escolha a sua forma de pagamento" />
+							<p:tabView>
+								<p:tab title="Boleto">
+									<h:panelGrid columns="2" cellpadding="10">
+										<p:outputLabel value="Boleto" />
+									</h:panelGrid>
+								</p:tab>
+								<p:tab title="Cartão de Credito">
+									<p:outputLabel value="nome do titular:" />
+									<p:inputText value="#{formaPagamentoController.entity.nome}"
+										required="true" requiredMessage="Informe o nome do titular." />
+
+									<p:outputLabel value="digite o numero do cartao:" />
+									<p:inputText
+										value="#{formaPagamentoController.entity.cartaoCredito.numeroCartao}"
+										required="true" requiredMessage="Informe o numero do cartao." />
+
+									<p:outputLabel value="codigoSeguranca:" />
+									<p:inputText
+										value="#{formaPagamentoController.entity.cartaoCredito.codigoSeguranca}"
+										required="true"
+										requiredMessage="Informe o codigo de seguranca." />
+
+									<p:outputLabel value="data de vencimento:">
+										<p:message for="itData" escape="false" />
+									</p:outputLabel>
+									<p:calendar id="itData" required="true"
+										requiredMessage="Informe a data de vencimento." size="30"
+										value="#{formaPagamentoController.entity.dataVencimento}"
+										pattern="dd/MM/yyyy" />
+									<p:outputLabel value="bandeira:" />
+									<p:selectOneMenu
+										value="#{formaPagamentoController.entity.cartaoCredito.bandeira}">
+										<f:selectItem itemLabel="Selecione ..." itemValue="" />
+										<f:selectItems
+											value="#{formaPagamentoController.listaBandeira}"
+											var="bandeira" itemLabel="#{bandeira.label}"
+											itemValue="#{bandeira}" />
+									</p:selectOneMenu>
+									<p:outputLabel value="Tipo de cartao: " />
+									<p:selectOneMenu
+										value="#{formaPagamentoController.entity.cartaoCredito.tipoCartao}">
+										<f:selectItem itemLabel="Selecione ..." itemValue="" />
+										<f:selectItems
+											value="#{formaPagamentoController.listaTipoCartao}"
+											var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+									</p:selectOneMenu>
+								</p:tab>
+							</p:tabView>
+						</div>
 					</div>
-				</f:facet>
-				<div class="ui-g ui-fluid">
-					<div class="ui-g-12">
 
-						<p:outputLabel value="Escolha a sua forma de pagamento" />
-						<p:tabView>
-							<p:tab title="Boleto">
-								<h:panelGrid columns="2" cellpadding="10">
-									<p:outputLabel value="Boleto" />
-								</h:panelGrid>
-							</p:tab>
-							<p:tab title="Cartão de Credito">
-								<p:outputLabel value="nome do titular:" />
-								<p:inputText value="#{formaPagamentoController.entity.nome}"
-									required="true" requiredMessage="Informe o nome do titular." />
+					<f:facet name="footer">
+						<div align="center">
+							<p:commandButton value="Entrar" icon="pi pi-check"
+								process="@form" update="@form"
+								action="#{formaPagamentoController.salvar}" />
 
-								<p:outputLabel value="digite o numero do cartao:" />
-								<p:inputText
-									value="#{formaPagamentoController.entity.cartaoCredito.numeroCartao}"
-									required="true" requiredMessage="Informe o numero do cartao." />
-
-								<p:outputLabel value="codigoSeguranca:" />
-								<p:inputText
-									value="#{formaPagamentoController.entity.cartaoCredito.codigoSeguranca}"
-									required="true"
-									requiredMessage="Informe o codigo de seguranca." />
-
-								<p:outputLabel value="data de vencimento:">
-									<p:message for="itData" escape="false" />
-								</p:outputLabel>
-								<p:calendar id="itData" required="true"
-									requiredMessage="Informe a data de vencimento." size="30"
-									value="#{formaPagamentoController.entity.dataVencimento}"
-									pattern="dd/MM/yyyy" />
-								<p:outputLabel value="bandeira:" />
-								<p:selectOneMenu
-									value="#{formaPagamentoController.entity.cartaoCredito.bandeira}">
-									<f:selectItem itemLabel="Selecione ..." itemValue="" />
-									<f:selectItems
-										value="#{formaPagamentoController.listaBandeira}"
-										var="bandeira" itemLabel="#{bandeira.label}"
-										itemValue="#{bandeira}" />
-								</p:selectOneMenu>
-								<p:outputLabel value="Tipo de cartao: " />
-								<p:selectOneMenu
-									value="#{formaPagamentoController.entity.cartaoCredito.tipoCartao}">
-									<f:selectItem itemLabel="Selecione ..." itemValue="" />
-									<f:selectItems
-										value="#{formaPagamentoController.listaTipoCartao}" var="tipo"
-										itemLabel="#{tipo.label}" itemValue="#{tipo}" />
-								</p:selectOneMenu>
-							</p:tab>
-						</p:tabView>
-					</div>
-				</div>
-
-				<f:facet name="footer">
-					<div align="center">
-						<p:commandButton value="Entrar" icon="pi pi-check" process="@form"
-							update="@form" action="#{formaPagamentoController.salvar}" />
-
-					</div>
-				</f:facet>
-			</p:panel>
-		</div>
-	</h:form>
-</h:body>
-</html>
+						</div>
+					</f:facet>
+				</p:panel>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -20,9 +20,7 @@ public class LoginController {
 		Usuario usuario = repo.verificarLoginSenha(getUsuario().getEmail(), hashSenha);
 
 		if (usuario != null) {
-			// adicionando um ussuario na sessao
 			Session.getInstance().setAttribute("usuarioLogado", usuario);
-			// redirecionando para o template
 			if (usuario.getPerfil().getId() == 0)
 				return "pages/produto.xhtml?faces-redirect=true";
 			else
