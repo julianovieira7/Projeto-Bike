@@ -50,15 +50,11 @@
 				<p:tabView>
 					<p:tab title="Dados Básicos">
 						<h:panelGrid columns="2" cellpadding="5">
-							<p:commandLink value="Nome: "
-								actionListener="#{produtoController.abrirProdutoListing}"
-								process="@this" update="@none">
 
-								<p:ajax event="dialogReturn"
-									listener="#{produtoController.obterProdutoListing}"
-									update="@form" />
-							</p:commandLink>
-							<p:inputText id="itProduto"
+							<p:outputLabel value="Nome: ">
+								<p:message for="itNome" escape="false" />
+							</p:outputLabel>
+							<p:inputText id="itNome"
 								value="#{produtoController.entity.nome}" required="true"
 								size="30" requiredMessage="Informe o nome." />
 
@@ -148,6 +144,21 @@
 					</p:tab>
 
 				</p:tabView>
+				<h:panelGrid columns="2">
+
+
+					<div class="ui-inputgroup">
+						<p:commandButton value="Listagem de Produtos"
+							actionListener="#{produtoController.abrirProdutoListing}"
+							process="@this" update="@none" icon="pi pi-list">
+
+							<p:ajax event="dialogReturn"
+								listener="#{produtoController.obterProdutoListing}"
+								update="@form" />
+						</p:commandButton>
+
+					</div>
+				</h:panelGrid>
 				<p:toolbar>
 
 					<f:facet name="left">

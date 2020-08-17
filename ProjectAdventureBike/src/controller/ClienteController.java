@@ -21,8 +21,6 @@ public class ClienteController extends Controller<Usuario> {
 
 	private static final long serialVersionUID = 8472571017501862875L;
 
-	private String auxiliar;
-
 	@Override
 	public Usuario getEntity() {
 		if (entity == null) {
@@ -35,17 +33,7 @@ public class ClienteController extends Controller<Usuario> {
 
 	@Override
 	public void salvar() {
-		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			Date date = (Date) formatter.parse(getAuxiliar());
-			getEntity().setDataAniversario(date);
 
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			Util.addMessageWarn("Data incorreta");
-			e.printStackTrace();
-
-		}
 		String hashSenha = Util.hashSHA256(getEntity().getSenha());
 		getEntity().setSenha(hashSenha);
 		getEntity().setPerfil(Perfil.CLIENTE);
@@ -54,19 +42,10 @@ public class ClienteController extends Controller<Usuario> {
 			Util.addMessageError("CPF já cadastrado no sistema");
 		}
 
-		else if(repo.contains(entity.getId(), entity.getEmail())) {
+		else if (repo.contains(entity.getId(), entity.getEmail())) {
 			Util.addMessageError("Email já cadastrado no sistema");
-		}
-		else
+		} else
 			super.salvar();
-	}
-
-	public String getAuxiliar() {
-		return auxiliar;
-	}
-
-	public void setAuxiliar(String auxiliar) {
-		this.auxiliar = auxiliar;
 	}
 
 }

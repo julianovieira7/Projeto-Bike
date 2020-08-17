@@ -49,12 +49,12 @@
 				</f:facet>
 				<p:tabView>
 					<p:tab title="Dados Pessoais">
-						<h:panelGrid columns="2" cellpadding="10">
+						<h:panelGrid columns="2" cellpadding="5">
 							<p:outputLabel value="Nome: ">
 								<p:message for="itNome" escape="false" />
 							</p:outputLabel>
 							<p:inputText id="itNome" value="#{clienteController.entity.nome}"
-								required="true" requiredMessage="Informe o nome." />
+								size="30" required="true" requiredMessage="Informe o nome." />
 
 							<p:outputLabel value="Cpf: ">
 								<p:message for="itCpf" escape="false" />
@@ -64,23 +64,25 @@
 							<p:inputMask id="itCpf" value="#{clienteController.entity.cpf}"
 								mask="999.999.999-99"
 								styleClass="form-control pr-3 d-flex justify-content-start"
-								size="24" required="true" requiredMessage="Informe o cpf." />
+								size="30" required="true" requiredMessage="Informe o cpf." />
 
 							<p:outputLabel value="E-mail:" />
-							<p:inputText value="#{clienteController.entity.email}"
+							<p:inputText value="#{clienteController.entity.email}" size="30"
 								required="true" requiredMessage="Informe o email." />
 
 							<p:outputLabel value="Senha:" />
 							<p:password id="feedback"
 								value="#{clienteController.entity.senha}" feedback="true"
-								required="true" requiredMessage="Informe a senha." />
+								size="30" required="true" requiredMessage="Informe a senha." />
 
 
-							<p:outputLabel value="Data de Nascimento:" />
-							<p:inputMask style="color: black; background: white; "
-								value="#{clienteController.auxiliar}" mask="99/99/9999"
-								styleClass="form-control pr-3 d-flex justify-content-start"
-								size="24" required="true" requiredMessage="Informe a data." />
+							<p:outputLabel value="Data de Aniversário:">
+								<p:message for="itData" escape="false" />
+							</p:outputLabel>
+							<p:calendar id="itData" required="true"
+								requiredMessage="Informe o nome." size="30"
+								value="#{clienteController.entity.dataAniversario}"
+								pattern="dd/MM/yyyy" />
 
 
 
@@ -90,38 +92,36 @@
 						</h:panelGrid>
 					</p:tab>
 					<p:tab title="Endereco e Telefone">
-						<h:panelGrid columns="2" cellpadding="10">
+						<h:panelGrid columns="2" cellpadding="5">
 							<p:outputLabel value="Endereco cep:" />
 							<p:inputMask value="#{clienteController.entity.endereco.cep}"
 								mask="99999-999"
 								styleClass="form-control pr-3 d-flex justify-content-start"
-								size="24" required="true" requiredMessage="Informe o cep." />
+								size="30" required="true" requiredMessage="Informe o cep." />
 
 
 
 							<p:outputLabel value="Rua :" />
 							<p:inputText value="#{clienteController.entity.endereco.rua}"
-								required="true" requiredMessage="Informe a rua." />
+								size="30" required="true" requiredMessage="Informe a rua." />
 
 							<p:outputLabel value="Numero :" />
 							<p:inputText value="#{clienteController.entity.endereco.numero}"
-								required="true" requiredMessage="Informe o numero." />
+								size="30" required="true" requiredMessage="Informe o numero." />
 
 
 							<p:outputLabel value="Ponto de referencia :" />
-							<p:inputText
-								value="#{clienteController.entity.endereco.pontoReferencia}"
-								/>
+							<p:inputText size="30"
+								value="#{clienteController.entity.endereco.pontoReferencia}" />
 
 							<p:outputLabel value="Complemento :" />
-							<p:inputText
-								value="#{clienteController.entity.endereco.complemento}"
-								 />
+							<p:inputText size="30"
+								value="#{clienteController.entity.endereco.complemento}" />
 							<p:outputLabel value="Telefone (Número):" />
 							<p:inputMask value="#{clienteController.entity.telefone.numero}"
 								mask="(99) 99999-9999"
 								styleClass="form-control pr-3 d-flex justify-content-start"
-								size="15" required="true" requiredMessage="Informe o telefone." />
+								size="30" required="true" requiredMessage="Informe o telefone." />
 						</h:panelGrid>
 					</p:tab>
 

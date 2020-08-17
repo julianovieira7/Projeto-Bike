@@ -52,21 +52,21 @@
 								<h:outputText value="#{row + 1}" />
 							</p:column>
 
-							<p:column headerText="Nome">
+							<p:column headerText="Nome" style="text-align: center;" >
 								<p:commandLink value="#{entity.nome}"
 									actionListener="#{usuarioListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
 
 							<p:column headerText="CPF"
-								style="width: 65px; text-align: center;">
+								style="width: 110px; text-align: center;">
 								<p:commandLink value="#{entity.cpf}"
 									actionListener="#{usuarioListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
 							</p:column>
 							
 							<p:column headerText="Telefone"
-								style="width: 65px; text-align: center;">
+								style="width: 110px; text-align: center;">
 								<p:commandLink value="#{entity.telefone.numero}"
 									actionListener="#{usuarioListing.select(entity.id)}"
 									process="@this" update="@form" resetValues="true" />
