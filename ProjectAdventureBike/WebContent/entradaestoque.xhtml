@@ -52,35 +52,45 @@
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
 
-								<h:panelGrid columns="1">
+								<h:panelGrid columns="2">
 
-									<div class="ui-inputgroup">
-										<p:commandButton value="Pesquisar"
-											actionListener="#{estoqueController.abrirFornecedorListing}"
-											process="@this" update="@none">
-											<p:ajax event="dialogReturn"
-												listener="#{estoqueController.obterFornecedorListing}"
-												update="itForn" />
-										</p:commandButton>
-										<p:inputText id="itForn"
-											value="#{estoqueController.entity.fornecedor.nome}"
-											required="true" requiredMessage="Informe o Fornecedor."
-											size="30" placeholder="Fornecedor" />
+									<h:panelGrid columns="1">
 
-									</div>
+										<div class="ui-inputgroup">
+											<p:commandButton value="Pesquisar"
+												actionListener="#{estoqueController.abrirFornecedorListing}"
+												process="@this" update="@none">
+												<p:ajax event="dialogReturn"
+													listener="#{estoqueController.obterFornecedorListing}"
+													update="itForn" />
+											</p:commandButton>
+											<p:inputText id="itForn"
+												value="#{estoqueController.entity.fornecedor.nome}"
+												required="true" requiredMessage="Informe o Fornecedor."
+												size="30" placeholder="Fornecedor" />
+
+										</div>
+									</h:panelGrid>
+									<h:panelGrid columns="1">
+
+										<div class="ui-inputgroup">
+											<p:commandButton value="Pesquisar"
+												actionListener="#{estoqueController.abrirProdutoListing}"
+												process="@this" update="@none">
+												<p:ajax event="dialogReturn"
+													listener="#{estoqueController.obterProdutoListing}"
+													update="itProd" />
+											</p:commandButton>
+											<p:inputText id="itProd"
+												value="#{estoqueController.entity.produto.nome}"
+												required="true" requiredMessage="Informe o Produto."
+												size="30" placeholder="Fornecedor" />
+
+										</div>
+									</h:panelGrid>
 								</h:panelGrid>
 
 
-								<p:commandLink value="Produto: "
-									actionListener="#{estoqueController.abrirProdutoListing}"
-									process="@this" update="@none">
-									<p:ajax event="dialogReturn"
-										listener="#{estoqueController.obterProdutoListing}"
-										update="itNomeProd" />
-
-								</p:commandLink>
-								<p:inputText id="itNomeProd"
-									value="#{estoqueController.entity.produto.nome}" />
 
 
 								<p:outputLabel value="Quantidade: ">

@@ -38,117 +38,124 @@
 			<p:graphicImage name="/images/loading.gif" />
 		</p:dialog>
 
-		<p:growl id="growl" showSummary="true" showDetail="true"
-			keepAlive="true" life="3000">
-			<p:autoUpdate />
-		</p:growl>
 
 		<h:form>
 			<p:growl id="growl" globalOnly="false" />
 			<p:panel id="panel">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Cadastro de Bicicleta</h1>
-					</div>
-					<div align="right" style="float: right; position: relative;">
-						<img class="img-responsive"
-							style="max-width: 80px !important; max-height: 80px !important;"
-							src="img-bicicleta?nome=#{bicicletaController.entity.id}.png" />
+						<h1>Cadastrar Bicicleta</h1>
 					</div>
 				</f:facet>
-				<div class="ui-g ui-fluid">
-					<div class="ui-g-12">
-						<div class="card card-w-title">
-							<p:panelGrid columns="1"
-								styleClass="form-group ui-panelgrid-blank" layout="grid">
+				<p:tabView>
+					<p:tab title="Dados Básicos">
 
-								<p:commandLink value="Nome: "
-									actionListener="#{bicicletaController.abrirBicicletaListing}"
-									process="@this" update="@none">
 
-									<p:ajax event="dialogReturn"
-										listener="#{bicicletaController.obterBicicletaListing}"
-										update="itBicicleta" />
-								</p:commandLink>
-								<p:inputText id="itBicicleta"
-									value="#{bicicletaController.entity.nome}" required="true"
-									requiredMessage="Informe o nome." />
+						<h:panelGrid columns="2" cellpadding="3">
+							<p:outputLabel value="Nome: ">
+								<p:message for="itNome" escape="false" />
+							</p:outputLabel>
+							<p:inputText id="itNome" required="true"
+								requiredMessage="Informe o Nome." size="33"
+								value="#{bicicletaController.entity.nome}" />
 
-								<p:outputLabel value="Material: ">
-									<p:message for="itMaterial" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itMaterial" required="true"
-									requiredMessage="Informe o material."
-									value="#{bicicletaController.entity.material}" />
+							<p:outputLabel value="Material: ">
+								<p:message for="itMaterial" escape="false" />
+							</p:outputLabel>
+							<p:inputText id="itMaterial" required="true"
+								requiredMessage="Informe o Material." size="33"
+								value="#{bicicletaController.entity.material}" />
+							<p:outputLabel value="Modelo: ">
+								<p:message for="itModelo" escape="false" />
+							</p:outputLabel>
+							<p:inputText id="itModelo" required="true"
+								requiredMessage="Informe o modelo." size="33"
+								value="#{bicicletaController.entity.modelo}" />
+							<p:outputLabel value="Valor: R$ ">
+								<p:message for="itValor" escape="false" />
+							</p:outputLabel>
+							<p:inputText id="itValor" required="true"
+								requiredMessage="Informe o Valor." size="33"
+								value="#{bicicletaController.entity.valor}" />
+						</h:panelGrid>
 
-								<p:outputLabel value="Modelo: ">
-									<p:message for="itModelo" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itModelo" required="true"
-									requiredMessage="Informe o modelo."
-									value="#{bicicletaController.entity.modelo}" />
 
-								<p:commandLink value="Marca: "
+						<h:panelGrid columns="3" cellpadding="2">
+
+							<div class="ui-inputgroup">
+								<p:commandButton value="Adicionar"
 									actionListener="#{bicicletaController.abrirMarcaListing}"
-									required="true" requiredMessage="Informe a marca."
 									process="@this" update="@none">
-
 									<p:ajax event="dialogReturn"
 										listener="#{bicicletaController.obterMarcaListing}"
 										update="itMarca" />
-								</p:commandLink>
-
+								</p:commandButton>
 								<p:inputText id="itMarca"
 									value="#{bicicletaController.entity.marca.nome}"
-									required="true" requiredMessage="Informe a marca." />
+									required="true" requiredMessage="Informe a Marca." size="30"
+									placeholder="Marca" />
 
-								
+							</div>
+						</h:panelGrid>
+						<h:panelGrid columns="2">
 
-								<p:outputLabel value="Valor: ">
-									<p:message for="itValor" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itValor" required="true"
-									requiredMessage="Informe o valor."
-									value="#{bicicletaController.entity.valor}" />
+							<p:outputLabel value="Selecione a modalidade: " />
+							<p:selectOneMenu value="#{bicicletaController.entity.modalidade}">
+								<f:selectItem itemLabel="Selecione ..." itemValue="" />
+								<f:selectItems value="#{bicicletaController.listaModalidade}"
+									var="modalidade" itemLabel="#{modalidade.label}"
+									itemValue="#{modalidade}" />
+							</p:selectOneMenu>
+							<p:outputLabel value="Selecione a quantidade de marchas: " />
+							<p:selectOneMenu
+								value="#{bicicletaController.entity.quantMarcha}">
+								<f:selectItem itemLabel="Selecione ..." itemValue="" />
+								<f:selectItems value="#{bicicletaController.listaQuantMarcha}"
+									var="quantMarcha" itemLabel="#{quantMarcha.quantidade}"
+									itemValue="#{quantMarcha}" />
+							</p:selectOneMenu>
 
-								<p:outputLabel value="Selecione a modalidade: " />
-								<p:selectOneMenu
-									value="#{bicicletaController.entity.modalidade}">
-									<f:selectItem itemLabel="Selecione ..." itemValue="" />
-									<f:selectItems value="#{bicicletaController.listaModalidade}"
-										var="modalidade" itemLabel="#{modalidade.label}"
-										itemValue="#{modalidade}" />
-								</p:selectOneMenu>
-								<p:outputLabel value="Selecione a quantidade de marchas: " />
-								<p:selectOneMenu
-									value="#{bicicletaController.entity.quantMarcha}">
-									<f:selectItem itemLabel="Selecione ..." itemValue="" />
-									<f:selectItems value="#{bicicletaController.listaQuantMarcha}"
-										var="quantMarcha" itemLabel="#{quantMarcha.quantidade}"
-										itemValue="#{quantMarcha}" />
-								</p:selectOneMenu>
+						</h:panelGrid>
 
 
-								<h:form enctype="multipart/form-data">
-									<p:fileUpload listener="#{bicicletaController.upload}"
-										label="#{bicicletaController.nomeFoto}" mode="advanced"
-										update="@this messages" auto="false" sizeLimit="200000"
-										allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-									<p:growl id="messages" showDetail="true" />
-								</h:form>
 
-								<p:inputTextarea rows="5" cols="30" counter="descricao"
-									maxlength="2000" counterTemplate="{0} characters remaining."
-									required="true" requiredMessage="Informe o numero."
-									autoResize="false" />
-								<br />
-								<h:outputText id="descricao" />
+					</p:tab>
+					<p:tab title="Imagem e Descrição">
+						<h:panelGrid columns="1" cellpadding="2">
+							<h:form enctype="multipart/form-data">
+								<p:fileUpload listener="#{bicicletaController.upload}"
+									label="#{produtoController.nomeFoto}" mode="advanced" size="30"
+									update="@this messages" auto="false" sizeLimit="200000"
+									allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-							</p:panelGrid>
-						</div>
+								<p:growl id="messages" showDetail="true" />
+							</h:form>
+							<p:outputLabel value="Descricao: " />
+							<p:inputTextarea rows="5" cols="30" counter="descricao"
+								value="#{bicicletaController.entity.descricao}" maxlength="1000"
+								counterTemplate="{0} characters remaining." autoResize="false" />
+							<br />
+							<h:outputText id="descricao" />
+						</h:panelGrid>
+					</p:tab>
+				</p:tabView>
+				<h:panelGrid columns="2">
+
+
+					<div class="ui-inputgroup">
+						<p:commandButton value="Listagem de Bicicletas"
+							actionListener="#{bicicletaController.abrirBicicletaListing}"
+							process="@this" update="@none" icon="pi pi-list">
+
+							<p:ajax event="dialogReturn"
+								listener="#{bicicletaController.obterBicicletaListing}"
+								update="@form" />
+						</p:commandButton>
+
 					</div>
-				</div>
+				</h:panelGrid>
+
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
@@ -160,7 +167,6 @@
 						</p:commandButton>
 
 					</f:facet>
-
 					<f:facet name="right">
 						<p:commandButton value="Excluir" icon="pi pi-trash"
 							process="@form" update="panel"
@@ -168,8 +174,12 @@
 							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
 						</p:commandButton>
 					</f:facet>
+
+
 				</p:toolbar>
 			</p:panel>
+
+
 
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 				<p:commandButton value="Sim" type="button"
@@ -177,6 +187,11 @@
 				<p:commandButton value="Não" type="button"
 					styleClass="ui-confirmdialog-no" />
 			</p:confirmDialog>
+
+
+
+
+
 
 		</h:form>
 	</ui:define>

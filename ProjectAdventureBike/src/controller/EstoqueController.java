@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import application.Util;
 import controller.listing.FornecedorListing;
 import controller.listing.ProdutoListing;
 import model.Estoque;
@@ -64,6 +65,10 @@ public class EstoqueController extends Controller<Estoque> {
 	public void obterProdutoListing(SelectEvent event) {
 		Produto entity = (Produto) event.getObject();
 		getEntity().setProduto(entity);
+	}
+
+	public void redireciona() {
+		Util.redirect("/faces/entradaestoque.xhtml");
 	}
 
 }
