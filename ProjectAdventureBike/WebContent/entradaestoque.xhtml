@@ -89,41 +89,45 @@
 										</div>
 									</h:panelGrid>
 								</h:panelGrid>
+								<h:panelGrid columns="2" cellpadding="5">
+									<p:outputLabel value="Quantidade: ">
+										<p:message for="itQuant" escape="false" />
+									</p:outputLabel>
+									<p:inputText id="itQuant" required="true"
+										requiredMessage="Informe a Quantidade." size="40"
+										value="#{estoqueController.entity.quantidade}" />
 
+									<p:outputLabel value="Nota Fiscal: ">
+										<p:message for="itNotaFiscal" escape="false" />
+									</p:outputLabel>
+									<p:inputText id="itNotaFiscal" required="true"
+										requiredMessage="Informe o numero da nota Fiscal." size="40"
+										value="#{estoqueController.entity.notaFiscal}" />
 
-
-
-								<p:outputLabel value="Quantidade: ">
-									<p:message for="itQuant" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itQuant" required="true"
-									requiredMessage="Informe a marca."
-									value="#{estoqueController.entity.quantidade}" />
-
-								<p:outputLabel value="Nota Fiscal: ">
-									<p:message for="itNotaFiscal" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itNotaFiscal" required="true"
-									requiredMessage="Informe o numero da nota Fiscal."
-									value="#{estoqueController.entity.notaFiscal}" />
-
-								<p:outputLabel value="Preco compra: ">
-									<p:message for="itPrecoCompra" escape="false" />
-								</p:outputLabel>
-								<p:inputText id="itPrecoCompra"
-									value="#{estoqueController.entity.precoCompra}" required="true"
-									requiredMessage="Informe o preco de compra." />
-
-
-
-
+									<p:outputLabel value="Preco compra R$: ">
+										<p:message for="itPrecoCompra" escape="false" />
+									</p:outputLabel>
+									<p:inputText id="itPrecoCompra" size="40"
+										value="#{estoqueController.entity.precoCompra}"
+										required="true" requiredMessage="Informe o preco de compra." />
+								</h:panelGrid>
 							</p:panelGrid>
+							<div class="ui-inputgroup">
+								<p:commandButton value="Estoque"
+									actionListener="#{estoqueController.redireciona1}"
+									process="@this" update="@none" icon="pi pi-folder-open">
+
+
+								</p:commandButton>
+							</div>
 
 
 						</div>
 					</div>
 				</div>
+
 				<p:toolbar>
+
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
 							update="@form" action="#{estoqueController.salvar}" />
@@ -135,61 +139,14 @@
 
 					</f:facet>
 
-					<f:facet name="right">
-						<p:commandButton value="Excluir" icon="pi pi-trash"
-							process="@form" update="panel"
-							action="#{estoqueController.excluir}">
-							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
-						</p:commandButton>
-					</f:facet>
+
+
 				</p:toolbar>
+
 			</p:panel>
 
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				<p:commandButton value="Sim" type="button"
-					styleClass="ui-confirmdialog-yes" />
-				<p:commandButton value="Não" type="button"
-					styleClass="ui-confirmdialog-no" />
-			</p:confirmDialog>
 
 
-			<p:dialog header="Listagem de Usuarios" widgetVar="listagem"
-				height="300" width="90%" modal="true" resizable="true">
-				<p:outputLabel value="Nome: " />
-				<p:inputText id="itFiltro" value="#{fornecedorController.filtro}" />
-				<p:commandButton value="Pesquisar"
-					actionListener="#{fornecedorController.pesquisar}"
-					process="@this itFiltro" update="dtListagem" />
-				<br />
-				<p:dataTable id="dtListagem" var="entity"
-					value="#{fornecedorController.listaFornecedor}">
-					<p:column headerText="Id">
-						<h:outputText value="#{entity.id}" />
-					</p:column>
-
-					<p:column headerText="Nome">
-						<p:commandLink value="#{entity.nome}"
-							actionListener="#{fornecedorController.editar(entity.id)}"
-							process="@this" update="@form" resetValues="true" />
-					</p:column>
-
-					<p:column headerText="CNPJ">
-						<h:outputText value="#{entity.cnpj}" />
-					</p:column>
-
-					<p:column headerText="Razao Social">
-						<h:outputText value="#{entity.razaoSocial}" />
-					</p:column>
-
-					<p:column headerText="Telefone">
-						<h:outputText value="#{entity.telefone.codigoArea}" />
-					</p:column>
-					<p:column headerText="Nome">
-						<h:outputText value="#{entity.telefone.entity.numero}" />
-					</p:column>
-
-				</p:dataTable>
-			</p:dialog>
 
 		</h:form>
 	</ui:define>

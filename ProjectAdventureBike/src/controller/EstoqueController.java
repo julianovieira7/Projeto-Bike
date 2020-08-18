@@ -68,7 +68,10 @@ public class EstoqueController extends Controller<Estoque> {
 	}
 
 	public void redireciona() {
-		Util.redirect("/faces/entradaestoque.xhtml");
+		Util.redirect("/faces/pages/entradaestoque.xhtml");
+	}
+	public void redireciona1() {
+		Util.redirect("/faces/pages/estoque.xhtml");
 	}
 
 }
