@@ -79,11 +79,11 @@ public class UsuarioController extends Controller<Usuario> {
 		getEntity().setSenha(hashSenha);
 		UsuarioRepository repo = new UsuarioRepository();
 		if (repo.containsCpf(entity.getId(), entity.getCpf())) {
-			Util.addMessageError("CPF j� cadastrado no sistema");
+			Util.addMessageError("CPF ja cadastrado no sistema");
 		}
 
 		else if (repo.contains(entity.getId(), entity.getEmail())) {
-			Util.addMessageError("Email j� cadastrado no sistema");
+			Util.addMessageError("Email ja cadastrado no sistema");
 		} else
 			super.salvar();
 	}

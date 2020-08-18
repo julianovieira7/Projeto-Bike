@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ph="http://primefaces.org/harmony">
+
+	<div class="layout-sidebar">
+		<ul id="layout-menu" class="layout-menu">
+			<li><h:link outcome="{templateController.encerrarSessao}">
+					<i class="pi pi-user" />
+					<span>Login</span>
+				</h:link></li>
+			<div class="ui-inputgroup">
+				<p:commandButton value="Dar Entrada"
+					actionListener="#{templateController.encerrarSessao}"
+					process="@this" update="@none" class="pi pi-user">
+
+
+				</p:commandButton>
+
+
+			</div>
+
+
+
+
+
+
+
+
+		</ul>
+	</div>
+</ui:composition>

@@ -2,7 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template2.xhtml">
 
 	<ui:define name="head">
 		<style type="text/css">
@@ -43,7 +43,7 @@
 			<p:panel id="panel">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Cadastro de Marca</h1>
+						<h1>Cadastro de Tipo de Produto</h1>
 					</div>
 				</f:facet>
 				<div class="ui-g ui-fluid">
@@ -52,19 +52,20 @@
 							<p:panelGrid columns="1"
 								styleClass="form-group ui-panelgrid-blank" layout="grid">
 
-								<p:inputText id="itNome" value="#{marcaController.entity.nome}"
-									size="60" required="true" requiredMessage="Informe o nome." />
+								<p:inputText id="itNome" size="60"
+									value="#{tipoProdutoController.entity.nome}" required="true"
+									requiredMessage="Informe o nome." />
 
 								<h:panelGrid columns="2">
 
 
 									<div class="ui-inputgroup">
-										<p:commandButton value="Listagem de Marcas"
-											actionListener="#{marcaController.abrirMarcaListing}"
+										<p:commandButton value="Listagem de Tipos de Produto"
+											actionListener="#{tipoProdutoController.abrirTipoProdutoListing}"
 											process="@this" update="@none" icon="pi pi-list">
 
 											<p:ajax event="dialogReturn"
-												listener="#{marcaController.obterMarcaListing}"
+												listener="#{tipoProdutoController.obterTipoProdutoListing}"
 												update="@form" />
 										</p:commandButton>
 
@@ -79,10 +80,10 @@
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
-							update="@form" action="#{marcaController.salvar}" />
+							update="@form" action="#{tipoProdutoController.salvar}" />
 
 						<p:commandButton value="Limpar" process="@this" update="panel"
-							action="#{marcaController.limpar}">
+							action="#{tipoProdutoController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
 
@@ -91,7 +92,7 @@
 					<f:facet name="right">
 						<p:commandButton value="Excluir" icon="pi pi-trash"
 							process="@form" update="panel"
-							action="#{marcaController.excluir}">
+							action="#{tipoProdutoController.excluir}">
 							<p:confirm header="Confirmação" message="Confirma a exclusão?" />
 						</p:commandButton>
 					</f:facet>

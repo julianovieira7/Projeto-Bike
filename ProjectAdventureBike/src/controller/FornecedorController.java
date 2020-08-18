@@ -35,7 +35,7 @@ public class FornecedorController extends Controller<Fornecedor> {
 	public void salvar() {
 		FornecedorRepository repo = new FornecedorRepository();
 		if (repo.containsCnpj(entity.getId(), entity.getCnpj()))
-			Util.addMessageWarn("CNPJ j� cadastrado no sistema");
+			Util.addMessageWarn("CNPJ ja cadastrado no sistema");
 		else
 		super.salvar();
 
