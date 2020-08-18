@@ -52,9 +52,9 @@
 						<p:panelGrid columns="3">
 							<div align="left" style="float: left;">
 
-									<img  class="img-responsive"
-										style="max-width: 500px !important; max-height: 500px !important;"
-										src="img-produto?nome=#{descricaoController.produto.id}.png" />
+								<img class="img-responsive"
+									style="max-width: 500px !important; max-height: 500px !important;"
+									src="img-produto?nome=#{descricaoController.produto.id}.png" />
 							</div>
 						</p:panelGrid>
 					</f:facet>
@@ -62,10 +62,7 @@
 						<div class="ui-g-12">
 							<div class="card card-w-title" align="center">
 
-								<p:panelGrid columns="2"
-									styleClass="form-group ui-panelgrid-blank" layout="grid">
-
-
+								<p:panelGrid>
 
 									<h:outputText value="#{descricaoController.produto.valor}" />
 								</p:panelGrid>
@@ -74,18 +71,14 @@
 								</p:panelGrid>
 
 							</div>
+							<div align="center">
+										<p:commandButton value="Comprar" icon="pi pi-check"
+											process="@form" update="@form"
+											action="#{descricaoController.comprar(descricaoController.produto.id)}" />
+
+ 							</div>
 						</div>
 					</div>
-
-					<p:toolbar>
-						<f:facet name="left">
-							<p:commandButton value="Comprar" icon="pi pi-check"
-								process="@form" update="@form"
-								action="#{descricaoController.comprar(descricaoController.produto.id)}" />
-
-						</f:facet>
-
-					</p:toolbar>
 				</p:panel>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

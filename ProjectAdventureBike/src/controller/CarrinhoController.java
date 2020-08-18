@@ -19,11 +19,43 @@ import model.Usuario;
 public class CarrinhoController extends Controller<Carrinho> {
 
 	private static final long serialVersionUID = -7303558665258909306L;
+		private Double valorCarrinho = 0.00;
+
+	public Double getValorCarrinho() {
+		return valorCarrinho;
+	}
+
+	public void setValorCarrinho(Double valorCarrinho) {
+		this.valorCarrinho = valorCarrinho;
+	}
+
+	int i = 0;
+
+//	@Override
+//	public void salvar() {
+////		
+////		List<ItemPedido> carrinhoSalvar = (ArrayList<ItemPedido>) Session.getInstance().getAttribute("carrinho");
+////		for (ItemPedido itemPedido : carrinhoSalvar) {
+////			System.out.println(itemPedido.getProduto().toString());
+////			valorCarrinho = valorCarrinho + carrinhoSalvar.get(i).getValor();
+////			i = i + 1;
+////			System.out.println("carrinho:" + carrinhoSalvar.toString());
+////			System.out.println("quant: " + i);
+////			System.out.println("valor do carrinho: " + valorCarrinho);
+////		}
+////		if(entity == null)
+////			entity = new Carrinho();
+////		Usuario usuario1 = (Usuario) Session.getInstance().getAttribute("usuarioLogado");
+////		entity.setUsuario(usuario1);
+////		entity.setValorCarrinho(valorCarrinho);
+////		super.salvar();
+//	}
 
 	@Override
 	public Carrinho getEntity() {
 		if (entity == null) {
 			entity = new Carrinho();
+			entity.setUsuario(new Usuario());
 		}
 		List<ItemPedido> carrinhoPedido = (ArrayList<ItemPedido>) Session.getInstance().getAttribute("carrinho");
 

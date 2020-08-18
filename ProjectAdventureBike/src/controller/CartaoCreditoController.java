@@ -4,9 +4,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import model.Bandeira;
-import model.Boleto;
 import model.CartaoCredito;
-import model.FormaPagamento;
 import model.TipoCartao;
 
 @Named
