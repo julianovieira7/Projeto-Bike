@@ -2,7 +2,7 @@ package model;
 
 public enum QuantMarcha {
 
-	VINTE_QUATRO(0, "Vinte quatro"), VINTE_SEIS(0, "Vinte seis"), TRINTA_E_DUAS(0, "Trinta e Duas");
+	VINTE_QUATRO(0, "Vinte quatro"), VINTE_SEIS(1, "Vinte seis"), TRINTA_E_DUAS(2, "Trinta e Duas");
 
 	private int id;
 	private String quantidade;

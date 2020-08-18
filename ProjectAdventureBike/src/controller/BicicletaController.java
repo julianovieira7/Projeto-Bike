@@ -59,10 +59,10 @@ public class BicicletaController extends Controller<Bicicleta> {
 
 	@Override
 	public void salvar() {
-		System.out.println(listaTipoProduto.toString());
-		for (int i = 0; i < listaTipoProduto.size(); i++) {
-			entity.setTipoProduto(listaTipoProduto.get(i));
-		}
+		TipoProdutoRepository repo = new TipoProdutoRepository();
+		entity.setTipoProduto(repo.retornaTipo("Bicicleta"));
+		
+
 		// salvando no banco de dados
 		if (salvarEspecial()) {
 			// caso nao tenha selecionado a imagem sair do metodo
@@ -150,21 +150,6 @@ public class BicicletaController extends Controller<Bicicleta> {
 
 	public QuantMarcha[] getListaQuantMarcha() {
 		return QuantMarcha.values();
-	}
-
-	public List<TipoProduto> getListaTipoProduto() {
-		if (listaTipoProduto == null) {
-			listaTipoProduto = new ArrayList<TipoProduto>();
-			TipoProdutoRepository tipo = new TipoProdutoRepository();
-			setListaTipoProduto(tipo.findByNome("Bicicleta"));
-		}
-
-		return listaTipoProduto;
-	}
-
-	public void setListaTipoProduto(List<TipoProduto> listaTipoProduto) {
-
-		this.listaTipoProduto = listaTipoProduto;
 	}
 
 }
