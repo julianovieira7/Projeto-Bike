@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import application.Util;
  
 //servlet responsavel por retornar uma imagem atrav� do nome da imagem (ex. 01.png)
-@WebServlet("/img-produto")
+@WebServlet("/pages/img-produto")
 public class ImgProdutoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -5681030537322840192L;
