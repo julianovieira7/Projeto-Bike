@@ -7,22 +7,13 @@
 
 	<div class="layout-sidebar">
 		<ul id="layout-menu" class="layout-menu">
-			<li><h:link outcome="{templateController.encerrarSessao}">
-					<i class="pi pi-user" />
+
+			<li><p:commandLink
+					actionListener="#{templateController.encerrarSessao}">
 					<span>Login</span>
-				</h:link></li>
-			<div class="ui-inputgroup">
-				<p:commandButton value="Dar Entrada"
-					actionListener="#{templateController.encerrarSessao}"
-					process="@this" update="@none" class="pi pi-user">
+					<i class="pi pi-user" />
 
-
-				</p:commandButton>
-
-
-			</div>
-
-
+				</p:commandLink></li>
 
 
 

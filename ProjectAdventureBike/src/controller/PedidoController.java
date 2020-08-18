@@ -58,10 +58,10 @@ public class PedidoController extends Controller<Pedido> {
 	}
 
 	public void boleto() {
-		Util.redirect("/faces/boleto.xhtml?faces-redirect=true");
+		Util.redirect("/faces/pages/boleto.xhtml?faces-redirect=true");
 	}
 
 	public void cartaoCredito() {
-		Util.redirect("/faces/cartaocredito.xhtml?faces-redirect=true");
+		Util.redirect("/faces/pages/cartaocredito.xhtml?faces-redirect=true");
 	}
 }

@@ -24,7 +24,7 @@ public class LoginController {
 			if (usuario.getPerfil().getId() == 0)
 				return "pages/produto.xhtml?faces-redirect=true";
 			else
-				return "vendaproduto.xhtml?faces-redirect=true";
+				return "pages/vendaproduto.xhtml?faces-redirect=true";
 
 		}
 		Util.addMessageError("Login ou Senha inv�lido.");
