@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
@@ -17,21 +18,29 @@ import model.Usuario;
 @Named
 @ViewScoped
 public class PedidoController extends Controller<Pedido> {
-
+	Random random = new Random();
 	private static final long serialVersionUID = 8702988121934899052L;
 	private Carrinho carrinho;
 
 	public Carrinho getCarrinho() {
 		if (carrinho == null) {
-			setCarrinho(new Carrinho());
-			carrinho.setPedido(new Pedido());
-			carrinho.setUsuario(new Usuario());
+			carrinho = new Carrinho();
 		}
 		return carrinho;
 	}
 
 	public void setCarrinho(Carrinho carrinho) {
 		this.carrinho = carrinho;
+	}
+
+	@Override
+	public void salvar() {
+		getEntity().setCarrinho(getCarrinho());
+		entity.setValorTotal(getCarrinho().getValorCarrinho());
+		Double numeroPedido = random.nextDouble() * 10;
+		String stringNumeroPedido = Double.toString(numeroPedido);
+		entity.setNumeroPedido(stringNumeroPedido);
+		super.salvar();
 	}
 
 	public PedidoController() {
@@ -41,12 +50,6 @@ public class PedidoController extends Controller<Pedido> {
 		getCarrinho().setUsuario((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
 		System.out.println("entreiii");
 		System.out.println(getCarrinho().toString());
-	}
-
-	@Override
-	public void salvar() {
-		getEntity().setCarrinho(getCarrinho());
-		super.salvar();
 	}
 
 	@Override
