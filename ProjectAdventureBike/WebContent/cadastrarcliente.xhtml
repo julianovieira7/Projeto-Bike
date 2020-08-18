@@ -1,11 +1,26 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" lang="en">
 
-	<ui:define name="head">
-		<style type="text/css">
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<h:outputStylesheet library="webjars"
+			name="font-awesome/5.12.0/css/all.min-jsf.css" />
+		<h:outputStylesheet library="webjars"
+			name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+		<title>Project Bike</title>
+
+	</f:facet>
+	<title>Login</title>
+	<style type="text/css">
 .ui-panelgrid.form-elements .ui-grc-2 {
 	padding-left: 60px;
 }
@@ -26,25 +41,25 @@
 	line-height: 2.1em;
 }
 </style>
-	</ui:define>
+</h:head>
 
-	<ui:define name="content">
+<h:body>
 
-		<p:ajaxStatus onstart="PF('statusDialog').show()"
-			onsuccess="PF('statusDialog').hide()" />
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
 
-		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-			closable="false" resizable="false" showHeader="false">
-			<p:graphicImage name="/images/loading.gif" />
-		</p:dialog>
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage name="/images/loading.gif" />
+	</p:dialog>
 
-
-		<h:form>
-			<p:growl id="growl" globalOnly="false" />
-			<p:panel id="panel">
+	<h:form>
+		<p:growl id="growl" globalOnly="false" />
+		<div align="center">
+			<p:panel id="panel" style="width:500px">
 				<f:facet name="header">
 					<div align="center">
-						<h1>Cadastro de Cliente</h1>
+						<h1>Cadastrar</h1>
 					</div>
 				</f:facet>
 				<p:tabView>
@@ -126,6 +141,7 @@
 					</p:tab>
 
 				</p:tabView>
+
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Salvar" icon="pi pi-check" process="@form"
@@ -138,16 +154,24 @@
 
 					</f:facet>
 
-
 				</p:toolbar>
+				<div class="ui-inputgroup">
+					<p:commandButton value="Ir para Login"
+						actionListener="#{clienteController.retornaLogin}" process="@this"
+						update="@none" icon="pi pi-plus">
+
+
+					</p:commandButton>
+
+
+				</div>
 			</p:panel>
+		</div>
+	</h:form>
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/all.min-jsf.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
 
-
-
-
-
-
-
-		</h:form>
-	</ui:define>
-</ui:composition>
+</h:body>
+</html>

@@ -23,17 +23,22 @@ public enum Perfil {
 			paginasAcesso.add("pages/marca.xhtml");
 			paginasAcesso.add("pages/marcalisting.xhtml");
 			paginasAcesso.add("pages/tiporevisao.xhtml");
-			paginasAcesso.add("pages/tipoprodutolisting.xhtml");	
+			paginasAcesso.add("pages/tipoprodutolisting.xhtml");
 			paginasAcesso.add("pages/tipoproduto.xhtml");
 			paginasAcesso.add("pages/produto.xhtml");
+			paginasAcesso.add("pages/tipoprodutolisting.xhtml");
 			paginasAcesso.add("pages/bicicleta.xhtml");
-			paginasAcesso.add("pages/bicicletalisting.xhtml");	
+			paginasAcesso.add("pages/bicicletalisting.xhtml");
 			paginasAcesso.add("pages/estoque.xhtml");
-			
-  		} else {
-			paginasAcesso.add("pages/estoque.xhtml");
-			paginasAcesso.add("pages/hello.xhtml");
-			paginasAcesso.add("vendaproduto.xhtml");
+			paginasAcesso.add("pages/entradaestoque.xhtml");
+
+		} else {
+			paginasAcesso.add("pages/vendaproduto.xhtml");
+			paginasAcesso.add("pages/descricao.xhtml");
+			paginasAcesso.add("pages/formapagamento.xhtml");
+			paginasAcesso.add("pages/cartaocredito.xhtml");
+			paginasAcesso.add("pages/carrinho.xhtml");
+			paginasAcesso.add("pages/boleto.xhtml");
 
 		}
 

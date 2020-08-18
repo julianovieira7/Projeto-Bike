@@ -87,12 +87,12 @@
 							update="@form" action="#{loginController.logar}" />
 
 						<p:commandButton value="Limpar" process="@this" update="panel"
-							action="#{loginController.limpar}">
+							icon="pi pi-undo" action="#{loginController.limpar}">
 							<p:ajax update="@form" resetValues="true" />
 						</p:commandButton>
-						<p:commandButton value="Cadastrar" icon="pi pi-check"
-							process="@form" update="@form"
+						<p:commandButton value="Cadastrar" icon="pi pi-user-edit"
 							action="#{loginController.cadastrar}" />
+
 					</div>
 				</f:facet>
 			</p:panel>

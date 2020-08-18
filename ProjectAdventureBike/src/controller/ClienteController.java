@@ -43,4 +43,8 @@ public class ClienteController extends Controller<Usuario> {
 			super.salvar();
 	}
 
+	public void retornaLogin() {
+		Util.redirect("/faces/login.xhtml");
+	}
+
 }
